@@ -15,12 +15,12 @@ window.addEventListener('resize', resize)
 const gl = getWebGL2Context(canvas)
 const renderer = createStructureRenderer(gl)
 
-const seed = 42
+const seedState = { seed: 42 }
 const params = { ...DEFAULT_PARAMS }
 
 function regenerate() {
-  renderer.render(generateStructure(seed, params))
+  renderer.render(generateStructure(seedState.seed, params))
 }
 
-createControls(params, regenerate)
+createControls(params, seedState, regenerate)
 regenerate()

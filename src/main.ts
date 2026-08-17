@@ -1,5 +1,6 @@
 import { getWebGL2Context } from './render/context'
-import { runSmokeTest } from './render/smoke-test'
+import { createStructureRenderer } from './render/structureRenderer'
+import { generateStructure } from './generation/structure'
 
 const canvas = document.querySelector<HTMLCanvasElement>('#canvas')!
 
@@ -11,4 +12,5 @@ resize()
 window.addEventListener('resize', resize)
 
 const gl = getWebGL2Context(canvas)
-runSmokeTest(gl)
+const renderer = createStructureRenderer(gl)
+renderer.render(generateStructure(42))

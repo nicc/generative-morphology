@@ -36,7 +36,7 @@ const RULE_NAME = 'stub-branch'
 // renderer -> UI) end to end. It is not a stated design principle -- those
 // don't exist yet -- and it will be replaced once real morphology rules do.
 export function generateStructure(seed: number, params: GenerationParams = DEFAULT_PARAMS): StructureNode {
-  return generateBranch(seed, params, '0', [0, 0], -Math.PI / 2, 1, params.depth)
+  return generateBranch(seed, params, '0', [0, -0.9], Math.PI / 2, 0.35, params.depth)
 }
 
 function generateBranch(

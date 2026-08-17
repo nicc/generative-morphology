@@ -1,3 +1,6 @@
+import { getWebGL2Context } from './render/context'
+import { runSmokeTest } from './render/smoke-test'
+
 const canvas = document.querySelector<HTMLCanvasElement>('#canvas')!
 
 function resize() {
@@ -6,3 +9,6 @@ function resize() {
 }
 resize()
 window.addEventListener('resize', resize)
+
+const gl = getWebGL2Context(canvas)
+runSmokeTest(gl)

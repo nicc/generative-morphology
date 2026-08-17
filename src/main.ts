@@ -1,6 +1,7 @@
 import { getWebGL2Context } from './render/context'
 import { createStructureRenderer } from './render/structureRenderer'
-import { generateStructure } from './generation/structure'
+import { DEFAULT_PARAMS, generateStructure } from './generation/structure'
+import { createControls } from './ui/controls'
 
 const canvas = document.querySelector<HTMLCanvasElement>('#canvas')!
 
@@ -13,4 +14,13 @@ window.addEventListener('resize', resize)
 
 const gl = getWebGL2Context(canvas)
 const renderer = createStructureRenderer(gl)
-renderer.render(generateStructure(42))
+
+const seed = 42
+const params = { ...DEFAULT_PARAMS }
+
+function regenerate() {
+  renderer.render(generateStructure(seed, params))
+}
+
+createControls(params, regenerate)
+regenerate()

@@ -1,47 +1,109 @@
 # generative-morphology
 
-A generative artwork in WebGL, built from a set of stated principles about plant morphology. This file is the starting point for every session — read it before doing anything else.
+A generative artwork in WebGL2: plant-like forms grown from seeded rules, explored through a control panel. Purpose and audience: [VISION.md](VISION.md).
 
-## What this is
+The principles below constrain every design and implementation decision. A violation must be explicit, intentional and justified.
 
-Nothing about visual language, rendering approach, or tooling is decided beyond what's written in this repo. Don't assume a shader library, framework, or build tool that isn't recorded in [Structure](#structure) below. If it's not written down, it hasn't been decided.
+@PRINCIPLES.md
 
-## How we work
+## Ground rules
 
-- **Plain language, no hype.** Describe what a thing does or looks like in concrete terms. No "stunning," "breathtaking," "organic beauty" — say what actually happens (e.g. "branch angle narrows as order increases," not "elegant cascading fronds").
-- **Principles before implementation.** Every generative rule should trace back to a stated principle in [PRINCIPLES.md](PRINCIPLES.md). If a change isn't traceable to one, stop and raise it rather than guessing at what looks good.
-- **Glossary discipline.** Define a term in [GLOSSARY.md](GLOSSARY.md) the first time it's used in a sense that isn't obvious from plain English — biological terms (e.g. phyllotaxis, apical dominance) and technical ones (e.g. what we mean by "generation" or "rule" in this codebase) alike. If you're about to use a term not already in the glossary, add it or ask first.
-- **Issue tracking via beads.** This project uses `bd`. See [AGENTS.md](AGENTS.md) for the full workflow — finding ready work, claiming it, closing it, and the mandatory sync-and-push at session end. That workflow applies here unchanged; this file doesn't repeat it.
+- **Propose before building.** For anything non-trivial (new behaviour, multi-file change, refactor), describe what and how, then wait for approval. Trivial fixes and research don't need it.
+- **Principles before implementation.** Every generative rule traces back to a stated principle. If a change isn't traceable to one, stop and raise it rather than guessing at what looks good. The Design principles section is written together, deliberately; don't infer principles from what looks good.
+- **Specs are canonical.** A code change that affects specified behaviour updates the spec in the same commit. If something isn't specified, say so and ask; don't invent scope.
+- **Use the glossary.** [GLOSSARY.md](GLOSSARY.md) for biological and project terms alike. Restate loose terms in glossary language, ask when a term is ambiguous, and propose a definition before using a new one.
+- **Track work and memory in bd.** No TODO or plan files, and no memory files: persistent notes go in `bd remember --key <slug> "..."`. File discoveries (spec gaps, surprising behaviour) as issues when you find them, then ask the user to triage. `bd close -r "reason"`, not `--comment`.
+- **Breaking changes are fine.** No shims, aliases or deprecated paths unless asked.
+- **Plain register.** No hype in docs, comments, commits or issues. Say what a thing does or looks like ("branch angle narrows as order increases", not "elegant cascading fronds"). Be precise about what exists versus what is planned.
 
-## Principles
+## Architecture
 
-See [PRINCIPLES.md](PRINCIPLES.md). Empty until we write the first ones together — don't invent principles to fill the gap.
+```
+seed + GenerationParams → generation → StructureNode tree (with provenance) → render → canvas
+                              ↑
+                   ui (the jig: params, locks, new seed)
+```
 
-## Glossary
+Generation decides what a structure is; render draws whatever structure it is handed; ui edits parameters and seeds and triggers regeneration. Principle 2 is the rule; ESLint enforces the import boundaries.
 
-See [GLOSSARY.md](GLOSSARY.md). Empty until terms come up.
+| Module | Owns | May import |
+|---|---|---|
+| [src/generation/](src/generation/) | Pure, seeded rules → `StructureNode` tree; `rng.ts` (seeded PRNG, seed derivation) | nothing outside generation |
+| [src/render/](src/render/) | All WebGL2 and twgl calls; GL state scoped per node | generation types |
+| [src/ui/](src/ui/) | The jig: Tweakpane panel, parameter ranges, locks, new-seed button | generation |
+| [src/main.ts](src/main.ts) | Wiring: canvas, renderer, controls, regenerate | everything |
 
-## Structure
+Stack: TypeScript, Vite, raw WebGL2 with [twgl.js](https://twgljs.org/) for shader/buffer/uniform boilerplate only, [Tweakpane](https://cocopon.github.io/tweakpane/) for the jig, Vitest. No scene-graph engine (Three.js considered and ruled out: the work doesn't borrow meaning from recognisable materials or lighting, and the object model is shaped by generation, not by a general 3D scene). No app framework.
 
-No code exists yet — this is the intended shape as we scaffold it. Update this section the moment reality diverges from it; an out-of-date Structure section is worse than an empty one.
+The only generation rule today is a placeholder (`stub-branch` in [structure.ts](src/generation/structure.ts)) that proves the pipeline end to end. It is not a design principle and will be replaced.
 
-- **Language:** TypeScript.
-- **Build/dev:** Vite.
-- **Rendering:** raw WebGL2. Deliberately not a scene-graph engine (Three.js considered and ruled out) — the content doesn't borrow meaning from recognizable materials/lighting, and the object model we actually need is shaped by generation (see below), not by a general-purpose 3D scene.
-- **Rendering boilerplate:** [twgl.js](https://twgljs.org/), used only to remove shader-compile/buffer/uniform ceremony. No scene graph, no draw-command abstraction beyond what we write ourselves.
-- **Structure/provenance layer:** ours to design and build. A tree of addressable generated nodes — rule, parameters, seed lineage, children — satisfying principle 2's provenance requirement. This is what the renderer consumes, what the inspector and lock controls (workflow principles 5–6) attach to, and where GL draw state gets scoped per node rather than left as global mutable state. Not started yet.
-- **UI controls:** [Tweakpane](https://cocopon.github.io/tweakpane/) for sliders, macros, lock toggles, and the new-seed button. Isolated from generation and rendering code.
-- **App shell:** none. No React/Vue/etc. — the surface is a canvas plus a control panel, wired together with plain TS modules.
-- **Testing:** generation code (pure, seeded — principles 1 and 3) gets unit tests; a test runner gets picked as part of scaffolding, not planned separately. Rendering output is verified by looking at it (`run` skill), not automated.
+## Specs and RFCs
 
-Module boundaries mirror principle 2: a generation module produces structure data with no WebGL references; a render module consumes structure and owns all WebGL/twgl calls; a ui module only touches the control panel and structure-layer parameter overrides.
+- `specs/SPEC_*.md` are canonical: approved decisions that the code must match. `npm run check:specs` verifies their `src/` references resolve; whether the prose still matches behaviour is on you. Format: [specs/README.md](specs/README.md).
+- `rfcs/` are exploration and rationale. Read them for why a decision was made. They go stale and are never canonical. New designs start as an RFC and become spec text (or, for a new principle, PRINCIPLES.md text) when approved. Format and lifecycle: [rfcs/README.md](rfcs/README.md).
+
+| Concern | Specs |
+|---|---|
+| _None yet. Add a row per concern as specs are approved._ | |
+
+## Where to look
+
+| For | Read |
+|---|---|
+| Why this exists, who it's for | [VISION.md](VISION.md) |
+| Writing an RFC | [rfcs/README.md](rfcs/README.md) |
+| Writing or changing a spec | [specs/README.md](specs/README.md) |
+| Past spikes and findings | [docs/learnings/](docs/learnings/) |
+| What the PR reviewer checks | [.github/pr-review.md](.github/pr-review.md) |
+
+## Enforced by the toolchain
+
+Breaking these fails the build or lint, so they need no separate checking. Each ESLint rule block in [eslint.config.js](eslint.config.js) names the principle it encodes.
+
+- **Compiler** ([tsconfig.json](tsconfig.json)): no unused locals or parameters, `verbatimModuleSyntax`, `erasableSyntaxOnly`.
+- **Module boundaries** (principle 2): generation imports neither render, ui, twgl nor Tweakpane; render doesn't import ui; ui doesn't import render or twgl.
+- **Determinism** (principles 1, 3): no `Math.random`, `Date.now`, `new Date()`, `performance.now`, `crypto.getRandomValues` or browser globals in generation. Entropy enters as a seed from outside generation.
+- **Code hygiene**: typed recommended rules, no deprecated APIs, exhaustive switches over unions.
+- **Tests**: no `.only`/`.skip`, every test asserts, no `console`.
+- **Specs**: `check:specs` fails on spec references to missing paths.
+
+Lint exemptions are `eslint-disable-next-line` comments that give the reason and cite the bd issue that removes them.
+
+## Tests
+
+Generation code is pure and seeded, so it gets unit tests. Rendering output is verified by looking at it (the `run` skill), not by automated tests. The core rule: a test protects a behaviour. It survives a retune of a default and fails when the behaviour breaks. So import defaults and ranges rather than retyping them, and assert properties (determinism for a seed, orderings, bounds, ratios) over exact values.
+
+## Code conventions
+
+- **Form-affecting values live in the jig.** A value that visibly changes the form when varied (principle 5) is a field of `GenerationParams` with a one-line comment giving its unit, a default in `DEFAULT_PARAMS` ([structure.ts](src/generation/structure.ts)) and a range in `PARAM_RANGES` ([controls.ts](src/ui/controls.ts)), so it appears in the panel and can be locked. Never an inline literal in a rule.
+- **Other tunables are named top-of-file constants**, with units in the name (`_RAD`, `_FRACTION`, `_PX`) and a one-line comment. These are values that affect only numerical stability or performance and stay out of the panel (principle 5: curated over exhaustive).
+- **Seed lineage, not shared RNG state.** Each node derives its own seed from its parent's (`deriveSeed` in [rng.ts](src/generation/rng.ts)); no mutable RNG is passed down the tree. New-seed parameter randomisation derives from the new seed, so `(seed, params)` reproduces from one number.
+- **Node ids are stable** for a given seed and parameters (`rule:path`, no counters). The inspector and click-to-target feedback (principle 6) attach to them.
+
+## Planned, not set up
+
+Recorded so no one assumes these exist yet:
+
+- **Bend.** Intended for use here; its role and setup haven't been decided.
+- **Subjective evals.** Automated evaluation of rendered output beyond unit tests. Until it exists, rendering is checked by looking.
 
 ## Skills worth using here
 
-- **beads** — multi-session task tracking, already wired up via AGENTS.md. Use it once work spans more than one sitting.
-- **run** — once there's an app to launch, use this to start it and check changes in an actual browser rather than trusting that code compiles. WebGL correctness (a shape that's technically rendering vs. one that looks right) can't be verified by a type check.
-- **code-review** — for reviewing shader and generation-logic changes before they land, particularly numerically-heavy code (transforms, noise, recursive/L-system generation) where a subtle bug produces a plausible-looking but wrong result.
-- **simplify** — periodic cleanup pass on generation code once it exists.
-- **artifact-diagramming** — for sketching a coordinate system or growth rule as a diagram when text alone is ambiguous. Use sparingly, for a mechanism that's genuinely hard to describe in a sentence — not decoration, and not a substitute for the plain-language rule above.
+- **run**: launch the app and check a change in a real browser. A shape that technically renders and one that looks right can't be told apart by a type check.
+- **code-review**: before landing numerically heavy generation or shader changes (transforms, noise, recursion), where a subtle bug produces a plausible-looking wrong result.
+- **artifact-diagramming**: for a coordinate system or growth rule that is hard to state in a sentence. Not decoration, and not a substitute for plain language.
+- **simplify**: periodic cleanup pass on generation code.
 
-Not relevant yet: **dataviz** (no data to visualize), **artifact-capabilities** (no hosted runtime page planned). Revisit if that changes.
+## Finishing work: branch, PR, review
+
+`main` is protected; every change lands through a PR that the user merges.
+
+1. **Branch** from `main`. Commit at stopping points; lead commit messages with the change to the form or the workflow. After a rename, grep `.ts` and `.md` for the old term.
+2. **Run the gates** before pushing: `npm run build && npm test && npm run lint` (`build` runs `tsc`).
+3. **Look at it.** For any change that can affect the rendered form, run the app and look, at the seeds and parameters that exercise the change.
+4. **Open the PR**: push the branch and run `gh pr create`, filling every section of [.github/pull_request_template.md](.github/pull_request_template.md): intent, behaviour changes (with the seeds and parameters that show them), pertinent principles, specs and RFCs, and the decisions and deliberate exceptions agreed in conversation. The reviewer sees only the repo and the PR, so whatever the description leaves out, it will miss or flag as a violation.
+5. **CI runs two checks** on every non-draft PR from this repo: the gates ([ci.yml](.github/workflows/ci.yml)) and an independent Claude review ([claude-review.yml](.github/workflows/claude-review.yml), following [.github/pr-review.md](.github/pr-review.md)). The review posts advisory comments and re-runs on each push, covering only what changed.
+6. **Loop on the review.** Wait for it with `gh pr checks <n> --watch`, then read it with `gh pr view <n> --comments` and `gh api repos/{owner}/{repo}/pulls/<n>/comments`. Treat its observations as evidence and its interpretations as claims to check against the principles and the agreed decisions. Fix what holds up and push; the next round reviews only the new changes. If a finding is wrong because the description lacked context, fix the description too. Stop when a round raises nothing you would act on, or after three rounds, whichever comes first. A green `review` check with no review comment means the review didn't run (the action skips, reporting success, when the PR changes its workflow file); tell the user rather than treating it as a pass.
+7. **Hand over.** Tell the user what you fixed and which findings you declined and why. Never drop one silently. The user reviews, then asks for changes or merges. After the merge, `bd sync` (the issue database is a Dolt remote on `refs/dolt/data`, independent of git branches) and close the finished issues.
+
+If the review is repeatedly noisy or misses something, propose an edit to the brief rather than working around it.

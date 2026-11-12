@@ -7,11 +7,18 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint . && npm run check:specs",
+    "lint:fix": "eslint . --fix",
+    "check:specs": "node scripts/check-spec-refs.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@tweakpane/core": "^2.0.5",
+    "@vitest/eslint-plugin": "^1.6.28",
+    "eslint": "^10.14.0",
     "typescript": "~6.0.2",
+    "typescript-eslint": "^8.72.2",
     "vite": "^8.2.0",
     "vitest": "^4.1.10"
   },

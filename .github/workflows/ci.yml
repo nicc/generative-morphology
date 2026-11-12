@@ -1,0 +1,45 @@
+# CI — runs the full quality gate on every pull request and every push
+# to main. Same commands used locally (npm run build / test / lint), so
+# a green run means "this is what a fresh clone looks like".
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel in-progress runs when a new commit lands on the same PR or
+# branch.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Build + test + lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        # tsc then vite build.
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Lint
+        # ESLint (module boundaries, determinism, test hygiene) then
+        # check:specs.
+        run: npm run lint

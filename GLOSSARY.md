@@ -72,7 +72,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **meaning function** — the function from a representation to its meaning. Each operation is specified by requiring the meaning function to respect it (to be a homomorphism). *(RFC 001)*
 
-**mutation** — a rare change to the context, applied at a slot and so scoped to the subtree grown from it; whether one occurs is drawn from its own weight table per seed or per slot. The first ones are named bud sports ('Pendula', 'Contorta', 'Fastigiata'). Not a synonym for phase or rule application. *(proposed, RFC 004)*
+**mutation** — a rare change to the traits a context carries (a function from traits to traits), applied at a slot and so scoped to the subtree grown from it; whether one occurs is drawn from its own weight table per seed or per slot. The first ones are named bud sports ('Pendula', 'Contorta', 'Fastigiata'). Not a synonym for phase or rule application. *(proposed, RFC 004)*
 
 **near-semiring** — two monoids on one set with only one distributive law. What the structure level would be if a bud could grow several shoots; not used (RFC 002, J2). *(RFC 002)*
 

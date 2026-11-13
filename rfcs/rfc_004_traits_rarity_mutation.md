@@ -32,7 +32,7 @@ Enters PRINCIPLES.md only when approved, and is numbered then.
 - A trait's **scope** is per seed (one value for the plant) or per slot (drawn at each slot from that slot's seed; RFC 002, I1).
 - A **pin** means a constant: the trait's value regardless of seed.
 - **Resolving** a trait at a slot is a function of (schema, weight tables, pins, the slot's seed, the context). The context a rule receives carries resolved traits. Rules read everything about an element from them: its geometry and the phases of its life (RFC 002).
-- A **mutation** means a function from context to context. Because contexts flow downwards only (RFC 002), applying one at a slot scopes it to the subtree grown from that slot with no further mechanism. Whether one occurs is itself a trait, drawn from a weight table per seed (the whole plant) or per slot (a bud sport). A mutation never touches an element directly: it changes trait values in the context, and the rules that read them grow something different.
+- A **mutation** means a function from traits to traits, applied to the traits a context carries. It cannot see or change the path (RFC 002) or the stage (RFC 003), by its type. Because contexts flow downwards only (RFC 002), applying one at a slot scopes it to the subtree grown from that slot with no further mechanism. Whether one occurs is itself a trait, drawn from a weight table per seed (the whole plant) or per slot (a bud sport). A mutation never touches an element directly: it changes trait values in the context, and the rules that read them grow something different.
 
 Laws, to be tested when the first traits exist:
 

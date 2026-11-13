@@ -37,7 +37,7 @@ This RFC adds no new type. Its meanings are RFC 002's; what it adds is what the 
 
 **Context.** To RFC 002's position, add the **stage** and the **archetype** (the plant's leaf, as trait values; RFC 004).
 
-**Expansion.** Each stage `s` has an expansion value `x(s)`, a signed number and a trait: positive for an expanding stage, negative for a contracting one. `scale` is an increasing function from expansion values to positive factors with `scale(0) = 1`.
+**Expansion.** Each stage `s` has an expansion value `x(s) = sign(s) · m(s)`. The sign is fixed by the stage's place in the order: vegetative expands (+), calyx contracts (−), corolla expands (+), stamens and pistil contract (−), fruit expands (+). The magnitude `m(s) ≥ 0` is a trait. So a trait decides how much a stage expands or contracts, never which of the two it does. `scale` is an increasing function from expansion values to positive factors with `scale(0) = 1`.
 
 **Transform.** `transform(a, s)` is the archetype `a` with its length and width multiplied by `scale(x(s))`. The stage's internode length is multiplied by the same factor. This is the whole meaning to start with; what else a stage may change is open question 2, and each addition has to be stated here the same way.
 
@@ -47,15 +47,15 @@ This RFC adds no new type. Its meanings are RFC 002's; what it adds is what the 
 axis = then(vegetative, then(calyx, then(corolla, then(stamensAndPistil, fruit))))
 ```
 
-Giving each stage's context its own type (`Rule<Vegetative, Calyx>`, `Rule<Calyx, Corolla>`, …) makes any other order fail to compile. Traits decide each stage's form and extent; they cannot reorder stages. A stage that does not appear is its rule with a run of zero phytomers: it grows a `bud` carrying the context with the stage advanced, and no element.
+Giving each stage's context its own type (`Rule<Vegetative, Calyx>`, `Rule<Calyx, Corolla>`, …) makes any other order of this chain fail to compile. The types cover only this chain along one axis. Two things reach the stage another way and are held by M1's test, not by the compiler: a branch's restart (below), and any function on contexts, which is why a mutation is restricted to traits (RFC 004). Traits decide each stage's form and extent; they cannot reorder stages. A stage that does not appear is its rule with a run of zero phytomers: it grows a `bud` carrying the context with the stage advanced, and no element.
 
-**Branches.** An axillary slot that grows out starts its own run from the vegetative stage, one branch order higher.
+**Branches.** An axillary slot that grows out starts its own run from the vegetative stage, one branch order higher. The restart is one named function on contexts, from any stage to vegetative, and it is the only one that sets the stage backwards.
 
 Laws, to be tested when the first stage rules exist:
 
 - M1. Stage order. Along any axis, from its first phytomer to its apical bud, the stage runs appear in the fixed order, each once, each of zero or more phytomers. (By the types; the test guards the types.)
 - M2. One archetype. Every lateral organ's length and width are the archetype's multiplied by `scale(x(s))` for the organ's stage `s`, after any mutation in force has changed the archetype (RFC 004).
-- M3. Alternation. Along an axis, `x` has opposite signs in consecutive stages that appear.
+- M3. Alternation. `x` has opposite signs in consecutive stages of the fixed order, whatever the traits. (When a stage does not appear, the stages either side of it have the same sign and no contraction is drawn between them; whether that is wanted is open question 5.)
 
 ### Anastomosis
 
@@ -97,5 +97,6 @@ After RFC 002's slice. One unbranched axis through three stages (vegetative, cal
 2. **What `transform` can change** beyond scale: margin, compoundness, colour, the organ's own life.
 3. **Pass-forward from realised instances.** Should a stage also read aggregates of what the previous stage actually grew (mean leaf size)? Deferred; it is a second pass over the tree, not a context field (generative-morphology-t46).
 4. M-J1 to M-J3. The user decides.
+5. **A missing stage.** With signs fixed by stage, a plant with no calyx has two expansions in a row. Is that acceptable, or should a stage that does not appear still leave a contraction (a short internode, say)? The user decides.
 
 New terms used here are defined in GLOSSARY.md, marked as proposed by this RFC.

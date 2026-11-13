@@ -70,7 +70,9 @@ The vocabulary, drawn in [GLOSSARY.md](../GLOSSARY.md#diagrams):
 - A **shoot** is any such tree, at any size: a single bud, a leaf, a branch, the whole plant. Anything cut off at a slot is a shoot. (Botany uses the word for a stem with its leaves. We also use it for a leaf, which has a precedent in Agnes Arber's reading of Goethe, where the leaf is a partial shoot.)
 - A **rule** builds a shoot from a context.
 
-All four operations build rules. Each is given by the shoot it grows from a context `c`:
+An `Element` is plain data: its kind (internode, leaf, …), the values its geometry is drawn from, and its life (§Life). Two elements are equal when those are.
+
+Four operations build rules. Each is given by the shoot it grows from a context `c`:
 
 | Operation | Type | The shoot it grows from context `c` |
 |---|---|---|
@@ -86,16 +88,28 @@ All four operations build rules. Each is given by the shoot it grows from a cont
 **How the pieces fit.** Phytomers are rules. Rules build shoots. Shoots are made of elements. `grow` makes one element and says what goes in each of its slots, so a rule calls it once per element. The **phytomer** rule calls it once for the internode and once for each leaf:
 
 ```
-phytomer = grow(internode, grow(leaf), bud, bud)
-                           └ slot 0    └ 1  └ 2
-                             leaf      axillary bud, apical bud
+leaf     = grow(blade)                          one element, no slots
+phytomer = grow(internode, leaf, bud ∘ axillary, bud ∘ apical)
+                           └ 0   └ slot 1        └ slot 2
 ```
 
-That one rule gives everything else by where it is grown:
+`axillary` and `apical` are functions on contexts (§Context): each marks which kind of bud this is, and moves the position. The phytomer leaves both buds open. What happens at them is decided by the rule that is continued there, which reads the bud's context:
 
-- grown again from the **apical** bud, it continues the same axis: a stem of `n` phytomers is the phytomer continued `n` times;
-- grown from an **axillary** bud, it starts a new axis one branch order higher: a branch;
-- a rule of the same shape grown in a **lateral** slot gives a compound organ: a compound leaf is rachis segments bearing leaflets, in the roles of internodes bearing leaves.
+```
+onward(c) = phytomer(c)                 if c is apical and the axis is not yet at its length
+          = bud(c)                      if c is apical and the axis is at its length
+          = phytomer(c) or closed(c)    if c is axillary, as a trait decides
+
+stem of n phytomers = then(phytomer, then(onward, … then(onward, onward)))     n − 1 times
+```
+
+Because `then` grows its second rule at *every* open bud (F4), a bare `then(phytomer, phytomer)` would grow a phytomer in the axil as well as at the apex. It is `onward` reading the context that makes an apical bud continue the axis and an axillary bud branch or close. A rule must close every bud it does not want a later rule to grow from; a bud left open at the end of an axis is where the next stage starts (RFC 003). Everything is finite because `then` is applied a number of times fixed by a trait. Whether one context type with a kind field is enough here is open question 2.
+
+So the same rule gives everything else by where it is grown:
+
+- at an **apical** bud, it continues the same axis;
+- at an **axillary** bud, it starts a new axis one branch order higher: a branch;
+- a rule of the same shape in a **lateral** slot gives a compound organ: a compound leaf is rachis segments bearing leaflets, in the roles of internodes bearing leaves.
 
 Shoot and phytomer are therefore not two kinds of part. A shoot is the thing built; the phytomer is the pattern it is built in. The type `Shoot` would let a rule build any tree of elements. Principle 9 is what says our rules build only phytomers, so every shoot of a plant is phytomers repeated and nested, down to the single phytomer, whose own parts are elements and buds.
 
@@ -103,7 +117,7 @@ Opposite leaves are two lateral slots and two axillary slots at one node. Severa
 
 **Context.** A context flows downwards only. `grow` hands the element's context to every one of its slots, lateral, axillary and apical alike; a bud holds the context it was handed; `then` passes each bud's context to the rule that grows from it. Nothing flows up the tree or between siblings.
 
-The context has two parts. The **path** is extended by the combinators, as above, and rules cannot change it. Everything else is changed by rules: a rule applies a function on contexts to what it hands a slot, by composing it in front of that slot's rule (`f ∘ m`, the rule `c ↦ f(m(c))`, for `m : A′ → A` and `f : Rule<A, B>`). The phytomer rule does this at each slot: the apical slot gets the index along the axis plus one; an axillary slot gets the branch order plus one and the index reset; a lateral slot gets the context for an organ. A change made this way is scoped to the subtree grown from that slot. This RFC puts branch order and index along the axis in the context. RFC 003 adds the stage and the archetype; RFC 004 adds traits and mutations, a mutation being exactly such a function.
+The context has two parts: `Context<R> = { path, rest: R }`. The **path** is extended by the combinators, as above. Everything else is `rest`, and rules change it: a rule applies a function `m : R′ → R` to what it hands a slot by composing it in front of that slot's rule (`f ∘ m`, the rule that grows from `c` what `f` grows from `c` with `m` applied to its `rest`). This is ordinary function composition, not a fifth operation, and `m` never receives the path, so no rule can change one; I1–I3 rest on that. The phytomer rule does this at each slot: `apical` adds one to the index along the axis; `axillary` adds one to the branch order and resets the index; each records which kind of bud it made. A change made this way is scoped to the subtree grown from that slot. This RFC puts branch order, index along the axis and the kind of bud in `rest`. RFC 003 adds the stage and the archetype; RFC 004 adds traits and mutations, a mutation being exactly such a function.
 
 **Identity.** A slot's id is its **path**: the sequence of slot indices from the root, the root slot having the empty path. Because a bud is replaced by exactly one shoot, continuing a bud never changes how many slots its parent has, so no path outside the bud changes. A slot's seed is derived from the root seed and its path, by the combinators and never by a rule. A slot that grows nothing is `closed`, not absent, so the slots beside it keep their indices. The direction in which each slot's shoot leaves its node (alternate, opposite, whorled, spiral) is a function of the slot index, the arrangement trait and the seed; it is geometry read from the tree, not part of the algebra.
 
@@ -131,6 +145,8 @@ An element's start time is the sum of the primary durations along its path. The 
 ```
 sample : Growth → Time → Drawing
 ```
+
+A `Growth` is a shoot with no open buds left to continue, together with the start time of each of its elements; it is determined by the shoot. A `Drawing` is, for one instant, the set of elements that have started, each with its slot path and the value of every property at that instant. Two drawings are equal when those sets are.
 
 and the image is `sample(g, settle(g))`. Time is in growth units, not seconds and not `[0, 1]`. Normalising to `[0, 1]` and mapping that to wall-clock seconds is a **warp**: one monotone function applied to `t` before sampling, kept out of the algebra.
 

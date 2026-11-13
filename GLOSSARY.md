@@ -40,7 +40,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **bud** — a slot that is still open: it holds no element yet and carries the context for whatever grows there. `then` replaces each bud with exactly one shoot. Apical or axillary by which slot it is. (Distinguish from **closed**.) *(RFC 002; diagram: phytomer a)*
 
-**closed** — a slot that will grow nothing: a bud that never opens, or an axis that has ended. It keeps its slot, so the slots beside it keep their paths. (Distinguish from **bud**, which can still grow.) *(RFC 002; diagram: shoot a)*
+**closed** — a slot that will grow nothing: a bud that never opens, or an axis that has ended. Closed is not drawn; a dormant bud that should be seen is an element with no open slots. It keeps its slot, so the slots beside it keep their paths. (Distinguish from **bud**, which can still grow.) *(RFC 002; diagram: shoot a)*
 
 **concurrent** — element-level parallel composition: two changes to one element at the same time. Idempotent: a change concurrent with itself is one change. (Distinguish from **fork**.) *(RFC 002)*
 
@@ -76,7 +76,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **near-semiring** — two monoids on one set with only one distributive law. What the structure level would be if a bud could grow several shoots; not used (RFC 002, J2). *(RFC 002)*
 
-**node** — the botanical node: the upper end of an internode, where its lateral organs, axillary buds and apical slot attach. Several slots share one node (two leaves and their buds, for opposite arrangement). Not a separate thing in the tree, and never used here for a tree-data-structure node; that is a slot or an element. *(RFC 002; diagram: phytomer a–c)*
+**node** — the botanical node: the upper end of an internode, where its lateral organs, axillary buds and apical slot attach. Several slots share one node (two leaves and their buds, for opposite arrangement). Not a separate thing in the tree, and not used for a tree-data-structure node, which is a slot or an element. (The one exception is `StructureNode` in today's code, which slice 1a replaces.) *(RFC 002; diagram: phytomer a–c)*
 
 **path** — a slot's position: the sequence of slot indices from the root. A slot's id, and with the root seed its seed, are functions of its path. *(RFC 002; diagram: shoot a, b)*
 
@@ -86,7 +86,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **pin** — fixing a trait to a value, so it isn't drawn from its weight table. A jig lock pins from the panel; input data (e.g. a species) pins from outside. *(proposed, RFC 004)*
 
-**provenance** — what a generated node carries about how it was made: the rule that produced it, the parameters, and its seed (principle 2).
+**provenance** — what a generated element carries about how it was made: the rule that produced it, the parameters, and its seed (principle 2).
 
 **RFC** — a design proposal in `rfcs/`: exploration and rationale, never canonical. Becomes a spec or a principle when accepted. (Distinguish from **spec**.)
 
@@ -94,7 +94,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **sample** — to evaluate a growing plant at one time `t`, giving the drawing for that instant. Pure: the same seed, traits and `t` give the same drawing. *(RFC 002)*
 
-**seed lineage** — the chain of seeds from the root seed to a node, each derived from its parent's by `deriveSeed`. Gives every node a stable seed of its own without a shared RNG.
+**seed lineage** — the chain of seeds from the root seed to a slot, each derived from its parent's by `deriveSeed`. Gives every slot a stable seed of its own without a shared RNG.
 
 **sequential** — element-level sequential composition: one phase after another within one element. (Distinguish from **continue**.) *(RFC 002)*
 
@@ -108,7 +108,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **stage** — one step of Goethe's fixed sequence along an axis: vegetative leaves, calyx, corolla, stamens and pistil, fruit. Each stage is a run of phytomers whose organ is the archetype transformed for that stage. *(proposed, RFC 003)*
 
-**structure node** — one node of the tree generation produces (`StructureNode`): geometry, provenance, children, and a stable id of the form `rule:path`. What render consumes and what the inspector and feedback attach to.
+**structure node** — today's code only, replaced by slice 1a: one entry of the tree generation produces (`StructureNode`): geometry, provenance, children, and a stable id of the form `rule:path`. What render consumes and what the inspector and feedback attach to.
 
 **trait** — a named, typed morphological variable (arrangement, divergence angle, leaf compoundness, a growth-rate curve…), either pinned or drawn from a weight table, per seed or per slot. *(proposed, RFC 004)*
 

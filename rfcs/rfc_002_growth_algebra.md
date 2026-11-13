@@ -61,20 +61,22 @@ type Shoot<X> =
 type Rule<A, B> = (ctx: A) => Shoot<B>
 ```
 
-An **element** is one drawn part: an internode, a leaf, a petal. A **rule** is a function from a context to a shoot whose open tips carry the contexts for whatever grows next. A tip grows exactly one shoot (J2). Branching is an element having several children: a **fork** is an element's ordered list of child slots. Four operations on rules:
+An **element** is one drawn part: an internode, a leaf, a petal. A **rule** is a function from a context to a shoot whose open tips carry the contexts for whatever grows next. A tip grows exactly one shoot (J2). Branching is an element having several children: a **fork** is an element's ordered list of child slots. All four operations build rules. Each is given by the shoot it grows from a context `c`:
 
-| Operation | Meaning |
+| Operation | The shoot it grows from context `c` |
 |---|---|
-| `tip` | the shoot that is one open tip: an unopened bud |
-| `closed` | the shoot that is one closed slot |
-| `grow(e, f₁ … fₙ)` | the element `e` with `n` child slots, slot `i` holding what `fᵢ` grows |
-| `then(f, g)` | **continue**: grow `f`; replace each of its open tips with the shoot `g` grows from that tip's context |
+| `tip` | one open tip carrying `c`: an unopened bud |
+| `closed` | one closed slot |
+| `grow(e, f₁ … fₙ)` | the element `e(c)` with `n` child slots, slot `i` holding the shoot `fᵢ` grows from `c` at slot `i` |
+| `then(f, g)` | **continue**: the shoot `f` grows from `c`, with each open tip replaced by the shoot `g` grows from that tip's context |
+
+Here `e` is a function from a context to an element, each `fᵢ` and `f`, `g` are rules, and "`c` at slot `i`" is `c` with its position moved to child slot `i` and nothing else changed. Any other change to what a child sees is a function on contexts applied before that child's rule (this is what a mutation is; RFC 004). Two rules are equal when they grow equal shoots from every context; the laws below are equations between rules.
 
 `then` is substitution at the tips. (In functional-programming terms `Shoot` is a monad and `then` its Kleisli composition. That is a statement about which laws hold, not a request for monad machinery; RFC 001.)
 
 A **phytomer** is a rule, not a node type: it grows an internode whose child slots are its lateral organ(s), its axillary slot(s), and an open apical tip. A shoot of `n` phytomers is the phytomer rule continued `n` times. A branch is the same rule grown from an axillary slot. A compound leaf is the same pattern inside the leaf.
 
-**Context.** A context travels down through tips and nowhere else. Each child slot of an element gets its own, so siblings can diverge below that point, and a change made to a context is scoped to the subtree grown from it. This RFC puts position in the context (branch order, index along the axis, and whether the tip is apical or axillary). RFC 003 adds the stage and the archetype; RFC 004 adds traits and mutations.
+**Context.** A context travels down through tips and nowhere else. Each child slot of an element gets the element's context at that slot, so siblings can diverge below that point, and a change made to a context is scoped to the subtree grown from it. This RFC puts position in the context (branch order, index along the axis, and whether the tip is apical or axillary). RFC 003 adds the stage and the archetype; RFC 004 adds traits and mutations.
 
 **Identity.** A node's id is its **path**: the sequence of child-slot indices from the root. Because a tip is replaced by exactly one shoot, continuing a tip never changes how many siblings there are, so no path outside the tip changes. A node's seed is derived from the root seed and its path, by the combinators and never by a rule. A slot that grows nothing is `closed`, not absent, so the slots beside it keep their indices. Placement around a node (alternate, opposite, whorled, spiral) is a function of the slot index, a trait and the node's seed; it is not part of the algebra.
 

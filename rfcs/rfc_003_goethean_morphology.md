@@ -47,7 +47,7 @@ This RFC adds no new type. Its meanings are RFC 002's; what it adds is what the 
 axis = then(vegetative, then(calyx, then(corolla, then(stamensAndPistil, fruit))))
 ```
 
-Giving each stage's context its own type (`Rule<Vegetative, Calyx>`, `Rule<Calyx, Corolla>`, …) makes any other order fail to compile. Traits decide each stage's form and extent; they cannot reorder stages. A stage that does not appear is its rule with a run of zero phytomers: it grows nothing and hands the context on with the stage advanced.
+Giving each stage's context its own type (`Rule<Vegetative, Calyx>`, `Rule<Calyx, Corolla>`, …) makes any other order fail to compile. Traits decide each stage's form and extent; they cannot reorder stages. A stage that does not appear is its rule with a run of zero phytomers: it grows a `tip` carrying the context with the stage advanced, and no element.
 
 **Branches.** An axillary slot that grows out starts its own run from the vegetative stage, one branch order higher.
 

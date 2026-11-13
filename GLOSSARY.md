@@ -20,7 +20,7 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **concurrent** — element-level parallel composition: two changes to one element at the same time. Idempotent: a change concurrent with itself is one change. (Distinguish from **fork**.) *(proposed, RFC 002)*
 
-**context** — what a tip carries for the rule that grows from it: position (branch order, index along the axis), stage and archetype (RFC 003), traits and mutations in force (RFC 004). It travels down through tips only; each tip of a fork carries its own. *(proposed, RFC 002)*
+**context** — what a tip carries for the rule that grows from it: position (branch order, index along the axis), stage and archetype (RFC 003), traits and mutations in force (RFC 004). It travels down through tips only; each child slot of an element gets the element's context at that slot. *(proposed, RFC 002)*
 
 **continue** — structure-level sequential composition, written `then(f, g)`: grow `f`, then replace each of its tips with the shoot `g` grows from that tip's context. (Distinguish from **sequential**.) *(proposed, RFC 002)*
 

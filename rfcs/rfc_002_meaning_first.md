@@ -99,7 +99,7 @@ and the image is `sample(g, settle(g))`. Time here is in growth units, not secon
 Within one part, a life is built from phases. The meaning of a life is a duration `d ≥ 0` and a set of keyed, timed contributions (RFC 001's *(property, source)* keys), each clamped to its first value before it starts and its last value after it ends:
 
 - **sequential** `a · b`: duration `d(a) + d(b)`; `b`'s contributions shifted later by `d(a)`.
-- **concurrent** `a + b`: duration `max(d(a), d(b))`; contributions united by key.
+- **concurrent** `a + b`: duration `max(d(a), d(b))`; contributions united by key. Two contributions with the same key, the same start and the same values are one contribution. The same key with different starts or values has no meaning yet (RFC 001 open question 7), so the laws below are stated for terms in which that doesn't occur.
 - **instant**: duration 0, no contributions. It is the identity of both operations.
 
 ## Laws
@@ -139,7 +139,7 @@ Derived from the meanings above. Each becomes a property test in the first slice
 - E1. Sequential is associative with identity instant.
 - E2. Concurrent is associative, commutative and idempotent, with identity instant.
 - E3. Duration is a homomorphism into `(max, +)`: `d(a · b) = d(a) + d(b)` and `d(a + b) = max(d(a), d(b))`.
-- E4. Sequential distributes over concurrent from the left: `a · (b + c) = a·b + a·c`.
+- E4. Sequential distributes over concurrent from the left: `a · (b + c) = a·b + a·c`. (The right-hand side holds `a`'s contributions twice, identically, which is one copy by the rule above.)
 
 **Not laws.** Right distributivity (RFC 001 already found this). A zero: with durations `≥ 0` the identity of concurrent is instant, the same element as the identity of sequential, and nothing annihilates.
 

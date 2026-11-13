@@ -28,7 +28,7 @@ Generation decides what a structure is; render draws whatever structure it is ha
 
 | Module | Owns | May import |
 |---|---|---|
-| [src/generation/](src/generation/) | Pure, seeded rules → `StructureNode` tree; `rng.ts` (seeded PRNG, seed derivation) | nothing outside generation |
+| [src/generation/](src/generation/) | Pure, seeded rules → `StructureNode` tree; `rng.ts` (seeded PRNG, seed derivation) | nothing outside generation (its tests may import `src/testing`) |
 | [src/render/](src/render/) | All WebGL2 and twgl calls; GL state scoped per node | generation types |
 | [src/ui/](src/ui/) | The jig: Tweakpane panel, parameter ranges, locks, new-seed button | generation |
 | [src/testing/](src/testing/) | Test support: `laws.ts`, property-based checkers for algebraic laws | fast-check |

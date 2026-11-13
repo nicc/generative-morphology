@@ -9,9 +9,10 @@ import { law } from './laws'
 const same = (a: number, b: number) => a === b
 const int = fc.integer({ min: -1000, max: 1000 })
 
-// Durations under concurrent (max) and sequential (+): the (max, +)
-// semiring, with -Infinity as zero and 0 as one. RFC 002 law E3 maps a
-// part's life onto this.
+// The (max, +) semiring, with -Infinity as zero and 0 as one: a structure
+// that has every law the checkers cover. RFC 002 law E3 maps a part's
+// duration onto its non-negative part only; the zero is not part of the
+// element-level meaning.
 describe('(max, +) on integers', () => {
   const duration = fc.oneof(int, fc.constant(-Infinity))
   const add = (a: number, b: number) => a + b

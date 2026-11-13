@@ -30,17 +30,25 @@ Read the description, then the diff, then the specs, RFCs, glossary entries and 
    - GL state is scoped per node or per draw, not left as global mutable state.
    - A new abstraction has more than one current use.
    - New state has one owner, a bound, and a disposal path (GL buffers and programs in particular).
-5. **Numerical correctness.** Generation and shader code can produce a plausible-looking wrong result. Check transforms, angle conventions and units, coordinate spaces, recursion termination, and seed derivation. Give the input that produces the wrong result.
-6. **Code quality.** Report only findings with a concrete consequence:
+5. **Meaning and laws.** (Method: RFC 001. Applies to generation types and their operations.)
+   - Every operation has a type (each argument and the result), and every law type-checks as written, with both sides the same type. Give the law and the argument that is used as two kinds of thing.
+   - A new type or operation has a stated meaning, in an RFC or spec the description names. An operation described only by its implementation is a finding.
+   - Something downstream (render, ids, seeds, the inspector) reads a detail of the representation that the meaning doesn't determine: for example, an id or seed that depends on how a term was assembled where the laws say the result is the same.
+   - A law the spec or RFC states has a property test built on generated inputs (`src/testing/laws.ts`), compared with the equality of meanings. A law tested on one hand-picked example is a finding. So is a law asserted in a comment with no test.
+   - Trees, lives and curves stay plain data: a function stored in a generated structure can't be compared, inspected or shown (principle 6) unless the description says why it must be one.
+   - An RFC in the diff: Meaning and laws comes before operators and architecture and the laws follow from it; a convention standing in for a meaning ("canonical order", "drawn once", "never arises in practice") is a finding. An RFC that amends or contradicts another Draft, where it should have edited it, is a finding (rfcs/README.md, One concern per RFC). A new or rewritten Meaning and laws section with no worked example written in its operations is a finding; where there is one, evaluate it by hand against the stated meanings and say if it does not give what the text claims.
+   - Time: render or generation that keeps state between frames, or reads a clock, where the growth is specified as a function of `t`.
+6. **Numerical correctness.** Generation and shader code can produce a plausible-looking wrong result. Check transforms, angle conventions and units, coordinate spaces, recursion termination, and seed derivation. Give the input that produces the wrong result.
+7. **Code quality.** Report only findings with a concrete consequence:
    - Correctness: give the input or state that produces the wrong result.
    - Simplification: name the simpler form, rather than calling the code complex.
    - Duplication: name the existing helper it duplicates.
    - Project conventions: the Code conventions section of CLAUDE.md.
 
    No style preferences, naming debates, or performance concerns without a per-frame or per-node reason.
-7. **Glossary.** Terms used consistently with GLOSSARY.md; new terms defined there in the same PR.
-8. **Tests.** Generation changes are covered; tests import defaults and ranges rather than retyping them; tests that can't fail; values pinned where a property would do.
-9. **Shims and compatibility layers** added without a stated need.
+8. **Glossary.** Terms used consistently with GLOSSARY.md; new terms defined there in the same PR. A botanical word used in a non-botanical sense is a finding. A new or changed term for a physical structure that no glossary diagram shows, or a diagram that now contradicts its definition, is a finding (principle 8).
+9. **Tests.** Generation changes are covered; tests import defaults and ranges rather than retyping them; tests that can't fail; values pinned where a property would do.
+10. **Shims and compatibility layers** added without a stated need.
 
 ## How to report
 

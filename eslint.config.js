@@ -108,7 +108,8 @@ export default defineConfig(
     rules: {
       'vitest/no-focused-tests': 'error',
       'vitest/no-disabled-tests': 'error',
-      'vitest/expect-expect': 'error',
+      // law.* (src/testing/laws.ts) asserts through fast-check.
+      'vitest/expect-expect': ['error', { assertFunctionNames: ['expect', 'law.*'] }],
       'no-console': 'error',
     },
   },

@@ -13,7 +13,7 @@ An RFC can propose a design principle. The principle text goes into PRINCIPLES.m
 
 ## Order of work
 
-For a design that adds or changes a generation type or its operations, the **Meaning and laws** section is written first and the user reads it before anything else in the RFC is drafted: before an operator table, an architecture, a parameter list. Operators chosen before the meaning is stated get their gaps filled by conventions ("in canonical order", "drawn once", "in practice never identical"); such a phrase in a draft is a sign the meaning is missing. A Draft does not move to Discussion with an operation whose meaning is unstated or a law that isn't derived from one. (RFC 001.)
+For a design that adds or changes a generation type or its operations, the **Meaning and laws** section is written first and the user reads it before anything else in the RFC is drafted: before an operator table, an architecture, a parameter list. Operators chosen before the meaning is stated get their gaps filled by conventions ("in canonical order", "drawn once", "in practice never identical"); such a phrase in a draft is a sign the meaning is missing. When reading a Meaning and laws section, ask of each operation: what are the types of its arguments, and does each law type-check? A Draft does not move to Discussion with an operation whose meaning is unstated, an operation without a type, or a law that isn't derived from the meaning. (RFC 001.)
 
 ## One concern per RFC
 
@@ -44,7 +44,7 @@ Use the ones that apply, in this order; leave out the ones that don't rather tha
 
 - **Summary.** What changes, in two or three sentences, starting with what someone looking at or using the work will see differently.
 - **Motivation.** Why now, and what's wrong or missing without it.
-- **Meaning and laws.** For any new or changed generation type: its meaning (a mathematical object simpler than the code), the meaning function, and what each operation does to the meaning. Then the laws that follow, numbered, and the equations that look as if they should hold but don't, each with its smallest counterexample. Say what equality compares. (Method and references: RFC 001.)
+- **Meaning and laws.** For any new or changed generation type: its meaning (a mathematical object simpler than the code), the meaning function, and what each operation does to the meaning. Give every operation a type: what each argument is (a value, a rule, a function on contexts) and what it returns, so that every law type-checks as written with both sides the same type. An operation described only in words, or a law that uses an argument as two different kinds of thing, isn't ready. Then the laws that follow, numbered, and the equations that look as if they should hold but don't, each with its smallest counterexample. Say what equality compares. (Method and references: RFC 001.)
 - **Judgement calls.** Choices in the model that change what is drawn or how the jig behaves, each stated as a question about the form, with a recommendation and what the recommendation gives up. Kept apart from open questions so that a choice about the form isn't settled as a technical detail.
 - **Principles check.** Each principle the design touches: how it complies, or an explicit, justified exception. A design that can't name the principle it traces to isn't ready (CLAUDE.md, Principles before implementation).
 - **Design.** The rule or mechanism, concretely enough to check code against. State quantitative claims with how they were computed, or mark them as unverified.

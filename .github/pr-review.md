@@ -31,6 +31,7 @@ Read the description, then the diff, then the specs, RFCs, glossary entries and 
    - A new abstraction has more than one current use.
    - New state has one owner, a bound, and a disposal path (GL buffers and programs in particular).
 5. **Meaning and laws.** (Method: RFC 001. Applies to generation types and their operations.)
+   - Every operation has a type (each argument and the result), and every law type-checks as written, with both sides the same type. Give the law and the argument that is used as two kinds of thing.
    - A new type or operation has a stated meaning, in an RFC or spec the description names. An operation described only by its implementation is a finding.
    - Something downstream (render, ids, seeds, the inspector) reads a detail of the representation that the meaning doesn't determine: for example, an id or seed that depends on how a term was assembled where the laws say the result is the same.
    - A law the spec or RFC states has a property test built on generated inputs (`src/testing/laws.ts`), compared with the equality of meanings. A law tested on one hand-picked example is a finding. So is a law asserted in a comment with no test.

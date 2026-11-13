@@ -47,3 +47,5 @@ The rules that govern the work's visual form and generative behavior. These get 
 **11. The leaf is the archetype.** Every lateral organ (leaf, bract, sepal, petal, stamen, carpel) is a transformation of the plant's leaf archetype. A later stage derives its organ from the archetype passed forward; it does not specify one independently. (Goethe's central claim. RFC 003.)
 
 **12. Expansion and contraction alternate along the axis.** Successive stages alternately expand (longer internodes, broader organs) and contract (shorter internodes, narrower organs, organs drawn towards one node). At extreme contraction, organs share a node and their outlines fuse. Fusion is drawn, not simulated. (RFC 003.)
+
+**13. Traits are pinned or drawn.** Every trait value is either pinned (by a lock, or by input data) or drawn from a weight table using a seed. Rarity is the shape of the weight table. There is no third source of trait values. (RFC 004.)

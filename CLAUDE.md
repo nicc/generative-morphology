@@ -58,7 +58,7 @@ The only generation rule today is a placeholder (`stub-branch` in [structure.ts]
 | How we design a generation type: meaning, then operations, then laws (Elliott's denotational design) | [RFC 001](rfcs/rfc_001_meaning_first.md) (Accepted, principle 7) |
 | What a plant and its growth are: shoots, buds, slots, lives, time, the laws | [RFC 002](rfcs/rfc_002_growth_algebra.md) (Discussion) |
 | What this plant is: stages, the leaf archetype, expansion and contraction | [RFC 003](rfcs/rfc_003_goethean_morphology.md) (Discussion) |
-| Where values come from: traits, weight tables, pins, mutations | [RFC 004](rfcs/rfc_004_traits_rarity_mutation.md) (Draft) |
+| Where values come from: traits, weight tables, pins, mutations | [RFC 004](rfcs/rfc_004_traits_rarity_mutation.md) (Discussion) |
 | What the structural terms look like | [GLOSSARY.md](GLOSSARY.md#diagrams), [docs/diagrams/](docs/diagrams/) |
 | Past spikes and findings | [docs/learnings/](docs/learnings/) |
 | What the PR reviewer checks | [.github/pr-review.md](.github/pr-review.md) |

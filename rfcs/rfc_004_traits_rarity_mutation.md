@@ -1,12 +1,12 @@
 # RFC 004: Traits, rarity and mutation
 
-Status: Draft
+Status: Discussion (design principle accepted → principle 13; reviewed and approved by the user 2026-11-13; the laws become spec text with this RFC's slice)
 Date: 2026-11-13
 
 ### Related
 
 - RFC 001 (meaning first), RFC 002 (growth algebra: context, path, seed), RFC 003 (Goethean morphology: the archetype is a set of traits)
-- PRINCIPLES.md principle 3 (determinism by seed), principle 5 (exposed parameters); proposes one design principle (§Proposed design principle)
+- PRINCIPLES.md principle 3 (determinism by seed), principle 5 (exposed parameters); source of design principle 13 (§Design principle)
 - bd: generative-morphology-ybg (curves as data), -4aw (contact sheet)
 
 ## Summary
@@ -19,15 +19,15 @@ In the jig, today's per-parameter locks become pins on any trait: lock what you 
 
 The current code has four numeric parameters with ranges, randomised uniformly on a new seed. The work needs discrete traits (arrangement), curves (how internode length changes along the axis), unequal likelihoods (most plants ordinary, a few odd), and values that come from outside (a species). One model should cover all of these and the lock.
 
-## Proposed design principle
+## Design principle
 
-Enters PRINCIPLES.md only when approved, and is numbered then.
+Proposed here and approved on 2026-11-13. The text of record is PRINCIPLES.md.
 
-> **Traits are pinned or drawn.** Every trait value is either pinned (by a lock, or by input data) or drawn from a weight table using a seed. Rarity is the shape of the weight table. There is no third source of trait values.
+> **13. Traits are pinned or drawn.** Every trait value is either pinned (by a lock, or by input data) or drawn from a weight table using a seed. Rarity is the shape of the weight table. There is no third source of trait values.
 
 ## Meaning and laws
 
-- A **trait** is a named, typed morphological variable (arrangement, divergence angle, leaf compoundness, margin, internode-length curve, branching-probability curve…). The **trait schema**, the list of traits with their types, is explicit and shared by the jig, the rules and any data source.
+- A **trait** is a named, typed morphological variable (arrangement, divergence angle, leaf size, leaf compoundness, vein structure, margin, internode-length curve, branching-probability curve…). The **trait schema**, the list of traits with their types, is explicit and shared by the jig, the rules and any data source.
 - A **weight table** means a probability distribution over one trait's values.
 - A trait's **scope** is per seed (one value for the plant), per axis (drawn from the seed of the slot where an axis starts, and carried in the context along that axis; an axis's length is the first), or per slot (drawn at each slot from that slot's seed; RFC 002, I1).
 - A **pin** means a constant: the trait's value regardless of seed.
@@ -98,4 +98,4 @@ After RFC 002's slice. Three traits on its placeholder axis: one numeric drawn p
 2. **Weight tables in the jig.** Is editing a weight ever something the user wants in the panel, or are tables authored in code and judged on a contact sheet?
 3. **Macros** (principle 5): a species pin drives many traits at once and is close to a macro. Is it the same thing?
 
-New terms used here are defined in GLOSSARY.md, marked as proposed by this RFC.
+New terms used here are defined in GLOSSARY.md.

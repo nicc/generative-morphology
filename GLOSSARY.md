@@ -8,7 +8,7 @@ Terms as we use them in this project — not necessarily their full biological o
 **term** — definition, in our specific usage. (Distinguish from a related term if the two could be confused.)
 ```
 
-Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change or be dropped. *(RFC NNN)* names the RFC that explains an approved term.
+A term new in an RFC that the user has not yet reviewed is marked *(proposed, RFC NNN)* and may change or be dropped; none is at present. *(RFC NNN)* names the RFC that explains an approved term.
 
 Botanical words keep their botanical sense. A term that names a physical structure, or a part of one, appears in a diagram below, and its entry says which (principle 8). The diagrams are SVG files in [docs/diagrams/](docs/diagrams/), edited by hand; when a definition changes, its diagram changes in the same commit.
 
@@ -36,7 +36,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **apical** — at the end of an axis. The apical slot of an internode is the one that continues the same axis; an apical bud is that slot while it is still open. (Distinguish from **axillary**.) *(RFC 002; diagram: phytomer a)*
 
-**archetype** — the leaf archetype: the plant's leaf, as a set of trait values, carried in the context through the stages. Every lateral organ is a transformation of it. *(RFC 003; diagram: stages a)*
+**archetype** — the leaf archetype: the plant's leaf, as a set of trait values (size, compoundness, vein structure, margin…), carried in the context through the stages. Every lateral organ is a transformation of it. *(RFC 003; diagram: stages a)*
 
 **axil** — the angle between a leaf and the stem above it, at a node. Where axillary buds sit. *(RFC 002; diagram: phytomer a)*
 
@@ -49,6 +49,8 @@ Botanical words keep their botanical sense. A term that names a physical structu
 **bud** — a slot that is still open: it holds no element yet and carries the context for whatever grows there. `then` replaces each bud with exactly one shoot. Apical or axillary by which slot it is. (Distinguish from **closed**.) *(RFC 002; diagram: phytomer a)*
 
 **closed** — a slot that will grow nothing: a bud that never opens, or an axis that has ended. Closed is not drawn; a dormant bud that should be seen is an element with no open slots. It keeps its slot, so the slots beside it keep their paths. (Distinguish from **bud**, which can still grow.) *(RFC 002; diagram: shoot a)*
+
+**compoundness** — how far an organ is divided into leaflets, as a depth: 0 simple, 1 once-pinnate, 2 twice. A trait of the archetype, separate from size: it divides the organ and does not enlarge it. *(RFC 003; diagram: shoot c)*
 
 **concurrent** — element-level parallel composition: two changes to one element at the same time. Idempotent: a change concurrent with itself is one change. (Distinguish from **fork**.) *(RFC 002)*
 
@@ -82,7 +84,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **meaning function** — the function from a representation to its meaning. Each operation is specified by requiring the meaning function to respect it (to be a homomorphism). *(RFC 001)*
 
-**mutation** — a rare change to the traits a context carries (a function from traits to traits), applied at a slot and so scoped to the subtree grown from it; whether one occurs is drawn from its own weight table per seed or per slot. The first ones are named bud sports ('Pendula', 'Contorta', 'Fastigiata'). Not a synonym for phase or rule application. *(proposed, RFC 004)*
+**mutation** — a rare change to the traits a context carries (a function from traits to traits), applied at a slot and so scoped to the subtree grown from it; whether one occurs is drawn from its own weight table per seed or per slot. The first ones are named bud sports ('Pendula', 'Contorta', 'Fastigiata'). Not a synonym for phase or rule application. *(RFC 004)*
 
 **near-semiring** — two monoids on one set with only one distributive law. What the structure level would be if a bud could grow several shoots; not used (RFC 002, J2). *(RFC 002)*
 
@@ -96,7 +98,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **phytomer** — the unit of plant structure: one internode and what its node bears (lateral organs, axillary buds, the apical bud). Here it is a rule, not a kind of element; all structure is that rule repeated along an axis and nested in branches and compound organs (principle 9). (Distinguish from **shoot**: the phytomer is the pattern, a shoot is anything built in it.) *(RFC 002; diagram: phytomer a, shoot a)*
 
-**pin** — fixing a trait to a value, so it isn't drawn from its weight table. A jig lock pins from the panel; input data (e.g. a species) pins from outside. *(proposed, RFC 004)*
+**pin** — fixing a trait to a value, so it isn't drawn from its weight table. A jig lock pins from the panel; input data (e.g. a species) pins from outside. *(RFC 004)*
 
 **provenance** — what a generated element carries about how it was made: the rule that produced it, the parameters, and its seed (principle 2).
 
@@ -114,6 +116,8 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **shoot** — the tree a rule grows, at any size: a single bud, a leaf, a branch, the whole plant. Anything cut off at a slot is a shoot, and a plant is one shoot. Wider than the botanical word (a stem with its leaves): here a leaf is a shoot too. (Distinguish from **phytomer**.) *(RFC 002; diagram: shoot a–c)*
 
+**size** — of an organ: the length and width of the whole organ, simple or compound. A trait of the archetype. Leaflets are fitted inside it. *(RFC 003)*
+
 **slot** — one position among an element's children. Slots are ordered and indexed, each holds exactly one shoot (an element, a bud, or closed), and an internode's slots all sit at its node. Ids and seeds belong to slots. *(RFC 002; diagram: phytomer a–c)*
 
 **spec** — an approved decision in `specs/` that the code must match. Canonical. (Distinguish from **RFC**.)
@@ -122,10 +126,10 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **structure node** — today's code only, replaced by slice 1a: one entry of the tree generation produces (`StructureNode`): geometry, provenance, children, and a stable id of the form `rule:path`. What render consumes and what the inspector and feedback attach to.
 
-**trait** — a named, typed morphological variable (arrangement, divergence angle, leaf compoundness, a growth-rate curve…), either pinned or drawn from a weight table, per seed or per slot. *(proposed, RFC 004)*
+**trait** — a named, typed morphological variable (arrangement, divergence angle, leaf compoundness, a growth-rate curve…), either pinned or drawn from a weight table, per seed or per slot. *(RFC 004)*
 
 **variation** — how much organs of one stage may differ in size from slot to slot: a trait `v ≥ 0` bounding a per-slot factor. *(RFC 003)*
 
 **warp** — a monotone function applied to time before sampling. Normalising growth time to `[0, 1]` and stretching that over the plant's duration are warps; they are presentation, outside the algebra. *(RFC 002)*
 
-**weight table** — a distribution over a trait's values; rarity is the shape of the table. Can be authored, or built from data (e.g. species counts near a location). *(proposed, RFC 004)*
+**weight table** — a distribution over a trait's values; rarity is the shape of the table. Can be authored, or built from data (e.g. species counts near a location). *(RFC 004)*

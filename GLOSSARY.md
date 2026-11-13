@@ -24,15 +24,19 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 ![A shoot of three phytomers with one branch, slot paths labelled, beside the same shoot as an indented tree, and a compound leaf](docs/diagrams/shoot.svg)
 
+**Stages.** The stages along one axis, each an expansion or a contraction, with the one archetype transformed (a); fusion as an annotation beside five separate sepals (b).
+
+![One axis from vegetative leaves through calyx, corolla, stamens and pistil, labelled as expansions and contractions; and five sepals drawn separately and as the union of their fusion group](docs/diagrams/stages.svg)
+
 ## Terms
 
-**anastomosis** — Goethe's term for parts growing together, e.g. sepals fusing into a calyx tube. Here it is drawn, not simulated, and never changes the tree: generation states which organs of a node fuse (a fusion group, an annotation), and the renderer draws the union of their outlines. *(RFC 003)*
+**anastomosis** — Goethe's term for parts growing together, e.g. sepals fusing into a calyx tube. Here it is drawn, not simulated, and never changes the tree: generation states which organs of a node fuse (a fusion group, an annotation), and the renderer draws the union of their outlines. *(RFC 003; diagram: stages b)*
 
-**annotation** — a value computed from a finished shoot by a pure fold in generation and kept beside it, leaving the shoot unchanged. Fusion groups are the first. Render reads annotations and computes none. *(RFC 003)*
+**annotation** — a value computed from a finished shoot by a pure fold in generation and kept beside it, leaving the shoot unchanged. Fusion groups are the first. Render reads annotations and computes none. *(RFC 003; diagram: stages b)*
 
 **apical** — at the end of an axis. The apical slot of an internode is the one that continues the same axis; an apical bud is that slot while it is still open. (Distinguish from **axillary**.) *(RFC 002; diagram: phytomer a)*
 
-**archetype** — the leaf archetype: the plant's leaf, as a set of trait values, carried in the context through the stages. Every lateral organ is a transformation of it. *(RFC 003)*
+**archetype** — the leaf archetype: the plant's leaf, as a set of trait values, carried in the context through the stages. Every lateral organ is a transformation of it. *(RFC 003; diagram: stages a)*
 
 **axil** — the angle between a leaf and the stem above it, at a node. Where axillary buds sit. *(RFC 002; diagram: phytomer a)*
 
@@ -52,7 +56,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **continue** — structure-level sequential composition, written `then(f, g)`: grow `f`, then replace each of its open buds with the shoot `g` grows from that bud's context. (Distinguish from **sequential**.) *(RFC 002)*
 
-**contraction / expansion** — Goethe's alternation along the axis. Expansion: longer internodes, broader organs. Contraction: shorter internodes, narrower organs, organs drawn towards one node. Each is a property of a stage, and each word is used as a noun on its own ("the calyx is a contraction"), never as "expansion phase" or "contraction stage". *(RFC 003)*
+**contraction / expansion** — Goethe's alternation along the axis. Expansion: longer internodes, broader organs. Contraction: shorter internodes, narrower organs, organs drawn towards one node. Each is a property of a stage, and each word is used as a noun on its own ("the calyx is a contraction"), never as "expansion phase" or "contraction stage". *(RFC 003; diagram: stages a)*
 
 **duration** — how long one plant takes to grow, in wall-clock seconds. An input to the plant (a per-plant trait, pinned by the jig to begin with), read only by the warp. (Distinguish from an element's primary duration, which is in growth units.) *(RFC 002)*
 
@@ -60,7 +64,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **fork** — structure-level branching: an element having several slots, each growing its own shoot at the same time. Two leaves in two slots are two leaves. Not an operation on rules: a bud grows exactly one shoot. (Distinguish from **concurrent**.) *(RFC 002)*
 
-**fusion group** — a set of slot paths naming the organs of one node that are drawn fused. An annotation; the organs remain separate elements. *(RFC 003)*
+**fusion group** — a set of slot paths naming the organs of one node that are drawn fused. An annotation; the organs remain separate elements. *(RFC 003; diagram: stages b)*
 
 **internode** — the length of stem between two nodes. Here an element, whose slots all sit at its upper end, its node. *(RFC 002; diagram: phytomer a)*
 
@@ -84,7 +88,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **node** — the botanical node: the upper end of an internode, where its lateral organs, axillary buds and apical slot attach. Several slots share one node (two leaves and their buds, for opposite arrangement). Not a separate thing in the tree, and not used for a tree-data-structure node, which is a slot or an element. (The one exception is `StructureNode` in today's code, which slice 1a replaces.) *(RFC 002; diagram: phytomer a–c)*
 
-**organ** — here, the rule grown in a lateral slot: it reads the archetype, transformed for the stage and varied for the slot, and grows a simple leaf (one element) or a compound one (a shoot). *(RFC 003)*
+**organ** — here, the rule grown in a lateral slot: it reads the archetype, transformed for the stage and varied for the slot, and grows a simple leaf (one element) or a compound one (a shoot). *(RFC 003; diagram: stages a)*
 
 **path** — a slot's position: the sequence of slot indices from the root. A slot's id, and with the root seed its seed, are functions of its path. *(RFC 002; diagram: shoot a, b)*
 
@@ -114,7 +118,7 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **spec** — an approved decision in `specs/` that the code must match. Canonical. (Distinguish from **RFC**.)
 
-**stage** — place, along one axis: one step of Goethe's fixed sequence: vegetative leaves, calyx, corolla, stamens and pistil, fruit. Each stage is a run of phytomers whose organ is the archetype transformed for that stage. *(RFC 003)*
+**stage** — place, along one axis: one step of Goethe's fixed sequence: vegetative leaves, calyx, corolla, stamens and pistil, fruit. Each stage is a run of phytomers whose organ is the archetype transformed for that stage. *(RFC 003; diagram: stages a)*
 
 **structure node** — today's code only, replaced by slice 1a: one entry of the tree generation produces (`StructureNode`): geometry, provenance, children, and a stable id of the form `rule:path`. What render consumes and what the inspector and feedback attach to.
 

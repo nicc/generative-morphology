@@ -37,9 +37,13 @@ This RFC adds no new type. Its meanings are RFC 002's; what it adds is what the 
 
 **Context.** To RFC 002's position, add the **stage** and the **archetype** (the plant's leaf, as trait values; RFC 004).
 
-**Expansion.** Each stage `s` has an expansion value `x(s) = sign(s) · m(s)`. The sign is fixed by the stage's place in the order: vegetative expands (+), calyx contracts (−), corolla expands (+), stamens and pistil contract (−), fruit expands (+). The magnitude `m(s) ≥ 0` is a trait. So a trait decides how much a stage expands or contracts, never which of the two it does. `scale` is an increasing function from expansion values to positive factors with `scale(0) = 1`.
+**Expansion.** Each stage `s` has an expansion value `x(s) = sign(s) · m(s)`. The sign is fixed by the stage's place in the order: vegetative expands (+), calyx contracts (−), corolla expands (+), stamens and pistil contract (−), fruit expands (+). The magnitude `m(s) ≥ 0` is a trait. So a trait decides how much a stage expands or contracts, never which of the two it does. A magnitude of 0 is a stage that does neither. `scale` is an increasing function from expansion values to positive factors with `scale(0) = 1`.
 
-**Transform.** `transform : (Archetype, Stage) → Archetype`. `transform(a, s)` is `a` with its length and width multiplied by `scale(x(s))`. The stage's internode length is multiplied by the same factor. This is the whole meaning to start with; what else a stage may change is open question 2, and each addition has to be stated here the same way.
+**Transform.** `transform : (Archetype, Stage) → Archetype`. `transform(a, s)` is `a` with its length and width multiplied by `scale(x(s))`.
+
+**Internode length.** `internodeLength : (Traits, Stage) → Length`. The plant's base internode length (a trait) multiplied by `scale(x(s))`, before any curve along the axis (RFC 004). It is a separate function from `transform` because the internode is not part of the archetype; the two share only the factor.
+
+This is the whole meaning to start with; what else a stage may change is open question 2, and each addition has to be stated here the same way.
 
 **Variation.** `vary : (Archetype, Context) → Archetype`. Organs of one stage need not be identical. `vary(a, c)` multiplies `a`'s length and width by a factor that depends only on the context `c`: the position along the axis (a curve; RFC 004) and a small per-slot draw from the slot's seed. The size of the per-slot draw is a trait, the variation, `v ≥ 0`; the factor lies in `[1 − v, 1 + v]` times the curve's value. With `v = 0` and a flat curve, `vary(a, c) = a`.
 
@@ -86,8 +90,9 @@ Two axes, two flowers, no open bud. Each of sepal, petal and stamen is `organ` r
 Laws, to be tested when the first stage rules exist:
 
 - M1. Stage order. Along every axis, main or branch, from its first phytomer to its end, the stage runs appear in the fixed order, each once, each of zero or more phytomers. (By the types along the chain; the test also covers `restart` and mutations, which the types do not.)
-- M2. One archetype. Every lateral organ is `organ` grown from `vary(transform(a, s), c)`, where `a` is the archetype in force at that slot (after any mutation; RFC 004), `s` the stage and `c` the slot's context. Two checks: with variation `v = 0` and a flat curve, the organ's overall length and width are exactly `a`'s multiplied by `scale(x(s))`; with `v > 0`, they are within `[1 − v, 1 + v]` of that times the curve's value. For a compound organ, length and width are those of the whole organ.
-- M3. Alternation. `x` has opposite signs in consecutive stages of the fixed order, whatever the traits. (When a stage does not appear, the stages either side of it have the same sign and no contraction is drawn between them; whether that is wanted is open question 4.)
+- M2. One archetype. Every lateral organ is `organ` grown from `vary(transform(a, s), c)`, where `a` is the archetype in force at that slot (after any mutation; RFC 004), `s` the stage and `c` the slot's context. Two checks: with variation `v = 0` and a flat curve, the organ's overall length and width are exactly `a`'s multiplied by `scale(x(s))`; with `v > 0`, they are within `[1 − v, 1 + v]` of that times the curve's value. Stated for simple organs. How a compound organ's overall extent follows from its rachis and leaflets is not yet defined (open question 5), so M2 does not cover compound organs until it is.
+- M6. Internodes follow the stage. With a flat curve, every internode of stage `s` has length `internodeLength(traits, s)`; so a contracting stage's internodes are no longer than the base and an expanding stage's no shorter.
+- M3. Alternation. For consecutive stages `s`, `s′` of the fixed order, `x(s) · x(s′) ≤ 0` whatever the traits: `x` never has the same sign twice running, and the signs are strictly opposite when both magnitudes are above 0. (When a stage does not appear, the stages either side of it have the same sign and no contraction is drawn between them; whether that is wanted is open question 4.)
 
 ### Anastomosis
 
@@ -103,7 +108,7 @@ fusion : Shoot → set of fusion groups        a fusion group is a set of slot p
 
 Two laws follow:
 
-- M4. Annotation does not change the tree: the shoot is the same value before and after `fusion` is computed, and every path in a fusion group is a path of an organ in that shoot.
+- M4. Groups name real organs: every path in a fusion group is the path of a lateral organ in the shoot `fusion` was given. (That the shoot is unchanged needs no law: `fusion` is a pure function that returns a separate value.)
 - M5. Fusion groups are disjoint, and all the organs of one group share a node.
 
 (The shape is the one synesthetica uses for its annotated musical frame: the frame stays as it was, meaning is added beside it by one layer, and the layer that draws may read annotations but not compute them.)
@@ -133,7 +138,7 @@ Decided by the user on 2026-11-13.
 
 ## First slice
 
-After RFC 002's slice. One unbranched axis through three stages (vegetative, calyx, corolla), with a single expansion/contraction value per stage and `transform` reduced to scaling the leaf's length and width. Tests for M1–M3. (M4 and M5 come with the first fusion, which this slice leaves out.) What looking at it should tell us: whether a leaf scaled by stage reads as a sepal and a petal at all, or whether `transform` needs more than scale before the principle is believable.
+After RFC 002's slice. One unbranched axis through three stages (vegetative, calyx, corolla), with a single expansion/contraction value per stage and `transform` reduced to scaling the leaf's length and width. Tests for M1–M3 and M6. (M4 and M5 come with the first fusion, which this slice leaves out.) What looking at it should tell us: whether a leaf scaled by stage reads as a sepal and a petal at all, or whether `transform` needs more than scale before the principle is believable.
 
 ## Alternatives considered
 
@@ -147,5 +152,6 @@ After RFC 002's slice. One unbranched axis through three stages (vegetative, cal
 2. **What `transform` can change** beyond scale: margin, compoundness, colour, the organ's own life.
 3. **Pass-forward from realised instances.** Should a stage also read aggregates of what the previous stage actually grew (mean leaf size)? Deferred; it is a second pass over the tree, not a context field (generative-morphology-t46).
 4. **A missing stage.** With signs fixed by stage, a plant with no calyx has two expansions in a row. Is that acceptable, or should a stage that does not appear still leave a contraction (a short internode, say)? The user decides.
+5. **Compound organs under M2.** What is the overall length and width of a compound organ, as a function of its rachis and leaflets? Needed before M2 can be tested on one.
 
-New terms used here are defined in GLOSSARY.md.
+New terms used here are defined in GLOSSARY.md; the stages and fusion are drawn there (stages diagram).

@@ -10,7 +10,7 @@ Date: 2026-11-13
 - RFC 003 (Goethean morphology) and RFC 004 (traits): what the rules built on this algebra say, and where their values come from
 - PRINCIPLES.md principles 1–6; proposes two design principles (§Proposed design principles)
 - Brandon Kase, "Using Abstract Algebra to derive a better Animation Library" (talk), and his [gist](https://gist.github.com/bkase/16b2de2c3bcae1b89287f402daea86ba): the source of the element-level operations
-- Rivas, Jaskelioff & Schrijvers, "From monoids to near-semirings: the essence of MonadPlus and Alternative" (2015): the algebra the structure level has
+- Rivas, Jaskelioff & Schrijvers, "From monoids to near-semirings: the essence of MonadPlus and Alternative" (2015): the algebra the structure level would have if a tip could grow several shoots (J2, §Alternatives)
 - Pratt, "Modeling concurrency with partial orders" (1986): where timing goes if two operators stop being enough (J5)
 - Prusinkiewicz & Lindenmayer, *The Algorithmic Beauty of Plants* (1990): prior art, see §Alternatives
 - bd: generative-morphology-fge (review), -bvk (slice 1a), -p3p (slice 1b)
@@ -53,31 +53,30 @@ These enter PRINCIPLES.md only when approved, and are numbered then.
 The meaning of a generated plant, ignoring time, is a finite tree:
 
 ```ts
-type Tree<X> = readonly Shoot<X>[]   // siblings in slot order; [] is "nothing here"
 type Shoot<X> =
   | { kind: 'tip'; ctx: X }          // open: growth can continue from here, with this context
   | { kind: 'closed' }               // a slot that grows nothing further
-  | { kind: 'element'; element: Element; children: Tree<X> }
+  | { kind: 'element'; element: Element; children: readonly Shoot<X>[] }   // children in slot order
 
-type Rule<A, B> = (ctx: A) => Tree<B>
+type Rule<A, B> = (ctx: A) => Shoot<B>
 ```
 
-An **element** is one drawn part: an internode, a leaf, a petal. A **rule** is a function from a context to a tree whose open tips carry the contexts for whatever grows next. Four operations:
+An **element** is one drawn part: an internode, a leaf, a petal. A **rule** is a function from a context to a shoot whose open tips carry the contexts for whatever grows next. A tip grows exactly one shoot (J2). Branching is an element having several children: a **fork** is an element's ordered list of child slots. Four operations on rules:
 
 | Operation | Meaning |
 |---|---|
-| `tip` | the tree that is one open tip: an unopened bud |
-| `nothing` | the empty tree |
-| `fork(f, g)` | `f`'s siblings followed by `g`'s, at the same point |
-| `then(f, g)` | **continue**: grow `f`; replace each of its open tips with what `g` grows from that tip's context |
+| `tip` | the shoot that is one open tip: an unopened bud |
+| `closed` | the shoot that is one closed slot |
+| `grow(e, f₁ … fₙ)` | the element `e` with `n` child slots, slot `i` holding what `fᵢ` grows |
+| `then(f, g)` | **continue**: grow `f`; replace each of its open tips with the shoot `g` grows from that tip's context |
 
-`then` is substitution at the tips. (In functional-programming terms `Tree` is a monad and `then` its Kleisli composition. That is a statement about which laws hold, not a request for monad machinery; RFC 001.)
+`then` is substitution at the tips. (In functional-programming terms `Shoot` is a monad and `then` its Kleisli composition. That is a statement about which laws hold, not a request for monad machinery; RFC 001.)
 
-A **phytomer** is a rule, not a node type: it grows an internode whose children are its lateral organ(s), its axillary slot(s), and an open apical tip. A shoot of `n` phytomers is the phytomer rule continued `n` times. A branch is the same rule grown from an axillary slot. A compound leaf is the same pattern inside the leaf.
+A **phytomer** is a rule, not a node type: it grows an internode whose child slots are its lateral organ(s), its axillary slot(s), and an open apical tip. A shoot of `n` phytomers is the phytomer rule continued `n` times. A branch is the same rule grown from an axillary slot. A compound leaf is the same pattern inside the leaf.
 
-**Context.** A context travels down through tips and nowhere else. Each tip of a fork carries its own, so siblings can diverge below that point, and a change made to a context is scoped to the subtree grown from it. This RFC puts position in the context (branch order, index along the axis). RFC 003 adds the stage and the archetype; RFC 004 adds traits and mutations.
+**Context.** A context travels down through tips and nowhere else. Each child slot of an element gets its own, so siblings can diverge below that point, and a change made to a context is scoped to the subtree grown from it. This RFC puts position in the context (branch order, index along the axis, and whether the tip is apical or axillary). RFC 003 adds the stage and the archetype; RFC 004 adds traits and mutations.
 
-**Identity.** A node's id is its **path**: the sequence of slot indices from the root, where a tip keeps its slot when it is continued. A node's seed is derived from the root seed and its path, by the combinators and never by a rule. A slot that grows nothing is `closed`, not absent, so the slots beside it keep their indices. Placement around a node (alternate, opposite, whorled, spiral) is a function of the slot index, a trait and the node's seed; it is not part of the algebra.
+**Identity.** A node's id is its **path**: the sequence of child-slot indices from the root. Because a tip is replaced by exactly one shoot, continuing a tip never changes how many siblings there are, so no path outside the tip changes. A node's seed is derived from the root seed and its path, by the combinators and never by a rule. A slot that grows nothing is `closed`, not absent, so the slots beside it keep their indices. Placement around a node (alternate, opposite, whorled, spiral) is a function of the slot index, a trait and the node's seed; it is not part of the algebra.
 
 ### Life: timed contributions to one element
 
@@ -114,21 +113,19 @@ Derived from the meanings above. Each becomes a property test in the first slice
 
 - F1. `then` is associative.
 - F2. `tip` is the identity of `then` on both sides.
-- F3. `fork` is associative, with identity `nothing`.
-- F4. `then` distributes over `fork` from the right: `then(fork(f, g), h) = fork(then(f, h), then(g, h))`. (What grows next grows at every tip.)
-- F5. `then(nothing, f) = nothing`.
+- F3. `closed` is a left zero: `then(closed, f) = closed`.
+- F4. `then` passes through an element to its children: `then(grow(e, f₁ … fₙ), h) = grow(e, then(f₁, h) … then(fₙ, h))`. (What grows next grows at every tip.)
 
 **Not laws**, with the smallest counterexample:
 
-- Left distributivity. `then(p, fork(q, r))` is one `p` carrying `q` and `r`. `fork(then(p, q), then(p, r))` is two `p`s.
-- Right zero. `then(p, nothing)` is `p` with no way to continue. It is not `nothing`.
-- Commutativity of `fork`. `fork(q, r)` puts `q` in slot 0; `fork(r, q)` puts `r` there, with slot 0's seed.
+- Right zero. `then(grow(e, tip), closed)` is `e` with its slot closed. It is not `closed`.
+- Order of children. `grow(e, q, r)` puts `q` in slot 0; `grow(e, r, q)` puts `r` there, with slot 0's seed.
 
 **Identity.**
 
 - I1. A node's seed is a function of the root seed and the node's path, and of nothing else.
 - I2. Distinct paths have distinct ids.
-- I3. Locality. If two runs differ only in what a rule grows under path `π`, every node not under `π` has the same id, seed and element in both.
+- I3. Locality. If two runs differ only in what a rule grows under path `π`, every node not under `π` has the same id, seed and element in both. (Follows from a tip growing exactly one shoot; the test guards the combinators.)
 
 **Time.**
 
@@ -147,13 +144,13 @@ Derived from the meanings above. Each becomes a property test in the first slice
 
 **Not laws.** Right distributivity: with `d(a) = 1` and `d(b) = 2`, `(a + b) · c` starts `c` at 2, while `a·c + b·c` starts one `c` at 1 and another at 2. A zero: with durations `≥ 0` the identity of concurrent is instant, the same element as the identity of sequential, and nothing annihilates.
 
-So each level has two monoids and one distributive law, on opposite sides. The structure level is a **near-semiring** in the sense of Rivas et al.; the element level is the same shape without a zero. Neither is the semiring VISION.md starts from (§Alternatives).
+So the two levels have different algebras. The structure level is substitution: one monoid (`then`, `tip`) with a left zero, which passes through branching. The element level is two monoids sharing an identity, with one distributive law. Neither is the semiring VISION.md starts from (§Alternatives).
 
 ### Where a semiring does appear
 
 As measurement. A semiring appears whenever we ask a question of the tree whose answer adds across siblings and multiplies along a path:
 
-- **Counting.** The number of open tips of `fork(f, g)` is the sum of the two counts. For rules whose tip count does not depend on context, the count of `then(f, g)` is the product. That is `(ℕ, +, ×)`.
+- **Counting.** The number of open tips of `grow(e, f₁ … fₙ)` is the sum of the children's counts. For rules whose tip count does not depend on context, the count of `then(f, g)` is the product. That is `(ℕ, +, ×)`.
 - **Timing.** A tip's time is the sum of primary durations along its path; the latest is the maximum over paths. That is `(max, +)`, and the path that attains the maximum is the plant's critical path.
 
 Both are candidates for inspector readouts (generative-morphology-4uz). Unverified until the slice has tests for them.
@@ -162,11 +159,11 @@ Both are candidates for inspector readouts (generative-morphology-4uz). Unverifi
 
 Each is a choice about the form, with a recommendation and what the recommendation gives up.
 
-**J1. Does a shoot that stops growing stay drawn?** Recommended: yes (`then(p, nothing)` is `p`, closed). The alternative is a right zero, under which only shoots that still end in a live tip exist. The recommendation gives up the right-zero law and with it a full semiring. The alternative would make an axis that ends (in a flower, say) inexpressible without a special atom.
+**J1. Does a shoot that stops growing stay drawn?** Recommended: yes (continuing with `closed` closes the tips and keeps the shoot). The alternative is a right zero, under which only shoots that still end in a live tip exist. The recommendation gives up the right-zero law and with it a full semiring. The alternative would make an axis that ends (in a flower, say) inexpressible without a special atom.
 
-**J2. Is a stem that forks the same as two stems from one point?** Recommended: no. The alternative merges any two siblings that begin identically. The recommendation gives up left distributivity at the structure level. It keeps "the tree a rule returns is the tree that is drawn", with no canonicalisation step between generation and render.
+**J2. Can a tip grow more than one shoot?** Recommended: no. A bud grows one shoot; several things at one point are the children of an element. The alternative lets a tip be replaced by several siblings, which makes `fork` an operation on rules and gives the structure level a second monoid and a distributive law (a near-semiring). It cannot be had together with stable ids: if the tips in slots 0 and 1 are continued and slot 0 grows two siblings where it grew one, slot 1's contents move to slot 2 and get a different id and seed. In the jig that is one bud changing and the rest of the plant reshuffling. The recommendation gives up `fork` as algebra; it keeps I3 by construction. It also means two stems from one point always share an element below them, so "a stem that forks" and "two stems" are never confused.
 
-**J3. Are siblings ordered?** Recommended: yes, by slot, with a slot that grows nothing kept as `closed`. This is what makes I3 hold: toggling one bud does not reshuffle the plant beside it. It gives up commutativity of `fork`.
+**J3. Are siblings ordered?** Recommended: yes, by slot, with a slot that grows nothing kept as `closed`. Toggling one bud then leaves the slots beside it alone. It gives up any law that reorders children.
 
 **J4. Is there a "cancelled" change?** Kase has one, as the zero of his algebra. Recommended: no. Generation has no reason to emit a cancelled change, and in the timed meaning it has no honest definition. Nothing visible changes.
 
@@ -194,7 +191,7 @@ Exposed in the jig by this RFC: presentation duration (seconds), and the time sc
 
 In two parts, so the laws are in place before anything is drawn.
 
-**1a (generative-morphology-bvk).** `Tree`, `Rule`, `tip`, `nothing`, `fork`, `then`, with paths and seeds assigned by the combinators; lives with sequential and concurrent; start times, settle time and `sample`; fast-check generators for trees, rules and lives; a property test for every law above and a failing-as-expected test for every non-law. No rendering.
+**1a (generative-morphology-bvk).** `Shoot`, `Rule`, `tip`, `closed`, `grow`, `then`, with paths and seeds assigned by the combinators; lives with sequential and concurrent; start times, settle time and `sample`; fast-check generators for trees, rules and lives; a property test for every law above and a failing-as-expected test for every non-law. No rendering.
 
 **1b (generative-morphology-p3p).** One axis of `n` phytomers, each an internode and one leaf drawn as a line, with an axillary slot that is either `closed` or grows one branch of the same rule; rendered from `sample(g, t)`; a scrubber in the jig. Replaces `stub-branch`.
 
@@ -206,16 +203,17 @@ What looking at it should tell us: whether growth in causal order within a fixed
 
 ## Alternatives considered
 
-- **A semiring at each level** (VISION.md's starting hypothesis, after Kase). At the structure level a real one exists: forget everything about the tree except the paths to its open tips, and the multisets of those paths form a semiring with both distributive laws and a two-sided zero. It describes the growing frontier correctly. It is not enough to draw from: it cannot say where a fork is (J2), a shoot that stops is not in it (J1), and ids and seeds would have to come from a canonical form, not from the tree a rule built. At the element level right distributivity fails whenever concurrent branches differ in duration.
+- **A semiring at each level** (VISION.md's starting hypothesis, after Kase). At the structure level a real one exists: forget everything about the tree except the paths to its open tips, and the multisets of those paths form a semiring with both distributive laws and a two-sided zero. It describes the growing frontier correctly. It is not enough to draw from: it cannot say where a fork is, a shoot that stops is not in it (J1), and ids and seeds would have to come from a canonical form, not from the tree a rule built. At the element level right distributivity fails whenever concurrent branches differ in duration.
 - **One parallel operator for both levels.** One operator can't be both idempotent (concurrent changes to one element are one change) and not (two leaves are two leaves).
-- **Fork as a keyed map** (children identified by name, not index). Restores commutativity and makes locality automatic, at the cost of `fork` being partial (two children with one name). Worth revisiting if slot indices prove awkward for whorls.
+- **Fork as an operation on rules** (a tip may grow several siblings). Gives the structure level two monoids and a right distributive law, a near-semiring in the sense of Rivas et al. Rejected under J2: with ids as slot paths, either `fork` is not associative (if each fork nests) or locality fails (if forks flatten).
+- **Children as a keyed map** (identified by name, not index). Makes order irrelevant, at the cost of names having to be unique within an element. Worth revisiting if slot indices prove awkward for whorls.
 - **L-systems** (Prusinkiewicz & Lindenmayer). The structure level is close to a stochastic, parametric L-system: `then` at tips plays the role of productions, and contexts are close to inherited parameters. The book also covers phyllotaxis and timed growth, so it is the main reference to check rules against. The difference here is that laws are explicit and tested, and time is a function, not a count of derivation steps.
 - **Intrinsic durations.** Rejected as the default for a fixed total time (J6), but kept reachable: it is a different warp.
 
 ## Open questions
 
 1. **Same key, different contributions.** Is it a generation error, or does each property declare how its contributions combine (sum for curvature; what for colour)? Whether such a clash can be detected from the term without running it is unverified.
-2. **Tip types.** Does the apical tip need a different context type from axillary tips? The slice will show.
+2. **Tip types.** `then(phytomer, g)` grows `g` at the axillary tips and the apical tip alike, and `g` tells them apart by the context. Is that enough, or do the two kinds of tip need different context types? The slice will show.
 3. **J1–J6.** The user decides each; J6 after seeing the slice.
 
 New terms used here are defined in GLOSSARY.md, marked as proposed by this RFC.

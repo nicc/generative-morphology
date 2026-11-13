@@ -16,19 +16,19 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **archetype** — the leaf archetype: the plant's leaf, as a set of trait values, carried in the context through the stages. Every lateral organ is a transformation of it. *(proposed, RFC 003)*
 
-**closed** — a slot in a tree that grows nothing further: a dormant bud, or an axis that has ended. Drawn or not, it keeps its slot, so the slots beside it keep their paths. (Distinguish from **tip**, which can still be continued, and from nothing at all.) *(proposed, RFC 002)*
+**closed** — a slot that grows nothing further: a dormant bud, or an axis that has ended. Drawn or not, it keeps its slot, so the slots beside it keep their paths. (Distinguish from **tip**, which can still be continued.) *(proposed, RFC 002)*
 
 **concurrent** — element-level parallel composition: two changes to one element at the same time. Idempotent: a change concurrent with itself is one change. (Distinguish from **fork**.) *(proposed, RFC 002)*
 
 **context** — what a tip carries for the rule that grows from it: position (branch order, index along the axis), stage and archetype (RFC 003), traits and mutations in force (RFC 004). It travels down through tips only; each tip of a fork carries its own. *(proposed, RFC 002)*
 
-**continue** — structure-level sequential composition, written `then(f, g)`: grow `f`, then replace each of its tips with what `g` grows from that tip's context. (Distinguish from **sequential**.) *(proposed, RFC 002)*
+**continue** — structure-level sequential composition, written `then(f, g)`: grow `f`, then replace each of its tips with the shoot `g` grows from that tip's context. (Distinguish from **sequential**.) *(proposed, RFC 002)*
 
 **contraction / expansion** — Goethe's alternation along the axis. Expansion: longer internodes, broader organs. Contraction: shorter internodes, narrower organs, organs drawn towards one node. *(proposed, RFC 003)*
 
 **element** — one drawn part with its own life: an internode, a leaf, a petal. A node of the tree. *(proposed, RFC 002)*
 
-**fork** — structure-level parallel composition: siblings at one point, in slot order. Not idempotent (leaf + leaf is two leaves) and not commutative (each sibling has its slot). (Distinguish from **concurrent**.) *(proposed, RFC 002)*
+**fork** — structure-level branching: an element's ordered list of child slots, each growing its own shoot at the same time. Two leaves in two slots are two leaves. Not an operation on rules: a tip grows exactly one shoot. (Distinguish from **concurrent**.) *(proposed, RFC 002)*
 
 **jig** — the dev-time control panel and what it drives: Tweakpane sliders for every form-affecting parameter, per-parameter locks, and the new-seed button (`src/ui/controls.ts`). Where exploration happens (principle 5).
 
@@ -44,9 +44,9 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **mutation** — a rare change to the context, applied at a node and so scoped to the subtree grown from it; whether one occurs is drawn from its own weight table per seed or per node. The first ones are named bud sports ('Pendula', 'Contorta', 'Fastigiata'). Not a synonym for phase or rule application. *(proposed, RFC 004)*
 
-**near-semiring** — two monoids on one set with only one distributive law. The structure level is one: `then` distributes over `fork` from the right but not the left. The element level has the same shape, with the law on the other side and no zero. *(proposed, RFC 002)*
+**near-semiring** — two monoids on one set with only one distributive law. What the structure level would be if a tip could grow several shoots; not used (RFC 002, J2). *(proposed, RFC 002)*
 
-**path** — a node's position: the sequence of slot indices from the root, with a continued tip keeping its slot. A node's id, and with the root seed its seed, are functions of its path. *(proposed, RFC 002)*
+**path** — a node's position: the sequence of child-slot indices from the root. A node's id, and with the root seed its seed, are functions of its path. *(proposed, RFC 002)*
 
 **phase** — one stretch of an element's life during which a set of property changes run together, e.g. an internode elongating while it greens. **Primary** phases must finish before growth continues from the element's tips; **secondary** phases (thickening, ageing, bending) run on alongside what grows next. *(proposed, RFC 002)*
 
@@ -58,7 +58,7 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **RFC** — a design proposal in `rfcs/`: exploration and rationale, never canonical. Becomes a spec or a principle when accepted. (Distinguish from **spec**.)
 
-**rule** — a function from a context to a tree whose tips carry the contexts for what grows next. Rules are composed with `then` and `fork`. *(proposed, RFC 002; today's code uses the word for the name recorded in provenance)*
+**rule** — a function from a context to a shoot whose tips carry the contexts for what grows next. Rules are composed with `then` and `grow`. *(proposed, RFC 002; today's code uses the word for the name recorded in provenance)*
 
 **sample** — to evaluate a growing plant at one time `t`, giving the drawing for that instant. Pure: the same seed, traits and `t` give the same drawing. *(proposed, RFC 002)*
 
@@ -68,7 +68,9 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **settle time** — the latest moment at which anything in a growing plant is still changing. The image is the plant sampled at its settle time. *(proposed, RFC 002)*
 
-**slot** — one position among the siblings at a point. Slots are ordered and indexed; placement and seeds are functions of the slot index. *(proposed, RFC 002)*
+**shoot** — the tree a rule grows: a tip, a closed slot, or an element with its child slots. A plant is one shoot. *(proposed, RFC 002)*
+
+**slot** — one position among an element's children. Slots are ordered and indexed, and each holds exactly one shoot; placement and seeds are functions of the slot index. *(proposed, RFC 002)*
 
 **spec** — an approved decision in `specs/` that the code must match. Canonical. (Distinguish from **RFC**.)
 
@@ -76,7 +78,7 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **structure node** — one node of the tree generation produces (`StructureNode`): geometry, provenance, children, and a stable id of the form `rule:path`. What render consumes and what the inspector and feedback attach to.
 
-**tip** — an open end of a tree, carrying the context for whatever grows there next: an unopened bud. `then` replaces tips. (Distinguish from **closed**.) *(proposed, RFC 002)*
+**tip** — an open end of a shoot, carrying the context for whatever grows there next: an unopened bud. `then` replaces each tip with exactly one shoot. (Distinguish from **closed**.) *(proposed, RFC 002)*
 
 **trait** — a named, typed morphological variable (arrangement, divergence angle, leaf compoundness, a growth-rate curve…), either pinned or drawn from a weight table, per seed or per node. *(proposed, RFC 004)*
 

@@ -37,25 +37,29 @@ This RFC adds no new type. Its meanings are RFC 002's; what it adds is what the 
 
 **Context.** To RFC 002's position, add the **stage** and the **archetype** (the plant's leaf, as trait values; RFC 004).
 
-**Stage rules.** Each stage is a rule: a run of phytomers whose lateral organ is `transform(archetype, stage)`, the stage's expansion or contraction applied to the archetype handed forward. The main axis is the stages continued in order:
+**Expansion.** Each stage `s` has an expansion value `x(s)`, a signed number and a trait: positive for an expanding stage, negative for a contracting one. `scale` is an increasing function from expansion values to positive factors with `scale(0) = 1`.
+
+**Transform.** `transform(a, s)` is the archetype `a` with its length and width multiplied by `scale(x(s))`. The stage's internode length is multiplied by the same factor. This is the whole meaning to start with; what else a stage may change is open question 2, and each addition has to be stated here the same way.
+
+**Stage rules.** Each stage is a rule: a run of zero or more phytomers whose lateral organ is `transform(archetype, stage)`, the stage's expansion or contraction applied to the archetype handed forward. The main axis is the stages continued in order:
 
 ```
 axis = then(vegetative, then(calyx, then(corolla, then(stamensAndPistil, fruit))))
 ```
 
-Giving each stage's context its own type (`Rule<Vegetative, Calyx>`, `Rule<Calyx, Corolla>`, …) makes any other order fail to compile. Traits decide each stage's form and extent, and whether an optional stage appears; they cannot reorder stages.
+Giving each stage's context its own type (`Rule<Vegetative, Calyx>`, `Rule<Calyx, Corolla>`, …) makes any other order fail to compile. Traits decide each stage's form and extent; they cannot reorder stages. A stage that does not appear is its rule with a run of zero phytomers: it grows nothing and hands the context on with the stage advanced.
 
 **Branches.** An axillary slot that grows out starts its own run from the vegetative stage, one branch order higher.
 
 Laws, to be tested when the first stage rules exist:
 
-- M1. Stage order. Along any root-to-tip path, stages appear in the fixed order, each zero or more times, never returning to an earlier one. (By the types; the test guards the types.)
-- M2. One archetype. Every lateral organ on the plant is `transform(a, s)` for the plant's archetype `a` and the organ's stage `s`, up to what mutations in force have changed (RFC 004).
-- M3. Alternation. The expansion measure of successive stages along an axis alternates in direction.
+- M1. Stage order. Along any root-to-tip path, the stage runs appear in the fixed order, each once, each of zero or more phytomers. (By the types; the test guards the types.)
+- M2. One archetype. Every lateral organ's length and width are the archetype's multiplied by `scale(x(s))` for the organ's stage `s`, after any mutation in force has changed the archetype (RFC 004).
+- M3. Alternation. Along an axis, `x` has opposite signs in consecutive stages that appear.
 
 ### Anastomosis
 
-Contraction draws organs towards one node until their outlines overlap. Where they overlap, the renderer draws the union of the outlines, so internal edges disappear and the organs read as fused. The structure reports which organs share a node; nothing about fusion is simulated.
+Contraction draws organs towards one node until their outlines overlap, and overlapping organs are drawn as the union of their outlines, so internal edges disappear and they read as fused. Nothing about fusion is simulated. The structure reports which organs share a node. Whether it also reports which of them fuse, or leaves that to render to find from overlap, is M-J3.
 
 ### Geometry
 
@@ -67,7 +71,7 @@ Generation produces 3D geometry whether rendering is 2D or 3D: phyllotaxis is a 
 
 **M-J2. Is fruit in the first backbone?** Recommended to start: no; end at stamens and pistil. Fruit is the stage furthest from the leaf and the hardest to draw as a transformation of it.
 
-**M-J3. Is fusion a fact of the structure or only of the drawing?** As written, render decides which outlines overlap, so "these sepals are fused" is not something the tree carries and the inspector cannot point at a fused calyx (principle 6). Recommended: generation reports fusion groups (which organs at a node fuse), and render only draws the union. This keeps "what the structure is" in generation (principle 2). It gives up the simplicity of fusion falling out of overlap.
+**M-J3. Is fusion a fact of the structure or only of the drawing?** Two options. (a) Render finds overlapping outlines and draws their union; fusion falls out of geometry with no rule. (b) Generation reports fusion groups (which organs at a node fuse) and render draws the union of each group. Recommended: (b). Under (a) "these sepals are fused" is not something the tree carries, the inspector cannot point at a fused calyx (principle 6), and render is deciding what the structure is (principle 2). (b) gives up the simplicity of fusion needing no rule.
 
 ## Architectural implications
 

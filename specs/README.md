@@ -22,6 +22,7 @@ Source: RFC NNN
 
 - **Summary.** What the spec defines, as a short list.
 - **Rules.** Checkable statements, in glossary terms. Number them if other documents or code comments will cite them. Each rule names the principle it serves when that isn't obvious.
+- **Laws.** An algebraic law is a rule with an id (a letter and a number, e.g. `F4`), stated as an equation between meanings, with the property test that checks it named beside it. An equation that deliberately does not hold is listed too, with its counterexample, so nobody restores it later.
 - **Code references.** Point at the code that implements a rule as `src/...` paths in backticks or markdown links. `npm run check:specs` (part of `npm run lint`) fails if a referenced path doesn't exist. It does not check that the prose still matches behaviour; keeping that true is the job of whoever changes the code.
 
 No rationale beyond a line where a rule would otherwise look arbitrary; the reasoning lives in the source RFC. When a spec is approved, add it to the Specs and RFCs table in [CLAUDE.md](../CLAUDE.md).

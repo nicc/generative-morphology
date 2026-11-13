@@ -30,17 +30,23 @@ Read the description, then the diff, then the specs, RFCs, glossary entries and 
    - GL state is scoped per node or per draw, not left as global mutable state.
    - A new abstraction has more than one current use.
    - New state has one owner, a bound, and a disposal path (GL buffers and programs in particular).
-5. **Numerical correctness.** Generation and shader code can produce a plausible-looking wrong result. Check transforms, angle conventions and units, coordinate spaces, recursion termination, and seed derivation. Give the input that produces the wrong result.
-6. **Code quality.** Report only findings with a concrete consequence:
+5. **Meaning and laws.** (Method: RFC 002. Applies to generation types and their operations.)
+   - A new type or operation has a stated meaning, in an RFC or spec the description names. An operation described only by its implementation is a finding.
+   - Something downstream (render, ids, seeds, the inspector) reads a detail of the representation that the meaning doesn't determine: for example, an id or seed that depends on how a term was assembled where the laws say the result is the same.
+   - A law the spec or RFC states has a property test built on generated inputs (`src/testing/laws.ts`), compared with the equality of meanings. A law tested on one hand-picked example is a finding. So is a law asserted in a comment with no test.
+   - Trees, lives and curves stay plain data: a function stored in a generated structure can't be compared, inspected or shown (principle 6) unless the description says why it must be one.
+   - Time: render or generation that keeps state between frames, or reads a clock, where the growth is specified as a function of `t`.
+6. **Numerical correctness.** Generation and shader code can produce a plausible-looking wrong result. Check transforms, angle conventions and units, coordinate spaces, recursion termination, and seed derivation. Give the input that produces the wrong result.
+7. **Code quality.** Report only findings with a concrete consequence:
    - Correctness: give the input or state that produces the wrong result.
    - Simplification: name the simpler form, rather than calling the code complex.
    - Duplication: name the existing helper it duplicates.
    - Project conventions: the Code conventions section of CLAUDE.md.
 
    No style preferences, naming debates, or performance concerns without a per-frame or per-node reason.
-7. **Glossary.** Terms used consistently with GLOSSARY.md; new terms defined there in the same PR.
-8. **Tests.** Generation changes are covered; tests import defaults and ranges rather than retyping them; tests that can't fail; values pinned where a property would do.
-9. **Shims and compatibility layers** added without a stated need.
+8. **Glossary.** Terms used consistently with GLOSSARY.md; new terms defined there in the same PR.
+9. **Tests.** Generation changes are covered; tests import defaults and ranges rather than retyping them; tests that can't fail; values pinned where a property would do.
+10. **Shims and compatibility layers** added without a stated need.
 
 ## How to report
 

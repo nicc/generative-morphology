@@ -37,8 +37,11 @@ Use the ones that apply; leave out the ones that don't rather than filling them.
 - **Summary.** What changes, in two or three sentences, starting with what someone looking at or using the work will see differently.
 - **Motivation.** Why now, and what's wrong or missing without it.
 - **Principles check.** Each principle the design touches: how it complies, or an explicit, justified exception. A design that can't name the principle it traces to isn't ready (CLAUDE.md, Principles before implementation).
+- **Meaning and laws.** For any new or changed generation type: its meaning (a mathematical object simpler than the code), the meaning function, and what each operation does to the meaning. Then the laws that follow, numbered, and the equations that look as if they should hold but don't, each with its smallest counterexample. Say what equality compares. (Method and references: RFC 002.)
+- **Judgement calls.** Choices in the model that change what is drawn or how the jig behaves, each stated as a question about the form, with a recommendation and what the recommendation gives up. Kept apart from open questions so that a choice about the form isn't settled as a technical detail.
 - **Design.** The rule or mechanism, concretely enough to check code against. State quantitative claims with how they were computed, or mark them as unverified.
 - **Parameters.** What it exposes in the jig, with ranges and what each end of the range looks like; and what stays a buried constant, with why.
+- **First slice.** The smallest thing to build that can be looked at and that tests the RFC's claims, what it leaves out, and what looking at it should tell us. An RFC whose design can't be tried in a slice is probably two RFCs.
 - **Alternatives considered.** What else was on the table and why it lost.
 - **Open questions.** What is undecided, and who decides it.
 

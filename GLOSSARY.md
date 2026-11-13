@@ -16,6 +16,8 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **archetype** — the leaf archetype: the plant's sampled leaf traits, passed forward through the stages. Every lateral organ is a transformation of it. *(proposed, RFC 001)*
 
+**closed** — a slot in a tree that grows nothing further: a dormant bud, or an axis that has ended. Drawn or not, it keeps its slot, so the slots beside it keep their paths. (Distinguish from **tip**, which can still be continued, and from nothing at all.) *(proposed, RFC 002)*
+
 **concurrent** — element-level parallel composition: two changes to one element at the same time. Idempotent: a change concurrent with itself is one change. (Distinguish from **fork**.) *(proposed, RFC 001)*
 
 **context** — the record `continue` hands to the next term: archetype, inherited traits, mutations in force, and position (branch order, stage, index along the axis, seed). Each forked sibling gets its own copy. *(proposed, RFC 001)*
@@ -30,11 +32,21 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **jig** — the dev-time control panel and what it drives: Tweakpane sliders for every form-affecting parameter, per-parameter locks, and the new-seed button (`src/ui/controls.ts`). Where exploration happens (principle 5).
 
+**law** — an equation between meanings that holds for every value, e.g. `then` is associative. Derived from the meaning and checked by a property test; never assumed. *(proposed, RFC 002)*
+
+**life** — everything one part does over time: its properties as functions of the time since it started, built from phases, with a primary duration after which growth continues from its tips. *(proposed, RFC 002)*
+
 **lock** — a per-parameter toggle in the jig. A locked parameter keeps its value when a new seed is drawn; unlocked parameters are re-derived from the new seed. RFC 001 generalises this to pinning any trait.
+
+**meaning** — the mathematical object a generation type stands for, chosen to be simpler than the code and independent of it. Two values are equal when their meanings are. Elliott's *denotation*. *(proposed, RFC 002)*
+
+**meaning function** — the function from a representation to its meaning. Each operation is specified by requiring the meaning function to respect it (to be a homomorphism). *(proposed, RFC 002)*
 
 **mutation** — a rare transform of the context, scoped to a subtree, drawn from its own weight table per seed or per node. The first ones are named bud sports ('Pendula', 'Contorta', 'Fastigiata'). Not a synonym for phase or rule application. *(proposed, RFC 001)*
 
 **near-semiring** — a semiring with only one distributive law. The element-level algebra is one: sequencing distributes over concurrency on the left but not the right. *(proposed, RFC 001)*
+
+**path** — a node's position: the sequence of slot indices from the root, with a continued tip keeping its slot. A node's id, and with the root seed its seed, are functions of its path. *(proposed, RFC 002)*
 
 **phase** — one stretch of an element's life during which a set of property changes run together, e.g. an internode elongating while it greens. **Primary** phases must finish before growth continues from the element's tips; **secondary** phases (thickening, ageing, bending) run on alongside what grows next. *(proposed, RFC 001)*
 
@@ -46,9 +58,17 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **RFC** — a design proposal in `rfcs/`: exploration and rationale, never canonical. Becomes a spec or a principle when accepted. (Distinguish from **spec**.)
 
+**rule** — a function from a context to a tree whose tips carry the contexts for what grows next. Rules are composed with `then` and `fork`. *(proposed, RFC 002; today's code uses the word for the name recorded in provenance)*
+
+**sample** — to evaluate a growing plant at one time `t`, giving the drawing for that instant. Pure: the same seed, traits and `t` give the same drawing. *(proposed, RFC 002)*
+
 **seed lineage** — the chain of seeds from the root seed to a node, each derived from its parent's by `deriveSeed`. Gives every node a stable seed of its own without a shared RNG.
 
 **sequential** — element-level sequential composition: one phase after another within one element. (Distinguish from **continue**.) *(proposed, RFC 001)*
+
+**settle time** — the latest moment at which anything in a growing plant is still changing. The image is the plant sampled at its settle time. *(proposed, RFC 002)*
+
+**slot** — one position among the siblings at a point. Slots are ordered and indexed; placement and seeds are functions of the slot index. *(proposed, RFC 002)*
 
 **spec** — an approved decision in `specs/` that the code must match. Canonical. (Distinguish from **RFC**.)
 
@@ -56,6 +76,10 @@ Terms marked *(proposed, RFC NNN)* are under review with that RFC and may change
 
 **structure node** — one node of the tree generation produces (`StructureNode`): geometry, provenance, children, and a stable id of the form `rule:path`. What render consumes and what the inspector and feedback attach to.
 
+**tip** — an open end of a tree, carrying the context for whatever grows there next. `then` replaces tips. RFC 001's `1`, the unopened bud. (Distinguish from **closed**.) *(proposed, RFC 002)*
+
 **trait** — a named, typed morphological variable (arrangement, divergence angle, leaf compoundness, a growth-rate curve…), either pinned or drawn from a weight table, per seed or per node. *(proposed, RFC 001)*
+
+**warp** — a monotone function applied to time before sampling. Normalising growth time to `[0, 1]` and mapping that to wall-clock seconds are warps; they are presentation, outside the algebra. *(proposed, RFC 002)*
 
 **weight table** — a distribution over a trait's values; rarity is the shape of the table. Can be authored, or built from data (e.g. species counts near a location). *(proposed, RFC 001)*

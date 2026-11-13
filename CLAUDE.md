@@ -31,9 +31,10 @@ Generation decides what a structure is; render draws whatever structure it is ha
 | [src/generation/](src/generation/) | Pure, seeded rules → `StructureNode` tree; `rng.ts` (seeded PRNG, seed derivation) | nothing outside generation |
 | [src/render/](src/render/) | All WebGL2 and twgl calls; GL state scoped per node | generation types |
 | [src/ui/](src/ui/) | The jig: Tweakpane panel, parameter ranges, locks, new-seed button | generation |
+| [src/testing/](src/testing/) | Test support: `laws.ts`, property-based checkers for algebraic laws | fast-check |
 | [src/main.ts](src/main.ts) | Wiring: canvas, renderer, controls, regenerate | everything |
 
-Stack: TypeScript, Vite, raw WebGL2 with [twgl.js](https://twgljs.org/) for shader/buffer/uniform boilerplate only, [Tweakpane](https://cocopon.github.io/tweakpane/) for the jig, Vitest. No scene-graph engine (Three.js considered and ruled out: the work doesn't borrow meaning from recognisable materials or lighting, and the object model is shaped by generation, not by a general 3D scene). No app framework.
+Stack: TypeScript, Vite, raw WebGL2 with [twgl.js](https://twgljs.org/) for shader/buffer/uniform boilerplate only, [Tweakpane](https://cocopon.github.io/tweakpane/) for the jig, Vitest with [fast-check](https://fast-check.dev/) for law tests. No scene-graph engine (Three.js considered and ruled out: the work doesn't borrow meaning from recognisable materials or lighting, and the object model is shaped by generation, not by a general 3D scene). No app framework.
 
 The only generation rule today is a placeholder (`stub-branch` in [structure.ts](src/generation/structure.ts)) that proves the pipeline end to end. It is not a design principle and will be replaced.
 
@@ -53,6 +54,7 @@ The only generation rule today is a placeholder (`stub-branch` in [structure.ts]
 | Why this exists, who it's for | [VISION.md](VISION.md) |
 | Writing an RFC | [rfcs/README.md](rfcs/README.md) |
 | Writing or changing a spec | [specs/README.md](specs/README.md) |
+| What a generation type means, how laws are derived (Elliott's denotational design) | [rfcs/rfc_002_meaning_first.md](rfcs/rfc_002_meaning_first.md) (Draft) |
 | Past spikes and findings | [docs/learnings/](docs/learnings/) |
 | What the PR reviewer checks | [.github/pr-review.md](.github/pr-review.md) |
 
@@ -73,6 +75,8 @@ Lint exemptions are `eslint-disable-next-line` comments that give the reason and
 
 Generation code is pure and seeded, so it gets unit tests. Rendering output is verified by looking at it (the `run` skill), not by automated tests. The core rule: a test protects a behaviour. It survives a retune of a default and fails when the behaviour breaks. So import defaults and ranges rather than retyping them, and assert properties (determinism for a seed, orderings, bounds, ratios) over exact values.
 
+An algebraic law (associativity, an identity, a distributive law, a meaning function respecting an operation) is tested with the checkers in [src/testing/laws.ts](src/testing/laws.ts) over generated inputs, never on a hand-picked example. Pass the equality of meanings as `eq`. An equation that deliberately doesn't hold gets a test too (`expect(() => law.…).toThrow()`), so it isn't restored by accident.
+
 ## Code conventions
 
 - **Form-affecting values live in the jig.** A value that visibly changes the form when varied (principle 5) is a field of `GenerationParams` with a one-line comment giving its unit, a default in `DEFAULT_PARAMS` ([structure.ts](src/generation/structure.ts)) and a range in `PARAM_RANGES` ([controls.ts](src/ui/controls.ts)), so it appears in the panel and can be locked. Never an inline literal in a rule.
@@ -84,7 +88,7 @@ Generation code is pure and seeded, so it gets unit tests. Rendering output is v
 
 Recorded so no one assumes these exist yet:
 
-- **Bend.** Intended for use here; its role and setup haven't been decided.
+- **A proof tool.** Which one (Bend 2, Agda, Lean 4) and whether proofs add anything over the property tests is open: generative-morphology-3qk. VISION.md names Bend 2; that is a starting preference, not a decision.
 - **Subjective evals.** Automated evaluation of rendered output beyond unit tests. Until it exists, rendering is checked by looking.
 
 ## Skills worth using here

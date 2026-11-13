@@ -17,6 +17,7 @@
     "@tweakpane/core": "^2.0.5",
     "@vitest/eslint-plugin": "^1.6.28",
     "eslint": "^10.14.0",
+    "fast-check": "^4.10.2",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.72.2",
     "vite": "^8.2.0",

@@ -1,6 +1,6 @@
 # RFC 002: Growth algebra
 
-Status: Discussion (design principles accepted → principles 9 and 10; J1–J6 decided; the laws become spec text with slice 1a)
+Status: Discussion (design principles accepted → principles 9 and 10; J1–J6 and the model reviewed and approved by the user 2026-11-13; the laws become spec text with slice 1a)
 Date: 2026-11-13
 
 ### Related

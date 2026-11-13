@@ -11,7 +11,7 @@ Date: 2026-11-13
 
 ## Summary
 
-Where the values that rules read come from. Every value is a **trait**: either pinned (by a lock in the jig, or by input data such as a species) or drawn from a **weight table** using a seed. A rare plant is one that drew a low-weight value. A **mutation** is a rare change to the context, scoped to the subtree grown from the node where it occurs.
+Where the values that rules read come from. Every value is a **trait**: either pinned (by a lock in the jig, or by input data such as a species) or drawn from a **weight table** using a seed. A rare plant is one that drew a low-weight value. A **mutation** is a rare change to the context, scoped to the subtree grown from the slot where it occurs.
 
 In the jig, today's per-parameter locks become pins on any trait: lock what you like about this plant, draw a new seed, and everything else is redrawn.
 
@@ -29,10 +29,10 @@ Enters PRINCIPLES.md only when approved, and is numbered then.
 
 - A **trait** is a named, typed morphological variable (arrangement, divergence angle, leaf compoundness, margin, internode-length curve, branching-probability curve…). The **trait schema**, the list of traits with their types, is explicit and shared by the jig, the rules and any data source.
 - A **weight table** means a probability distribution over one trait's values.
-- A trait's **scope** is per seed (one value for the plant) or per node (drawn at each node from that node's seed; RFC 002, I1).
+- A trait's **scope** is per seed (one value for the plant) or per slot (drawn at each slot from that slot's seed; RFC 002, I1).
 - A **pin** means a constant: the trait's value regardless of seed.
-- **Resolving** a trait at a node is a function of (schema, weight tables, pins, the node's seed, the context). The context a rule receives carries resolved traits. Rules read everything about an element from them: its geometry and the phases of its life (RFC 002).
-- A **mutation** means a function from context to context. Because contexts travel only down through tips (RFC 002), applying one at a node scopes it to the subtree grown from that node with no further mechanism. Whether one occurs is itself a trait, drawn from a weight table per seed (the whole plant) or per node (a bud sport). A mutation never touches an element directly: it changes trait values in the context, and the rules that read them grow something different.
+- **Resolving** a trait at a slot is a function of (schema, weight tables, pins, the slot's seed, the context). The context a rule receives carries resolved traits. Rules read everything about an element from them: its geometry and the phases of its life (RFC 002).
+- A **mutation** means a function from context to context. Because contexts flow downwards only (RFC 002), applying one at a slot scopes it to the subtree grown from that slot with no further mechanism. Whether one occurs is itself a trait, drawn from a weight table per seed (the whole plant) or per slot (a bud sport). A mutation never touches an element directly: it changes trait values in the context, and the rules that read them grow something different.
 
 Laws, to be tested when the first traits exist:
 
@@ -61,7 +61,8 @@ Curves are traits. How the phrases we use for growth map onto the model:
 |---|---|
 | grow at speed _ | primary duration of each internode, from a curve along the axis |
 | branch at rate _ | probability that an axillary slot grows out, from a curve along the axis |
-| branch with arrangement _ | arrangement trait: the placement function of slots at a node |
+| branch with arrangement _ | arrangement trait: how many lateral slots a node has, and the direction each leaves it |
+| take _ seconds to grow | duration: a per-seed trait read only by the warp (RFC 002, T6) |
 | form leaves at rate _ | phytomer production along the axis: internode length and timing curves |
 | form leaves with structure _ | the leaf archetype, including compound-leaf recursion |
 | curves over speeds and rates | expansion/contraction curves, indexed by stage and position (RFC 003) |
@@ -84,7 +85,7 @@ The jig shows the trait schema: a control per trait, a lock per control (a pin),
 
 ## First slice
 
-After RFC 002's slice. Three traits on its placeholder axis: one numeric drawn per seed (divergence angle), one discrete with unequal weights (arrangement: alternate common, opposite rare), one per-node (whether an axillary slot grows out). Locks as pins. One mutation, 'Fastigiata', per node. Tests for R1–R4 and the frequency check. What looking at it should tell us, ideally on a contact sheet of seeds (generative-morphology-4aw): whether rarity set by weights is felt as rarity across sixteen plants, and whether a sport on one branch reads as a sport or as a mistake.
+After RFC 002's slice. Three traits on its placeholder axis: one numeric drawn per seed (divergence angle), one discrete with unequal weights (arrangement: alternate common, opposite rare), one per-slot (whether an axillary bud grows out). Locks as pins. One mutation, 'Fastigiata', per slot. Tests for R1–R4 and the frequency check. What looking at it should tell us, ideally on a contact sheet of seeds (generative-morphology-4aw): whether rarity set by weights is felt as rarity across sixteen plants, and whether a sport on one branch reads as a sport or as a mistake.
 
 ## Alternatives considered
 

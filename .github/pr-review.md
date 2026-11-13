@@ -46,7 +46,7 @@ Read the description, then the diff, then the specs, RFCs, glossary entries and 
    - Project conventions: the Code conventions section of CLAUDE.md.
 
    No style preferences, naming debates, or performance concerns without a per-frame or per-node reason.
-8. **Glossary.** Terms used consistently with GLOSSARY.md; new terms defined there in the same PR.
+8. **Glossary.** Terms used consistently with GLOSSARY.md; new terms defined there in the same PR. A botanical word used in a non-botanical sense is a finding. A new or changed term for a physical structure that no glossary diagram shows, or a diagram that now contradicts its definition, is a finding (principle 8).
 9. **Tests.** Generation changes are covered; tests import defaults and ranges rather than retyping them; tests that can't fail; values pinned where a property would do.
 10. **Shims and compatibility layers** added without a stated need.
 

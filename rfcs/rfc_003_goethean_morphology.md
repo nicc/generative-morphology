@@ -6,12 +6,12 @@ Date: 2026-11-13
 ### Related
 
 - VISION.md
-- RFC 001 (meaning first), RFC 002 (growth algebra): the method and the vocabulary (tree, tip, rule, `then`, context) used here
+- RFC 001 (meaning first), RFC 002 (growth algebra): the method and the vocabulary (shoot, bud, slot, node, rule, `then`, context) used here
 - RFC 004 (traits): where the values these rules read come from
-- PRINCIPLES.md; proposes two design principles (§Proposed design principles)
+- PRINCIPLES.md principles 9 and 10 (RFC 002); proposes two design principles (§Proposed design principles)
 - Goethe, *Metamorphosis of Plants* (1790)
 - Prusinkiewicz & Lindenmayer, *The Algorithmic Beauty of Plants* (1990): reference for phyllotaxis
-- bd: generative-morphology-t46 (pass-forward from realised instances)
+- bd: generative-morphology-t46 (pass-forward from realised instances), -ys0 (plain 3D view)
 
 ## Summary
 
@@ -47,13 +47,13 @@ This RFC adds no new type. Its meanings are RFC 002's; what it adds is what the 
 axis = then(vegetative, then(calyx, then(corolla, then(stamensAndPistil, fruit))))
 ```
 
-Giving each stage's context its own type (`Rule<Vegetative, Calyx>`, `Rule<Calyx, Corolla>`, …) makes any other order fail to compile. Traits decide each stage's form and extent; they cannot reorder stages. A stage that does not appear is its rule with a run of zero phytomers: it grows a `tip` carrying the context with the stage advanced, and no element.
+Giving each stage's context its own type (`Rule<Vegetative, Calyx>`, `Rule<Calyx, Corolla>`, …) makes any other order fail to compile. Traits decide each stage's form and extent; they cannot reorder stages. A stage that does not appear is its rule with a run of zero phytomers: it grows a `bud` carrying the context with the stage advanced, and no element.
 
 **Branches.** An axillary slot that grows out starts its own run from the vegetative stage, one branch order higher.
 
 Laws, to be tested when the first stage rules exist:
 
-- M1. Stage order. Along any root-to-tip path, the stage runs appear in the fixed order, each once, each of zero or more phytomers. (By the types; the test guards the types.)
+- M1. Stage order. Along any axis, from its first phytomer to its apical bud, the stage runs appear in the fixed order, each once, each of zero or more phytomers. (By the types; the test guards the types.)
 - M2. One archetype. Every lateral organ's length and width are the archetype's multiplied by `scale(x(s))` for the organ's stage `s`, after any mutation in force has changed the archetype (RFC 004).
 - M3. Alternation. Along an axis, `x` has opposite signs in consecutive stages that appear.
 
@@ -64,6 +64,8 @@ Contraction draws organs towards one node until their outlines overlap, and over
 ### Geometry
 
 Generation produces 3D geometry whether rendering is 2D or 3D: phyllotaxis is a 3D arrangement, and a 2D drawing needs it to derive angles from.
+
+**Plain view.** Once geometry is 3D, render has a second, plain way of drawing it: every element drawn directly from its 3D geometry (axis lines and organ outlines), under a camera that can be turned, with no fusion and no line style. It is for inspection (principle 6: render space is a stage we can both look at), and it separates two questions the styled drawing mixes: is the geometry right, and is the style reading it well. It reads the same sampled drawing as the styled renderer and decides nothing about structure (generative-morphology-ys0).
 
 ## Judgement calls
 
@@ -76,6 +78,7 @@ Generation produces 3D geometry whether rendering is 2D or 3D: phyllotaxis is a 
 ## Architectural implications
 
 - **Rules** is a part of generation on top of RFC 002's tree, life and growth: the phytomer rule, the stage rules, `transform`.
+- **Two renderers over one drawing.** The plain view (§Geometry) and the styled drawing both consume `sample(g, t)`. Anything the styled drawing needs that the plain view cannot show (which organs fuse, M-J3) is a sign it belongs in the structure.
 - **Line drawing.** WebGL2 draws only 1-pixel lines natively; a line-drawing style needs screen-space line geometry (quads or instanced segments). An early render decision, not made here.
 
 ## First slice

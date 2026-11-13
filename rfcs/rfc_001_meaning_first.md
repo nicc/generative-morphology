@@ -1,11 +1,11 @@
 # RFC 001: Meaning first
 
-Status: Draft
+Status: Accepted (→ principle 7)
 Date: 2026-11-13
 
 ### Related
 
-- PRINCIPLES.md principles 1–6; proposes one software principle (§Proposed principle)
+- PRINCIPLES.md principles 1–6; source of principle 7 (§Principle)
 - RFC 002 (growth algebra), RFC 003 (Goethean morphology), RFC 004 (traits): each applies this method to its own subject
 - Conal Elliott, ["Denotational design with type class morphisms"](http://conal.net/papers/type-class-morphisms/) (2009): the method
 - Conal Elliott, ["Push-pull functional reactive programming"](http://conal.net/papers/push-pull-frp/) (2009) and Elliott & Hudak, "Functional reactive animation" (1997): behaviours as functions of continuous time
@@ -56,11 +56,11 @@ Left on the shelf: Elliott's reactive events (the piece has no interaction durin
 
 **One tension, held deliberately.** Elliott's meanings are functions (of time, of space). A function stored in a data structure can't be compared, printed or shown in an inspector, which works against principle 6. The resolution is his own: the function is the *meaning*; the *representation* is data with an evaluator.
 
-## Proposed principle
+## Principle
 
-A software principle, to enter PRINCIPLES.md only if approved, numbered then.
+A software principle, proposed here and approved on 2026-11-13. The text of record is PRINCIPLES.md.
 
-> **Meaning before representation.** Every generation type has a stated meaning (a mathematical object simpler than the code) and a meaning function onto it. Each operation is specified by what it does to the meaning, and two values are equal when their meanings are. Laws are derived from the meaning and tested, never assumed. Everything downstream (render, ids, seeds, the inspector) reads only what the meaning determines.
+> **7. Meaning before representation.** Every generation type has a stated meaning (a mathematical object simpler than the code) and a meaning function onto it. Each operation is specified by what it does to the meaning, and two values are equal when their meanings are. Laws are derived from the meaning and tested, never assumed. Everything downstream (render, ids, seeds, the inspector) reads only what the meaning determines.
 
 ## Principles check
 
@@ -84,7 +84,6 @@ A software principle, to enter PRINCIPLES.md only if approved, numbered then.
 
 ## Open questions
 
-1. Is the proposed principle approved, reworded or rejected? (User.)
-2. Which proof tool, if any? (generative-morphology-3qk, after the first slice of RFC 002.)
+1. Which proof tool, if any? (generative-morphology-3qk, after the first slice of RFC 002.)
 
-New terms used here are defined in GLOSSARY.md, marked as proposed by this RFC.
+New terms used here are defined in GLOSSARY.md.

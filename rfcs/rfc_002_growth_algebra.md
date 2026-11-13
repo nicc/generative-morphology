@@ -96,14 +96,18 @@ phytomer = grow(internode, leaf, bud ∘ axillary, bud ∘ apical)
 `axillary` and `apical` are functions on contexts (§Context): each marks which kind of bud this is, and moves the position. The phytomer leaves both buds open. What happens at them is decided by the rule that is continued there, which reads the bud's context:
 
 ```
-onward(c) = phytomer(c)                 if c is apical and the axis is not yet at its length
-          = bud(c)                      if c is apical and the axis is at its length
-          = phytomer(c) or closed(c)    if c is axillary, as a trait decides
+onward(c) = bud(c)                       if c is apical and its index has reached the axis's length
+          = closed(c)                    if c is axillary and its bud does not grow out
+          = then(phytomer, onward)(c)    otherwise
 
-stem of n phytomers = then(phytomer, then(onward, … then(onward, onward)))     n − 1 times
+stem = then(phytomer, onward)
 ```
 
-Because `then` grows its second rule at *every* open bud (F4), a bare `then(phytomer, phytomer)` would grow a phytomer in the axil as well as at the apex. It is `onward` reading the context that makes an apical bud continue the axis and an axillary bud branch or close. A rule must close every bud it does not want a later rule to grow from; a bud left open at the end of an axis is where the next stage starts (RFC 003). Everything is finite because `then` is applied a number of times fixed by a trait. Whether one context type with a kind field is enough here is open question 2.
+Because `then` grows its second rule at *every* open bud (F4), a bare `then(phytomer, phytomer)` would grow a phytomer in the axil as well as at the apex. It is `onward` reading the context that makes an apical bud continue the axis and an axillary bud branch or close.
+
+`onward` is defined by recursion, and that recursion is the only thing that ends an axis. It is finite because every step either stops or moves the context towards a bound that the context itself carries: `apical` raises the index, which stops at the axis's length; `axillary` raises the branch order, and no bud grows out at the maximum order. Length and maximum order are traits, read from the context when the rule is grown, so each branch ends by its own length.
+
+A rule must close every bud it does not want a later rule to grow from. The apical bud left open at the end of an axis is where the next stage starts (RFC 003). Whether one context type with a kind field is enough here is open question 2.
 
 So the same rule gives everything else by where it is grown:
 
@@ -117,7 +121,7 @@ Opposite leaves are two lateral slots and two axillary slots at one node. Severa
 
 **Context.** A context flows downwards only. `grow` hands the element's context to every one of its slots, lateral, axillary and apical alike; a bud holds the context it was handed; `then` passes each bud's context to the rule that grows from it. Nothing flows up the tree or between siblings.
 
-The context has two parts: `Context<R> = { path, rest: R }`. The **path** is extended by the combinators, as above. Everything else is `rest`, and rules change it: a rule applies a function `m : R′ → R` to what it hands a slot by composing it in front of that slot's rule (`f ∘ m`, the rule that grows from `c` what `f` grows from `c` with `m` applied to its `rest`). This is ordinary function composition, not a fifth operation, and `m` never receives the path, so no rule can change one; I1–I3 rest on that. The phytomer rule does this at each slot: `apical` adds one to the index along the axis; `axillary` adds one to the branch order and resets the index; each records which kind of bud it made. A change made this way is scoped to the subtree grown from that slot. This RFC puts branch order, index along the axis and the kind of bud in `rest`. RFC 003 adds the stage and the archetype; RFC 004 adds traits and mutations, a mutation being exactly such a function.
+The context has two parts: `Context<R> = { path, seed, rest: R }`. The **path** is extended by the combinators, as above, and the **seed** is derived by them from the root seed and the path (I1). A rule reads the seed whenever it draws a value, such as whether an axillary bud grows out (RFC 004 says how), and cannot change it. Everything else is `rest`, and rules change it: a rule applies a function `m : R′ → R` to what it hands a slot by composing it in front of that slot's rule (`f ∘ m`, the rule that grows from `c` what `f` grows from `c` with `m` applied to its `rest`). This is ordinary function composition, not a fifth operation, and `m` never receives the path or the seed, so no rule can change either; I1–I3 rest on that. The phytomer rule does this at each slot: `apical` adds one to the index along the axis; `axillary` adds one to the branch order and resets the index; each records which kind of bud it made. A change made this way is scoped to the subtree grown from that slot. This RFC puts branch order, index along the axis and the kind of bud in `rest`. RFC 003 adds the stage and the archetype; RFC 004 adds traits and mutations, a mutation being exactly such a function.
 
 **Identity.** A slot's id is its **path**: the sequence of slot indices from the root, the root slot having the empty path. Because a bud is replaced by exactly one shoot, continuing a bud never changes how many slots its parent has, so no path outside the bud changes. A slot's seed is derived from the root seed and its path, by the combinators and never by a rule. A slot that grows nothing is `closed`, not absent, so the slots beside it keep their indices. The direction in which each slot's shoot leaves its node (alternate, opposite, whorled, spiral) is a function of the slot index, the arrangement trait and the seed; it is geometry read from the tree, not part of the algebra.
 

@@ -30,7 +30,7 @@ Generation decides what a structure is; render draws whatever structure it is ha
 | Module | Owns | May import |
 |---|---|---|
 | [src/generation/](src/generation/) | Pure, seeded rules → `StructureNode` tree; `rng.ts` (seeded PRNG, seed derivation) | nothing outside generation (its tests may import `src/testing`) |
-| [src/render/](src/render/) | All WebGL2 and twgl calls; GL state scoped per node | generation types |
+| [src/render/](src/render/) | All WebGL2 and twgl calls; GL state scoped per structure node | generation types |
 | [src/ui/](src/ui/) | The jig: Tweakpane panel, parameter ranges, locks, new-seed button | generation |
 | [src/testing/](src/testing/) | Test support: `laws.ts`, property-based checkers for algebraic laws | fast-check |
 | [src/main.ts](src/main.ts) | Wiring: canvas, renderer, controls, regenerate | everything |
@@ -86,8 +86,8 @@ An algebraic law (associativity, an identity, a distributive law, a meaning func
 
 - **Form-affecting values live in the jig.** A value that visibly changes the form when varied (principle 5) is a field of `GenerationParams` with a one-line comment giving its unit, a default in `DEFAULT_PARAMS` ([structure.ts](src/generation/structure.ts)) and a range in `PARAM_RANGES` ([controls.ts](src/ui/controls.ts)), so it appears in the panel and can be locked. Never an inline literal in a rule.
 - **Other tunables are named top-of-file constants**, with units in the name (`_RAD`, `_FRACTION`, `_PX`) and a one-line comment. These are values that affect only numerical stability or performance and stay out of the panel (principle 5: curated over exhaustive).
-- **Seed lineage, not shared RNG state.** Each node derives its own seed from its parent's (`deriveSeed` in [rng.ts](src/generation/rng.ts)); no mutable RNG is passed down the tree. New-seed parameter randomisation derives from the new seed, so `(seed, params)` reproduces from one number.
-- **Node ids are stable** for a given seed and parameters (`rule:path`, no counters). The inspector and click-to-target feedback (principle 6) attach to them.
+- **Seed lineage, not shared RNG state.** Each structure node derives its own seed from its parent's (`deriveSeed` in [rng.ts](src/generation/rng.ts)); no mutable RNG is passed down the tree. New-seed parameter randomisation derives from the new seed, so `(seed, params)` reproduces from one number.
+- **Structure-node ids are stable** for a given seed and parameters (`rule:path`, no counters). The inspector and click-to-target feedback (principle 6) attach to them.
 
 ## Planned, not set up
 

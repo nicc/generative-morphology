@@ -10,7 +10,7 @@ const same = (a: number, b: number) => a === b
 const int = fc.integer({ min: -1000, max: 1000 })
 
 // The (max, +) semiring, with -Infinity as zero and 0 as one: a structure
-// that has every law the checkers cover. RFC 002 law E3 maps a part's
+// that has every law the checkers cover. RFC 002 law E3 maps an element's
 // duration onto its non-negative part only; the zero is not part of the
 // element-level meaning.
 describe('(max, +) on integers', () => {
@@ -35,7 +35,8 @@ describe('(max, +) on integers', () => {
 })
 
 describe('checkers fail on structures without the law', () => {
-  // RFC 001: combining concurrent values by averaging is not associative.
+  // RFC 002: Kase's rule, combining concurrent values by averaging, is not
+  // associative.
   it('averaging is commutative and idempotent but not associative', () => {
     const average = (a: number, b: number) => (a + b) / 2
     law.commutative(int, average, same)

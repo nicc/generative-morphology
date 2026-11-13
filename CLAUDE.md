@@ -10,6 +10,7 @@ The principles below constrain every design and implementation decision. A viola
 
 - **Propose before building.** For anything non-trivial (new behaviour, multi-file change, refactor), describe what and how, then wait for approval. Trivial fixes and research don't need it.
 - **Principles before implementation.** Every generative rule traces back to a stated principle. If a change isn't traceable to one, stop and raise it rather than guessing at what looks good. The Design principles section is written together, deliberately; don't infer principles from what looks good.
+- **Meaning before operators.** A new generation type, or a new operation on one, starts with what it means: the Meaning and laws section of its RFC, read by the user before the rest is drafted ([rfcs/README.md](rfcs/README.md), Order of work; method in [RFC 001](rfcs/rfc_001_meaning_first.md)). Don't propose an operator table, a law or an architecture for something whose meaning isn't written down. If asked to, say so and write the meaning first.
 - **Specs are canonical.** A code change that affects specified behaviour updates the spec in the same commit. If something isn't specified, say so and ask; don't invent scope.
 - **Use the glossary.** [GLOSSARY.md](GLOSSARY.md) for biological and project terms alike. Restate loose terms in glossary language, ask when a term is ambiguous, and propose a definition before using a new one.
 - **Track work and memory in bd.** No TODO or plan files, and no memory files: persistent notes go in `bd remember --key <slug> "..."`. File discoveries (spec gaps, surprising behaviour) as issues when you find them, then ask the user to triage. `bd close -r "reason"`, not `--comment`.
@@ -41,7 +42,7 @@ The only generation rule today is a placeholder (`stub-branch` in [structure.ts]
 ## Specs and RFCs
 
 - `specs/SPEC_*.md` are canonical: approved decisions that the code must match. `npm run check:specs` verifies their `src/` references resolve; whether the prose still matches behaviour is on you. Format: [specs/README.md](specs/README.md).
-- `rfcs/` are exploration and rationale. Read them for why a decision was made. They go stale and are never canonical. New designs start as an RFC and become spec text (or, for a new principle, PRINCIPLES.md text) when approved. Format and lifecycle: [rfcs/README.md](rfcs/README.md).
+- `rfcs/` are exploration and rationale. Read them for why a decision was made. They go stale and are never canonical. The Drafts describe one design between them, one concern each; a change to a Draft's subject is an edit to that RFC, not a new one. New designs start as an RFC and become spec text (or, for a new principle, PRINCIPLES.md text) when approved. Format and lifecycle: [rfcs/README.md](rfcs/README.md).
 
 | Concern | Specs |
 |---|---|
@@ -54,7 +55,10 @@ The only generation rule today is a placeholder (`stub-branch` in [structure.ts]
 | Why this exists, who it's for | [VISION.md](VISION.md) |
 | Writing an RFC | [rfcs/README.md](rfcs/README.md) |
 | Writing or changing a spec | [specs/README.md](specs/README.md) |
-| What a generation type means, how laws are derived (Elliott's denotational design) | [rfcs/rfc_002_meaning_first.md](rfcs/rfc_002_meaning_first.md) (Draft) |
+| How we design a generation type: meaning, then operations, then laws (Elliott's denotational design) | [RFC 001](rfcs/rfc_001_meaning_first.md) (Draft) |
+| What a plant and its growth are: tree, tips, lives, time, the laws | [RFC 002](rfcs/rfc_002_growth_algebra.md) (Draft) |
+| What this plant is: stages, the leaf archetype, expansion and contraction | [RFC 003](rfcs/rfc_003_goethean_morphology.md) (Draft) |
+| Where values come from: traits, weight tables, pins, mutations | [RFC 004](rfcs/rfc_004_traits_rarity_mutation.md) (Draft) |
 | Past spikes and findings | [docs/learnings/](docs/learnings/) |
 | What the PR reviewer checks | [.github/pr-review.md](.github/pr-review.md) |
 

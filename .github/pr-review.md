@@ -30,11 +30,12 @@ Read the description, then the diff, then the specs, RFCs, glossary entries and 
    - GL state is scoped per node or per draw, not left as global mutable state.
    - A new abstraction has more than one current use.
    - New state has one owner, a bound, and a disposal path (GL buffers and programs in particular).
-5. **Meaning and laws.** (Method: RFC 002. Applies to generation types and their operations.)
+5. **Meaning and laws.** (Method: RFC 001. Applies to generation types and their operations.)
    - A new type or operation has a stated meaning, in an RFC or spec the description names. An operation described only by its implementation is a finding.
    - Something downstream (render, ids, seeds, the inspector) reads a detail of the representation that the meaning doesn't determine: for example, an id or seed that depends on how a term was assembled where the laws say the result is the same.
    - A law the spec or RFC states has a property test built on generated inputs (`src/testing/laws.ts`), compared with the equality of meanings. A law tested on one hand-picked example is a finding. So is a law asserted in a comment with no test.
    - Trees, lives and curves stay plain data: a function stored in a generated structure can't be compared, inspected or shown (principle 6) unless the description says why it must be one.
+   - An RFC in the diff: Meaning and laws comes before operators and architecture and the laws follow from it; a convention standing in for a meaning ("canonical order", "drawn once", "never arises in practice") is a finding. An RFC that amends or contradicts another Draft, where it should have edited it, is a finding (rfcs/README.md, One concern per RFC).
    - Time: render or generation that keeps state between frames, or reads a clock, where the growth is specified as a function of `t`.
 6. **Numerical correctness.** Generation and shader code can produce a plausible-looking wrong result. Check transforms, angle conventions and units, coordinate spaces, recursion termination, and seed derivation. Give the input that produces the wrong result.
 7. **Code quality.** Report only findings with a concrete consequence:

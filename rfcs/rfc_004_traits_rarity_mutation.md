@@ -37,7 +37,7 @@ Proposed here and approved on 2026-11-13. The text of record is PRINCIPLES.md.
 Laws, to be tested when the first traits exist:
 
 - R1. Resolution is deterministic: the same inputs give the same value. (Principle 3.)
-- R2. A pinned trait resolves to its pinned value under every seed. (What a mutation may then do to it is R-J1.)
+- R2. A pinned trait resolves to its pinned value under every seed. That is the plant's base value; a mutation in force in a subtree may change it there (R-J1), and with every mutation's occurrence pinned to none, the pinned value holds everywhere on the plant.
 - R3. Independence. Pinning one trait does not change the value any other trait resolves to under the same seed. (Each trait draws from its own seed derivation, not from a shared sequence.)
 - R4. Scope. A mutation applied at path `π` changes nothing outside `π`. (RFC 002's I3, for contexts.)
 
@@ -45,7 +45,7 @@ One statistical check, which is not a law (it is not an equation between meaning
 
 ### Judgement call
 
-**R-J1. Does a pin hold against a mutation?** Principle 13 names two sources of a trait value, pinned and drawn. A mutation is not a third source: whether it occurs is drawn, and what it does is a fixed function applied to a value that was itself pinned or drawn. But the principle's wording does not say that, and the two can meet: you lock branch angle in the jig, and a 'Fastigiata' sport narrows it on one branch. Two options. (a) The pin sets the plant's base value and a mutation still applies on top within its subtree; to rule sports out you pin the mutation's own occurrence to "none". (b) A pinned trait is exempt from every mutation. Recommended: (a). A lock then means "this is the plant's value", sports stay possible on a locked plant, and there is one obvious control for turning them off. It gives up the reading of R2 in which a locked value is the value everywhere on the plant. Under (a), principle 13 would read better with one added sentence, for the user to word: a mutation changes a value that was pinned or drawn and is not a source of one. Undecided; the user decides.
+**R-J1. Does a pin hold against a mutation?** Principle 13 names two sources of a trait value, pinned and drawn. A mutation is not a third source: whether it occurs is drawn, and what it does is a fixed function applied to a value that was itself pinned or drawn. But the principle's wording does not say that, and the two can meet: you lock branch angle in the jig, and a 'Fastigiata' sport narrows it on one branch. Two options. (a) The pin sets the plant's base value and a mutation still applies on top within its subtree; to rule sports out you pin the mutation's own occurrence to "none". (b) A pinned trait is exempt from every mutation. Decided by the user on 2026-11-13: (a). A lock then means "this is the plant's value", sports stay possible on a locked plant, and there is one obvious control for turning them off. It gives up the reading of R2 in which a locked value is the value everywhere on the plant. Principle 13 is read accordingly: a mutation changes a value that was pinned or drawn and is not a source of one. The principle's text has not been changed; adding a sentence to say this is for the user to word.
 
 ### First mutations
 

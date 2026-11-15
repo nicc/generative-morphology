@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 840" width="1200" height="840" role="img" aria-label="How rules compose: an axis is its stage rules continued in order; a stage is a run of phytomers; the phytomer rule builds one internode and fills its slots; the organ rule transforms the archetype">
+<rect width="1200" height="840" fill="#fbfaf6"/>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker>
+  <marker id="arrs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a0522d"/></marker>
+</defs>
+<style>
+  .ink{fill:none;stroke:#1f1f1f;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+  .lead{stroke:#777;stroke-width:0.8;fill:none}
+  .dash{stroke-dasharray:4 4}
+  .edge{fill:none;stroke:#1f1f1f;stroke-width:1.2}
+  .box{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1.4}
+  .rule{fill:#fbfaf6;stroke:#a0522d;stroke-width:1.4}
+  .shade{fill:#f1ede2;stroke:none}
+  .grp{fill:none;stroke:#a0522d;stroke-width:1.2;stroke-dasharray:5 4}
+  .num{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1}
+  text{font-family:Georgia,'Times New Roman',serif;font-size:14px;fill:#1f1f1f}
+  .t{font-size:17px;font-style:italic}
+  .s{font-size:12.5px;fill:#555}
+  .m{font-family:Menlo,Consolas,monospace;font-size:12.5px}
+  .n{font-family:Menlo,Consolas,monospace;font-size:11px;text-anchor:middle}
+  .big{font-size:22px;text-anchor:middle}
+  .c{text-anchor:middle}
+  .e{text-anchor:end}
+  .g{fill:#777}
+  .sn{fill:#a0522d}
+  .bl{fill:#2f5d8a}
+</style>
+<text class="t" x="30" y="40" xml:space="preserve">a. An axis is its stage rules, continued in order</text>
+<text class="s e" x="1170" y="40" xml:space="preserve">rounded, sienna: a rule (what builds)  ·  square, ink: an element (what is built)  ·  ○ open bud  ·  ● closed</text>
+<path class="edge" marker-end="url(#arr)" d="M30,139 L98,139"/>
+<text class="s" x="34" y="131" xml:space="preserve">context</text>
+<rect class="rule" x="100" y="112" width="160" height="54" rx="14"/>
+<text class="c" x="180" y="137" xml:space="preserve">vegetative</text>
+<text class="s c" x="180" y="154" xml:space="preserve">an expansion (+)</text>
+<rect class="rule" x="370" y="112" width="160" height="54" rx="14"/>
+<text class="c" x="450" y="137" xml:space="preserve">calyx</text>
+<text class="s c" x="450" y="154" xml:space="preserve">a contraction (−)</text>
+<rect class="rule" x="640" y="112" width="160" height="54" rx="14"/>
+<text class="c" x="720" y="137" xml:space="preserve">corolla</text>
+<text class="s c" x="720" y="154" xml:space="preserve">an expansion (+)</text>
+<rect class="rule" x="910" y="112" width="160" height="54" rx="14"/>
+<text class="c" x="990" y="137" xml:space="preserve">stamens and pistil</text>
+<text class="s c" x="990" y="154" xml:space="preserve">a contraction (−)</text>
+<path class="edge" marker-end="url(#arr)" d="M260,139 L368,139"/>
+<circle class="box" style="stroke:#1f1f1f" cx="312" cy="139" r="7"/>
+<path class="edge" marker-end="url(#arr)" d="M530,139 L638,139"/>
+<circle class="box" style="stroke:#1f1f1f" cx="582" cy="139" r="7"/>
+<path class="edge" marker-end="url(#arr)" d="M800,139 L908,139"/>
+<circle class="box" style="stroke:#1f1f1f" cx="852" cy="139" r="7"/>
+<path class="edge" d="M1070,139 L1110,139"/>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="1115" cy="139" r="5"/>
+<text x="1128" y="144" xml:space="preserve">closed</text>
+<text class="s c" x="315" y="110" xml:space="preserve">apical bud,</text>
+<text class="s c" x="315" y="125" xml:space="preserve">stage advanced</text>
+<text class="m" x="30" y="68" xml:space="preserve">axis = then(vegetative, then(calyx, then(corolla, then(stamensAndPistil, closed))))</text>
+<text class="s" x="30" y="88" xml:space="preserve">Each stage rule leaves one open apical bud whose context has the stage advanced. then grows the next stage there; closed ends the axis.</text>
+<path class="lead dash" d="M100,166 L30,214 M260,166 L1170,214"/>
+<text class="s" x="320" y="200" xml:space="preserve">inside one stage</text>
+<rect class="lead" x="30" y="214" width="1140" height="246" rx="6"/>
+<text class="t" x="46" y="242" xml:space="preserve">b. A stage is a run of phytomers</text>
+<path class="edge" marker-end="url(#arr)" d="M60,299 L128,299"/>
+<rect class="rule" x="130" y="276" width="150" height="46" rx="14"/>
+<text class="c" x="205" y="304" xml:space="preserve">phytomer</text>
+<path class="edge" marker-end="url(#arr)" d="M280,299 L368,299"/>
+<circle class="box" style="stroke:#1f1f1f" cx="320" cy="299" r="7"/>
+<text class="s c" x="320" y="286" xml:space="preserve">apical</text>
+<rect class="rule" x="370" y="276" width="150" height="46" rx="14"/>
+<text class="c" x="445" y="304" xml:space="preserve">phytomer</text>
+<path class="edge" marker-end="url(#arr)" d="M520,299 L608,299"/>
+<circle class="box" style="stroke:#1f1f1f" cx="560" cy="299" r="7"/>
+<text class="s c" x="560" y="286" xml:space="preserve">apical</text>
+<rect class="rule" x="610" y="276" width="150" height="46" rx="14"/>
+<text class="c" x="685" y="304" xml:space="preserve">phytomer</text>
+<path class="edge" marker-end="url(#arr)" d="M760,299 L848,299"/>
+<circle class="box" style="stroke:#1f1f1f" cx="800" cy="299" r="7"/>
+<text class="s c" x="800" y="286" xml:space="preserve">apical</text>
+<text x="860" y="296" xml:space="preserve">the bud this stage leaves open:</text>
+<text class="s" x="860" y="313" xml:space="preserve">where the next stage grows (a.)</text>
+<path class="edge" d="M205,322 L205,356"/>
+<text class="s" x="213" y="342" xml:space="preserve">axillary</text>
+<path class="edge" marker-end="url(#arr)" d="M205,356 L205,366"/>
+<rect class="rule" x="143" y="368" width="124" height="30" rx="14"/>
+<text class="m c" x="205" y="387" xml:space="preserve">axis ∘ restart</text>
+<text class="s" x="277" y="382" xml:space="preserve">a branch: the whole of a. again,</text>
+<text class="s" x="277" y="398" xml:space="preserve">one branch order higher</text>
+<path class="edge" d="M445,322 L445,356"/>
+<text class="s" x="453" y="342" xml:space="preserve">axillary</text>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="445" cy="361" r="5"/>
+<text class="s" x="457" y="366" xml:space="preserve">closed</text>
+<path class="edge" d="M685,322 L685,356"/>
+<text class="s" x="693" y="342" xml:space="preserve">axillary</text>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="685" cy="361" r="5"/>
+<text class="s" x="697" y="366" xml:space="preserve">closed</text>
+<text class="m" x="46" y="426" xml:space="preserve">stem = then(phytomer, onward)</text>
+<text class="s" x="46" y="446" xml:space="preserve">onward reads each bud’s context. Apical, run unfinished: another phytomer. Axillary: closed, or (in the vegetative stage only) a branch.</text>
+<text class="t" x="30" y="490" xml:space="preserve">c. The phytomer rule builds one internode and fills its slots</text>
+<path class="edge" marker-end="url(#arr)" d="M30,600 L98,600"/>
+<text class="s" x="34" y="592" xml:space="preserve">context c</text>
+<rect class="box" x="100" y="585" width="104" height="30" rx="0"/>
+<text class="c" x="152" y="605" xml:space="preserve">internode</text>
+<path class="edge" d="M204,600 L236,600"/>
+<path class="edge" d="M236,544 L236,656"/>
+<path class="edge" d="M236,544 L290,544"/>
+<circle class="num" cx="264" cy="544" r="9"/>
+<text class="n" x="264" y="548" xml:space="preserve">0</text>
+<path class="edge" d="M236,600 L290,600"/>
+<circle class="num" cx="264" cy="600" r="9"/>
+<text class="n" x="264" y="604" xml:space="preserve">1</text>
+<path class="edge" d="M236,656 L290,656"/>
+<circle class="num" cx="264" cy="656" r="9"/>
+<text class="n" x="264" y="660" xml:space="preserve">2</text>
+<rect class="rule" x="290" y="528" width="84" height="32" rx="14"/>
+<text class="c" x="332" y="549" xml:space="preserve">organ</text>
+<text x="386" y="542" xml:space="preserve">lateral slot: the organ rule (d.)</text>
+<text class="s" x="386" y="558" xml:space="preserve">context: c at slot 0</text>
+<circle class="box" style="stroke:#1f1f1f" cx="297" cy="600" r="7"/>
+<text x="314" y="598" xml:space="preserve">bud</text>
+<text class="m" x="346" y="598" xml:space="preserve">axillary(c)</text>
+<text class="s" x="314" y="614" xml:space="preserve">branch order + 1, index reset</text>
+<circle class="box" style="stroke:#1f1f1f" cx="297" cy="656" r="7"/>
+<text x="314" y="654" xml:space="preserve">bud</text>
+<text class="m" x="346" y="654" xml:space="preserve">apical(c)</text>
+<text class="s" x="314" y="670" xml:space="preserve">index along the axis + 1</text>
+<text class="m" x="30" y="716" xml:space="preserve">phytomer = grow(internode, organ, bud ∘ axillary, bud ∘ apical)</text>
+<text class="s" x="30" y="740" xml:space="preserve">A phytomer is a rule, not a kind of element. What one application leaves in the</text>
+<text class="s" x="30" y="756" xml:space="preserve">shoot is an internode, its organ and two open buds, each carrying a context.</text>
+<text class="s" x="30" y="772" xml:space="preserve">More slots at the node (opposite leaves, several buds) are more arguments to grow.</text>
+<path class="lead" d="M600,470 L600,830"/>
+<text class="t" x="626" y="490" xml:space="preserve">d. The organ rule transforms the archetype</text>
+<rect class="box" style="stroke-dasharray:2 3" x="640" y="520" width="190" height="34" rx="4"/>
+<text class="c" x="735" y="542" xml:space="preserve">archetype</text>
+<rect class="box" style="stroke-dasharray:2 3" x="640" y="596" width="190" height="34" rx="4"/>
+<text class="c" x="735" y="618" xml:space="preserve">archetype for the stage</text>
+<rect class="box" style="stroke-dasharray:2 3" x="640" y="672" width="190" height="34" rx="4"/>
+<text class="c" x="735" y="694" xml:space="preserve">this organ’s values</text>
+<path class="edge" marker-end="url(#arr)" d="M735,554 L735,594"/>
+<path class="edge" marker-end="url(#arr)" d="M735,630 L735,670"/>
+<text class="s" x="846" y="535" xml:space="preserve">the plant’s leaf, as trait values;</text>
+<text class="s" x="846" y="551" xml:space="preserve">carried in the context</text>
+<text class="m" x="747" y="578" xml:space="preserve">transform(·, stage)</text>
+<text class="s" x="846" y="611" xml:space="preserve">length and width × scale(x(stage)):</text>
+<text class="s" x="846" y="627" xml:space="preserve">larger in an expansion, smaller in a contraction</text>
+<text class="m" x="747" y="654" xml:space="preserve">vary(·, c)</text>
+<text class="s" x="846" y="687" xml:space="preserve">× a curve along the axis and a small</text>
+<text class="s" x="846" y="703" xml:space="preserve">draw from the slot’s seed (variation)</text>
+<path class="edge" d="M735.0,706 L735.0,734 M670,734 L922,734"/>
+<path class="edge" marker-end="url(#arr)" d="M670,734 L670,747"/>
+<path class="edge" marker-end="url(#arr)" d="M922,734 L922,749"/>
+<rect class="box" x="630" y="748" width="80" height="26" rx="0"/>
+<text class="c" x="670" y="766" xml:space="preserve">blade</text>
+<text class="s" x="720" y="761" xml:space="preserve">compoundness 0:</text>
+<text class="s" x="720" y="776" xml:space="preserve">one element</text>
+<rect class="box" x="860" y="751" width="32" height="20" rx="0"/>
+<rect class="box" x="868" y="779" width="16" height="12" rx="0"/>
+<path class="edge" d="M876,771 L876,779"/>
+<rect class="box" x="906" y="751" width="32" height="20" rx="0"/>
+<path class="edge" d="M892,761 L906,761"/>
+<rect class="box" x="914" y="779" width="16" height="12" rx="0"/>
+<path class="edge" d="M922,771 L922,779"/>
+<rect class="box" x="952" y="751" width="32" height="20" rx="0"/>
+<path class="edge" d="M938,761 L952,761"/>
+<rect class="box" x="960" y="779" width="16" height="12" rx="0"/>
+<path class="edge" d="M968,771 L968,779"/>
+<text class="s" x="998" y="754" xml:space="preserve">compoundness ≥ 1: a shoot,</text>
+<text class="s" x="998" y="769" xml:space="preserve">rachis segments (large)</text>
+<text class="s" x="998" y="784" xml:space="preserve">bearing leaflets (small)</text>
+<text class="s" x="626" y="822" xml:space="preserve">organ = the rule in a lateral slot. It leaves no open bud, so nothing later grows inside a leaf.</text>
+</svg>

@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 806" width="960" height="806" role="img" aria-label="The two operations on lives drawn as bars on a time axis, sequential and concurrent; left distributivity holding; right distributivity failing when durations differ">
+<rect width="960" height="806" fill="#fbfaf6"/>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker>
+  <marker id="arrs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a0522d"/></marker>
+</defs>
+<style>
+  .ink{fill:none;stroke:#1f1f1f;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+  .lead{stroke:#777;stroke-width:0.8;fill:none}
+  .dash{stroke-dasharray:4 4}
+  .edge{fill:none;stroke:#1f1f1f;stroke-width:1.2}
+  .box{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1.4}
+  .rule{fill:#fbfaf6;stroke:#a0522d;stroke-width:1.4}
+  .shade{fill:#f1ede2;stroke:none}
+  .grp{fill:none;stroke:#a0522d;stroke-width:1.2;stroke-dasharray:5 4}
+  .num{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1}
+  text{font-family:Georgia,'Times New Roman',serif;font-size:14px;fill:#1f1f1f}
+  .t{font-size:17px;font-style:italic}
+  .s{font-size:12.5px;fill:#555}
+  .m{font-family:Menlo,Consolas,monospace;font-size:12.5px}
+  .n{font-family:Menlo,Consolas,monospace;font-size:11px;text-anchor:middle}
+  .big{font-size:22px;text-anchor:middle}
+  .c{text-anchor:middle}
+  .e{text-anchor:end}
+  .g{fill:#777}
+  .sn{fill:#a0522d}
+  .bl{fill:#2f5d8a}
+</style>
+<text class="t" x="30" y="36" xml:space="preserve">Lives: two ways to combine changes to one element</text>
+<text class="s e" x="930" y="36" xml:space="preserve">one lane per property; a bar is one timed change</text>
+<text class="m" x="42" y="84" xml:space="preserve">a · b   sequential</text>
+<text class="m e" style="fill:#1f1f1f" x="50" y="108" xml:space="preserve">a</text>
+<path class="lead" d="M60,104 L240,104"/>
+<rect class="box" style="fill:#1f1f1f;stroke:#fbfaf6;fill-opacity:0.85" x="60" y="97" width="60" height="14" rx="2"/>
+<text class="m e" style="fill:#a0522d" x="50" y="132" xml:space="preserve">b</text>
+<path class="lead" d="M60,128 L240,128"/>
+<rect class="box" style="fill:#a0522d;stroke:#fbfaf6;fill-opacity:0.85" x="120" y="121" width="90" height="14" rx="2"/>
+<path class="edge" d="M60,148 L240,148"/>
+<path class="edge" d="M60,148 L60,152"/>
+<text class="n" x="60" y="164" xml:space="preserve">0</text>
+<path class="edge" d="M90,148 L90,152"/>
+<text class="n" x="90" y="164" xml:space="preserve">1</text>
+<path class="edge" d="M120,148 L120,152"/>
+<text class="n" x="120" y="164" xml:space="preserve">2</text>
+<path class="edge" d="M150,148 L150,152"/>
+<text class="n" x="150" y="164" xml:space="preserve">3</text>
+<path class="edge" d="M180,148 L180,152"/>
+<text class="n" x="180" y="164" xml:space="preserve">4</text>
+<path class="edge" d="M210,148 L210,152"/>
+<text class="n" x="210" y="164" xml:space="preserve">5</text>
+<path class="edge" d="M240,148 L240,152"/>
+<text class="n" x="240" y="164" xml:space="preserve">6</text>
+<text class="s" x="42" y="188" xml:space="preserve">b starts when a ends.</text>
+<text class="s" x="42" y="204" xml:space="preserve">duration 2 + 3 = 5</text>
+<text class="m" x="342" y="84" xml:space="preserve">a + b   concurrent</text>
+<text class="m e" style="fill:#1f1f1f" x="350" y="108" xml:space="preserve">a</text>
+<path class="lead" d="M360,104 L540,104"/>
+<rect class="box" style="fill:#1f1f1f;stroke:#fbfaf6;fill-opacity:0.85" x="360" y="97" width="60" height="14" rx="2"/>
+<text class="m e" style="fill:#a0522d" x="350" y="132" xml:space="preserve">b</text>
+<path class="lead" d="M360,128 L540,128"/>
+<rect class="box" style="fill:#a0522d;stroke:#fbfaf6;fill-opacity:0.85" x="360" y="121" width="90" height="14" rx="2"/>
+<path class="edge" d="M360,148 L540,148"/>
+<path class="edge" d="M360,148 L360,152"/>
+<text class="n" x="360" y="164" xml:space="preserve">0</text>
+<path class="edge" d="M390,148 L390,152"/>
+<text class="n" x="390" y="164" xml:space="preserve">1</text>
+<path class="edge" d="M420,148 L420,152"/>
+<text class="n" x="420" y="164" xml:space="preserve">2</text>
+<path class="edge" d="M450,148 L450,152"/>
+<text class="n" x="450" y="164" xml:space="preserve">3</text>
+<path class="edge" d="M480,148 L480,152"/>
+<text class="n" x="480" y="164" xml:space="preserve">4</text>
+<path class="edge" d="M510,148 L510,152"/>
+<text class="n" x="510" y="164" xml:space="preserve">5</text>
+<path class="edge" d="M540,148 L540,152"/>
+<text class="n" x="540" y="164" xml:space="preserve">6</text>
+<text class="s" x="342" y="188" xml:space="preserve">both start together.</text>
+<text class="s" x="342" y="204" xml:space="preserve">duration max(2, 3) = 3</text>
+<text class="m" x="642" y="84" xml:space="preserve">instant</text>
+<text class="m e" style="fill:#1f1f1f" x="650" y="108" xml:space="preserve"></text>
+<path class="lead" d="M660,104 L840,104"/>
+<path class="edge" d="M660,124 L840,124"/>
+<path class="edge" d="M660,124 L660,128"/>
+<text class="n" x="660" y="140" xml:space="preserve">0</text>
+<path class="edge" d="M690,124 L690,128"/>
+<text class="n" x="690" y="140" xml:space="preserve">1</text>
+<path class="edge" d="M720,124 L720,128"/>
+<text class="n" x="720" y="140" xml:space="preserve">2</text>
+<path class="edge" d="M750,124 L750,128"/>
+<text class="n" x="750" y="140" xml:space="preserve">3</text>
+<path class="edge" d="M780,124 L780,128"/>
+<text class="n" x="780" y="140" xml:space="preserve">4</text>
+<path class="edge" d="M810,124 L810,128"/>
+<text class="n" x="810" y="140" xml:space="preserve">5</text>
+<path class="edge" d="M840,124 L840,128"/>
+<text class="n" x="840" y="140" xml:space="preserve">6</text>
+<text class="s" x="642" y="164" xml:space="preserve">duration 0, no changes. Joining it to a</text>
+<text class="s" x="642" y="180" xml:space="preserve">life in either way changes nothing:</text>
+<text class="s" x="642" y="196" xml:space="preserve">the identity of both operations.</text>
+<text class="s" x="30" y="244" xml:space="preserve">E1  sequential is associative.   E2  concurrent is associative, commutative (a + b = b + a) and idempotent (a + a = a).   E3  durations add, or take the max.</text>
+<path class="lead" d="M30,262 L930,262"/>
+<text class="m" x="30" y="300" xml:space="preserve">E4  a · (b + c) = a·b + a·c</text>
+<text class="s" x="300" y="300" xml:space="preserve">sequential distributes over concurrent from the left</text>
+<text class="m" x="42" y="338" xml:space="preserve">a · (b + c)</text>
+<text class="m e" style="fill:#1f1f1f" x="50" y="362" xml:space="preserve">a</text>
+<path class="lead" d="M60,358 L240,358"/>
+<rect class="box" style="fill:#1f1f1f;stroke:#fbfaf6;fill-opacity:0.85" x="60" y="351" width="60" height="14" rx="2"/>
+<text class="m e" style="fill:#a0522d" x="50" y="386" xml:space="preserve">b</text>
+<path class="lead" d="M60,382 L240,382"/>
+<rect class="box" style="fill:#a0522d;stroke:#fbfaf6;fill-opacity:0.85" x="120" y="375" width="90" height="14" rx="2"/>
+<text class="m e" style="fill:#2f5d8a" x="50" y="410" xml:space="preserve">c</text>
+<path class="lead" d="M60,406 L240,406"/>
+<rect class="box" style="fill:#2f5d8a;stroke:#fbfaf6;fill-opacity:0.85" x="120" y="399" width="45" height="14" rx="2"/>
+<path class="edge" d="M60,426 L240,426"/>
+<path class="edge" d="M60,426 L60,430"/>
+<text class="n" x="60" y="442" xml:space="preserve">0</text>
+<path class="edge" d="M90,426 L90,430"/>
+<text class="n" x="90" y="442" xml:space="preserve">1</text>
+<path class="edge" d="M120,426 L120,430"/>
+<text class="n" x="120" y="442" xml:space="preserve">2</text>
+<path class="edge" d="M150,426 L150,430"/>
+<text class="n" x="150" y="442" xml:space="preserve">3</text>
+<path class="edge" d="M180,426 L180,430"/>
+<text class="n" x="180" y="442" xml:space="preserve">4</text>
+<path class="edge" d="M210,426 L210,430"/>
+<text class="n" x="210" y="442" xml:space="preserve">5</text>
+<path class="edge" d="M240,426 L240,430"/>
+<text class="n" x="240" y="442" xml:space="preserve">6</text>
+<text class="big" x="290" y="396" xml:space="preserve">=</text>
+<text class="m" x="342" y="338" xml:space="preserve">a·b + a·c</text>
+<text class="m e" style="fill:#1f1f1f" x="350" y="362" xml:space="preserve">a</text>
+<path class="lead" d="M360,358 L540,358"/>
+<rect class="box" style="fill:#1f1f1f;stroke:#fbfaf6;fill-opacity:0.85" x="360" y="351" width="60" height="14" rx="2"/>
+<text class="s" x="550" y="362" xml:space="preserve">from a·b</text>
+<text class="m e" style="fill:#a0522d" x="350" y="386" xml:space="preserve">b</text>
+<path class="lead" d="M360,382 L540,382"/>
+<rect class="box" style="fill:#a0522d;stroke:#fbfaf6;fill-opacity:0.85" x="420" y="375" width="90" height="14" rx="2"/>
+<text class="m e" style="fill:#1f1f1f" x="350" y="410" xml:space="preserve">a</text>
+<path class="lead" d="M360,406 L540,406"/>
+<rect class="box" style="fill:#1f1f1f;stroke:#fbfaf6;fill-opacity:0.85" x="360" y="399" width="60" height="14" rx="2"/>
+<text class="s" x="550" y="410" xml:space="preserve">from a·c: the same bar, counted once</text>
+<text class="m e" style="fill:#2f5d8a" x="350" y="434" xml:space="preserve">c</text>
+<path class="lead" d="M360,430 L540,430"/>
+<rect class="box" style="fill:#2f5d8a;stroke:#fbfaf6;fill-opacity:0.85" x="420" y="423" width="45" height="14" rx="2"/>
+<path class="edge" d="M360,450 L540,450"/>
+<path class="edge" d="M360,450 L360,454"/>
+<text class="n" x="360" y="466" xml:space="preserve">0</text>
+<path class="edge" d="M390,450 L390,454"/>
+<text class="n" x="390" y="466" xml:space="preserve">1</text>
+<path class="edge" d="M420,450 L420,454"/>
+<text class="n" x="420" y="466" xml:space="preserve">2</text>
+<path class="edge" d="M450,450 L450,454"/>
+<text class="n" x="450" y="466" xml:space="preserve">3</text>
+<path class="edge" d="M480,450 L480,454"/>
+<text class="n" x="480" y="466" xml:space="preserve">4</text>
+<path class="edge" d="M510,450 L510,454"/>
+<text class="n" x="510" y="466" xml:space="preserve">5</text>
+<path class="edge" d="M540,450 L540,454"/>
+<text class="n" x="540" y="466" xml:space="preserve">6</text>
+<text class="s" x="30" y="490" xml:space="preserve">On the right a appears twice, but both copies have the same property, the same start and the same values. Concurrent unites</text>
+<text class="s" x="30" y="506" xml:space="preserve">changes by key, so the two are one change (that is what idempotent buys). Both sides are then the same three bars.</text>
+<path class="lead" d="M30,528 L930,528"/>
+<text class="m" x="30" y="562" xml:space="preserve">Not a law:  (a + b) · c ≠ a·c + b·c</text>
+<text class="s" x="330" y="562" xml:space="preserve">no distributing from the right, when a and b differ in duration</text>
+<text class="m" x="42" y="600" xml:space="preserve">(a + b) · c</text>
+<text class="m e" style="fill:#1f1f1f" x="50" y="624" xml:space="preserve">a</text>
+<path class="lead" d="M60,620 L240,620"/>
+<rect class="box" style="fill:#1f1f1f;stroke:#fbfaf6;fill-opacity:0.85" x="60" y="613" width="30" height="14" rx="2"/>
+<text class="m e" style="fill:#a0522d" x="50" y="648" xml:space="preserve">b</text>
+<path class="lead" d="M60,644 L240,644"/>
+<rect class="box" style="fill:#a0522d;stroke:#fbfaf6;fill-opacity:0.85" x="60" y="637" width="60" height="14" rx="2"/>
+<text class="m e" style="fill:#2f5d8a" x="50" y="672" xml:space="preserve">c</text>
+<path class="lead" d="M60,668 L240,668"/>
+<rect class="box" style="fill:#2f5d8a;stroke:#fbfaf6;fill-opacity:0.85" x="120" y="661" width="45" height="14" rx="2"/>
+<path class="edge" d="M60,688 L240,688"/>
+<path class="edge" d="M60,688 L60,692"/>
+<text class="n" x="60" y="704" xml:space="preserve">0</text>
+<path class="edge" d="M90,688 L90,692"/>
+<text class="n" x="90" y="704" xml:space="preserve">1</text>
+<path class="edge" d="M120,688 L120,692"/>
+<text class="n" x="120" y="704" xml:space="preserve">2</text>
+<path class="edge" d="M150,688 L150,692"/>
+<text class="n" x="150" y="704" xml:space="preserve">3</text>
+<path class="edge" d="M180,688 L180,692"/>
+<text class="n" x="180" y="704" xml:space="preserve">4</text>
+<path class="edge" d="M210,688 L210,692"/>
+<text class="n" x="210" y="704" xml:space="preserve">5</text>
+<path class="edge" d="M240,688 L240,692"/>
+<text class="n" x="240" y="704" xml:space="preserve">6</text>
+<text class="big" x="290" y="658" xml:space="preserve">≠</text>
+<text class="m" x="342" y="600" xml:space="preserve">a·c + b·c</text>
+<text class="m e" style="fill:#1f1f1f" x="350" y="624" xml:space="preserve">a</text>
+<path class="lead" d="M360,620 L540,620"/>
+<rect class="box" style="fill:#1f1f1f;stroke:#fbfaf6;fill-opacity:0.85" x="360" y="613" width="30" height="14" rx="2"/>
+<text class="m e" style="fill:#2f5d8a" x="350" y="648" xml:space="preserve">c</text>
+<path class="lead" d="M360,644 L540,644"/>
+<rect class="box" style="fill:#2f5d8a;stroke:#fbfaf6;fill-opacity:0.85" x="390" y="637" width="45" height="14" rx="2"/>
+<text class="s" x="550" y="648" xml:space="preserve">from a·c: starts at 1</text>
+<text class="m e" style="fill:#a0522d" x="350" y="672" xml:space="preserve">b</text>
+<path class="lead" d="M360,668 L540,668"/>
+<rect class="box" style="fill:#a0522d;stroke:#fbfaf6;fill-opacity:0.85" x="360" y="661" width="60" height="14" rx="2"/>
+<text class="m e" style="fill:#2f5d8a" x="350" y="696" xml:space="preserve">c</text>
+<path class="lead" d="M360,692 L540,692"/>
+<rect class="box" style="fill:#2f5d8a;stroke:#fbfaf6;fill-opacity:0.85" x="420" y="685" width="45" height="14" rx="2"/>
+<text class="s" x="550" y="696" xml:space="preserve">from b·c: starts at 2</text>
+<path class="edge" d="M360,712 L540,712"/>
+<path class="edge" d="M360,712 L360,716"/>
+<text class="n" x="360" y="728" xml:space="preserve">0</text>
+<path class="edge" d="M390,712 L390,716"/>
+<text class="n" x="390" y="728" xml:space="preserve">1</text>
+<path class="edge" d="M420,712 L420,716"/>
+<text class="n" x="420" y="728" xml:space="preserve">2</text>
+<path class="edge" d="M450,712 L450,716"/>
+<text class="n" x="450" y="728" xml:space="preserve">3</text>
+<path class="edge" d="M480,712 L480,716"/>
+<text class="n" x="480" y="728" xml:space="preserve">4</text>
+<path class="edge" d="M510,712 L510,716"/>
+<text class="n" x="510" y="728" xml:space="preserve">5</text>
+<path class="edge" d="M540,712 L540,716"/>
+<text class="n" x="540" y="728" xml:space="preserve">6</text>
+<text class="s" x="30" y="752" xml:space="preserve">With a lasting 1 and b lasting 2: on the left c waits for both and starts at 2. On the right there are two c’s, starting at 1 and at 2,</text>
+<text class="s" x="30" y="768" xml:space="preserve">which are different changes to one property. (What two different changes to one property should mean is RFC 002’s open question 1.)</text>
+<text class="s" x="30" y="784" xml:space="preserve">There is also no zero: no life that wipes out whatever it is joined to (J4: nothing is “cancelled”).</text>
+</svg>

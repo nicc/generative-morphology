@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 940" width="960" height="940" role="img" aria-label="The form laws F1 to F4 drawn as pairs of equal shoots, and the two equations that do not hold, with their counterexamples">
+<rect width="960" height="940" fill="#fbfaf6"/>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker>
+  <marker id="arrs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a0522d"/></marker>
+</defs>
+<style>
+  .ink{fill:none;stroke:#1f1f1f;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+  .lead{stroke:#777;stroke-width:0.8;fill:none}
+  .dash{stroke-dasharray:4 4}
+  .edge{fill:none;stroke:#1f1f1f;stroke-width:1.2}
+  .box{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1.4}
+  .rule{fill:#fbfaf6;stroke:#a0522d;stroke-width:1.4}
+  .shade{fill:#f1ede2;stroke:none}
+  .grp{fill:none;stroke:#a0522d;stroke-width:1.2;stroke-dasharray:5 4}
+  .num{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1}
+  text{font-family:Georgia,'Times New Roman',serif;font-size:14px;fill:#1f1f1f}
+  .t{font-size:17px;font-style:italic}
+  .s{font-size:12.5px;fill:#555}
+  .m{font-family:Menlo,Consolas,monospace;font-size:12.5px}
+  .n{font-family:Menlo,Consolas,monospace;font-size:11px;text-anchor:middle}
+  .big{font-size:22px;text-anchor:middle}
+  .c{text-anchor:middle}
+  .e{text-anchor:end}
+  .g{fill:#777}
+  .sn{fill:#a0522d}
+  .bl{fill:#2f5d8a}
+</style>
+<text class="t" x="30" y="36" xml:space="preserve">Form laws: equations between shoots</text>
+<text class="s e" x="930" y="36" xml:space="preserve">ink: built by f or e   sienna: by g   blue: by h</text>
+<text class="m" x="30" y="70" xml:space="preserve">F1  then(then(f, g), h) = then(f, then(g, h))</text>
+<text class="s" x="480" y="70" xml:space="preserve">associative: only the order matters, not the grouping</text>
+<text class="m" x="40" y="104" xml:space="preserve">f</text>
+<path class="edge" style="stroke:#1f1f1f" d="M60,127 L86,127"/>
+<rect class="box" style="stroke:#1f1f1f" x="40" y="117" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="50" y="131.5" xml:space="preserve">a</text>
+<circle class="box" style="stroke:#1f1f1f" cx="93" cy="127" r="6"/>
+<text class="m sn" x="140" y="104" xml:space="preserve">g</text>
+<path class="edge" style="stroke:#a0522d" d="M160,140 L186,127"/>
+<path class="edge" style="stroke:#a0522d" d="M160,140 L186,153"/>
+<rect class="box" style="stroke:#a0522d" x="140" y="130" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="150" y="144.5" xml:space="preserve">b</text>
+<circle class="box" style="stroke:#a0522d" cx="193" cy="127" r="6"/>
+<circle class="box" style="stroke:#a0522d" cx="193" cy="153" r="6"/>
+<text class="m bl" x="250" y="104" xml:space="preserve">h</text>
+<path class="edge" style="stroke:#2f5d8a" d="M270,127 L296,127"/>
+<rect class="box" style="stroke:#2f5d8a" x="250" y="117" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="260" y="131.5" xml:space="preserve">c</text>
+<circle class="box" style="stroke:#2f5d8a" cx="303" cy="127" r="6"/>
+<rect class="grp" x="392" y="96" width="82" height="62" rx="6"/>
+<path class="edge" style="stroke:#1f1f1f" d="M420,126 L446,126"/>
+<path class="edge" style="stroke:#a0522d" d="M466,126 L492,113"/>
+<path class="edge" style="stroke:#a0522d" d="M466,126 L492,139"/>
+<path class="edge" style="stroke:#2f5d8a" d="M512,113 L538,113"/>
+<path class="edge" style="stroke:#2f5d8a" d="M512,139 L538,139"/>
+<rect class="box" style="stroke:#1f1f1f" x="400" y="116" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="410" y="130.5" xml:space="preserve">a</text>
+<rect class="box" style="stroke:#a0522d" x="446" y="116" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="456" y="130.5" xml:space="preserve">b</text>
+<rect class="box" style="stroke:#2f5d8a" x="492" y="103" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="502" y="117.5" xml:space="preserve">c</text>
+<circle class="box" style="stroke:#2f5d8a" cx="545" cy="113" r="6"/>
+<rect class="box" style="stroke:#2f5d8a" x="492" y="129" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="502" y="143.5" xml:space="preserve">c</text>
+<circle class="box" style="stroke:#2f5d8a" cx="545" cy="139" r="6"/>
+<text class="s" x="392" y="178" xml:space="preserve">f and g joined first, then h</text>
+<rect class="grp" x="718" y="96" width="128" height="62" rx="6"/>
+<path class="edge" style="stroke:#1f1f1f" d="M700,126 L726,126"/>
+<path class="edge" style="stroke:#a0522d" d="M746,126 L772,113"/>
+<path class="edge" style="stroke:#a0522d" d="M746,126 L772,139"/>
+<path class="edge" style="stroke:#2f5d8a" d="M792,113 L818,113"/>
+<path class="edge" style="stroke:#2f5d8a" d="M792,139 L818,139"/>
+<rect class="box" style="stroke:#1f1f1f" x="680" y="116" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="690" y="130.5" xml:space="preserve">a</text>
+<rect class="box" style="stroke:#a0522d" x="726" y="116" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="736" y="130.5" xml:space="preserve">b</text>
+<rect class="box" style="stroke:#2f5d8a" x="772" y="103" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="782" y="117.5" xml:space="preserve">c</text>
+<circle class="box" style="stroke:#2f5d8a" cx="825" cy="113" r="6"/>
+<rect class="box" style="stroke:#2f5d8a" x="772" y="129" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="782" y="143.5" xml:space="preserve">c</text>
+<circle class="box" style="stroke:#2f5d8a" cx="825" cy="139" r="6"/>
+<text class="s" x="672" y="178" xml:space="preserve">g and h joined first, onto f</text>
+<text class="big" x="630" y="134" xml:space="preserve">=</text>
+<path class="lead" d="M30,198 L930,198"/>
+<text class="m" x="30" y="228" xml:space="preserve">F2  then(bud, f) = f = then(f, bud)</text>
+<text class="s" x="480" y="228" xml:space="preserve">bud is the identity: continuing with it changes nothing</text>
+<circle class="box" style="stroke:#1f1f1f" cx="57" cy="271" r="6"/>
+<text class="c" x="92" y="289" xml:space="preserve">then</text>
+<path class="edge" style="stroke:#1f1f1f" d="M140,272 L166,259"/>
+<path class="edge" style="stroke:#1f1f1f" d="M140,272 L166,285"/>
+<rect class="box" style="stroke:#1f1f1f" x="120" y="262" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="130" y="276.5" xml:space="preserve">a</text>
+<circle class="box" style="stroke:#1f1f1f" cx="173" cy="259" r="6"/>
+<circle class="box" style="stroke:#1f1f1f" cx="173" cy="285" r="6"/>
+<text class="big" x="215" y="280" xml:space="preserve">=</text>
+<path class="edge" style="stroke:#1f1f1f" d="M270,272 L296,259"/>
+<path class="edge" style="stroke:#1f1f1f" d="M270,272 L296,285"/>
+<rect class="box" style="stroke:#1f1f1f" x="250" y="262" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="260" y="276.5" xml:space="preserve">a</text>
+<circle class="box" style="stroke:#1f1f1f" cx="303" cy="259" r="6"/>
+<circle class="box" style="stroke:#1f1f1f" cx="303" cy="285" r="6"/>
+<text class="big" x="345" y="280" xml:space="preserve">=</text>
+<path class="edge" style="stroke:#1f1f1f" d="M400,272 L426,259"/>
+<path class="edge" style="stroke:#1f1f1f" d="M400,272 L426,285"/>
+<rect class="box" style="stroke:#1f1f1f" x="380" y="262" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="390" y="276.5" xml:space="preserve">a</text>
+<circle class="box" style="stroke:#1f1f1f" cx="433" cy="259" r="6"/>
+<circle class="box" style="stroke:#1f1f1f" cx="433" cy="285" r="6"/>
+<text class="c" x="472" y="289" xml:space="preserve">then</text>
+<circle class="box" style="stroke:#1f1f1f" cx="507" cy="271" r="6"/>
+<text class="s" x="580" y="262" xml:space="preserve">A lone bud becomes f. Each of f’s buds,</text>
+<text class="s" x="580" y="278" xml:space="preserve">replaced by a bud, is still a bud.</text>
+<path class="lead" d="M30,320 L930,320"/>
+<text class="m" x="30" y="350" xml:space="preserve">F3  then(closed, f) = closed</text>
+<text class="s" x="480" y="350" xml:space="preserve">closed is a left zero: no open bud, so nowhere for f to grow</text>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="57" cy="385" r="4.5"/>
+<text class="c" x="92" y="403" xml:space="preserve">then</text>
+<path class="edge" style="stroke:#1f1f1f" d="M140,386 L166,373"/>
+<path class="edge" style="stroke:#1f1f1f" d="M140,386 L166,399"/>
+<rect class="box" style="stroke:#1f1f1f" x="120" y="376" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="130" y="390.5" xml:space="preserve">a</text>
+<circle class="box" style="stroke:#1f1f1f" cx="173" cy="373" r="6"/>
+<circle class="box" style="stroke:#1f1f1f" cx="173" cy="399" r="6"/>
+<text class="big" x="215" y="396" xml:space="preserve">=</text>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="257" cy="385" r="4.5"/>
+<path class="lead" d="M30,434 L930,434"/>
+<text class="m" x="30" y="464" xml:space="preserve">F4  then(grow(e, f₁, f₂), h) = grow(e, then(f₁, h), then(f₂, h))</text>
+<text class="s" x="580" y="464" xml:space="preserve">then passes through an element to its children</text>
+<text class="m" x="40" y="498" xml:space="preserve">grow(e, f₁, f₂)</text>
+<path class="edge" style="stroke:#1f1f1f" d="M60,534 L86,521"/>
+<path class="edge" style="stroke:#1f1f1f" d="M60,534 L86,547"/>
+<path class="edge" style="stroke:#1f1f1f" d="M106,521 L132,521"/>
+<rect class="box" style="stroke:#1f1f1f" x="40" y="524" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="50" y="538.5" xml:space="preserve">e</text>
+<rect class="box" style="stroke:#1f1f1f" x="86" y="511" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="96" y="525.5" xml:space="preserve">a</text>
+<circle class="box" style="stroke:#1f1f1f" cx="139" cy="521" r="6"/>
+<circle class="box" style="stroke:#1f1f1f" cx="93" cy="547" r="6"/>
+<text class="c" x="200" y="539" xml:space="preserve">then</text>
+<text class="m bl" x="240" y="498" xml:space="preserve">h</text>
+<path class="edge" style="stroke:#2f5d8a" d="M260,534 L286,534"/>
+<rect class="box" style="stroke:#2f5d8a" x="240" y="524" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="250" y="538.5" xml:space="preserve">c</text>
+<circle class="box" style="stroke:#2f5d8a" cx="293" cy="534" r="6"/>
+<text class="big" x="350" y="542" xml:space="preserve">=</text>
+<path class="edge" style="stroke:#1f1f1f" d="M420,534 L446,521"/>
+<path class="edge" style="stroke:#1f1f1f" d="M420,534 L446,547"/>
+<path class="edge" style="stroke:#1f1f1f" d="M466,521 L492,521"/>
+<path class="edge" style="stroke:#2f5d8a" d="M512,521 L538,521"/>
+<path class="edge" style="stroke:#2f5d8a" d="M466,547 L492,547"/>
+<rect class="box" style="stroke:#1f1f1f" x="400" y="524" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="410" y="538.5" xml:space="preserve">e</text>
+<rect class="box" style="stroke:#1f1f1f" x="446" y="511" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="456" y="525.5" xml:space="preserve">a</text>
+<rect class="box" style="stroke:#2f5d8a" x="492" y="511" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="502" y="525.5" xml:space="preserve">c</text>
+<circle class="box" style="stroke:#2f5d8a" cx="545" cy="521" r="6"/>
+<rect class="box" style="stroke:#2f5d8a" x="446" y="537" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="456" y="551.5" xml:space="preserve">c</text>
+<circle class="box" style="stroke:#2f5d8a" cx="499" cy="547" r="6"/>
+<text class="s" x="600" y="514" xml:space="preserve">f₁ is a with one bud; f₂ is a lone bud. Continuing the whole</text>
+<text class="s" x="600" y="530" xml:space="preserve">element with h gives the same shoot as continuing each slot</text>
+<text class="s" x="600" y="546" xml:space="preserve">with h first (then(f₁, h) is a–c–○, then(f₂, h) is c–○) and</text>
+<text class="s" x="600" y="562" xml:space="preserve">building e around the results.</text>
+<text class="s" x="30" y="598" xml:space="preserve">What grows next grows at every open bud, however deep. This is the law that says how then and grow fit together.</text>
+<path class="lead" d="M30,616 L930,616"/>
+<text class="t" x="30" y="654" xml:space="preserve">Not laws: equations that look plausible and are false</text>
+<text class="m" x="30" y="692" xml:space="preserve">then(grow(e, bud), closed) ≠ closed</text>
+<text class="s" x="480" y="692" xml:space="preserve">no right zero (J1): a shoot that stops growing stays drawn</text>
+<path class="edge" style="stroke:#1f1f1f" d="M60,721 L86,721"/>
+<rect class="box" style="stroke:#1f1f1f" x="40" y="711" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="50" y="725.5" xml:space="preserve">e</text>
+<circle class="box" style="stroke:#1f1f1f" cx="93" cy="721" r="6"/>
+<text class="c" x="128" y="726" xml:space="preserve">then</text>
+<circle class="box" style="fill:#a0522d;stroke:#a0522d" cx="163" cy="721" r="4.5"/>
+<text class="big" x="205" y="730" xml:space="preserve">=</text>
+<path class="edge" style="stroke:#1f1f1f" d="M260,721 L286,721"/>
+<rect class="box" style="stroke:#1f1f1f" x="240" y="711" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="250" y="725.5" xml:space="preserve">e</text>
+<circle class="box" style="fill:#a0522d;stroke:#a0522d" cx="291" cy="721" r="4.5"/>
+<text class="big" x="345" y="730" xml:space="preserve">≠</text>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="385" cy="721" r="4.5"/>
+<text class="s" x="480" y="720" xml:space="preserve">e is kept, with its slot closed. If this equalled closed,</text>
+<text class="s" x="480" y="736" xml:space="preserve">an axis could not end (in a flower, say) and remain.</text>
+<path class="lead" d="M30,758 L930,758"/>
+<text class="m" x="30" y="796" xml:space="preserve">grow(e, q, r) ≠ grow(e, r, q)</text>
+<text class="s" x="480" y="796" xml:space="preserve">slots are ordered (J3)</text>
+<path class="edge" style="stroke:#1f1f1f" d="M60,842 L104,829"/>
+<text class="n g" x="92" y="822" xml:space="preserve">0</text>
+<path class="edge" style="stroke:#1f1f1f" d="M60,842 L104,855"/>
+<text class="n g" x="92" y="870" xml:space="preserve">1</text>
+<rect class="box" style="stroke:#1f1f1f" x="40" y="832" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="50" y="846.5" xml:space="preserve">e</text>
+<rect class="box" style="stroke:#a0522d" x="104" y="819" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="114" y="833.5" xml:space="preserve">q</text>
+<rect class="box" style="stroke:#2f5d8a" x="104" y="845" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="114" y="859.5" xml:space="preserve">r</text>
+<text class="big" x="175" y="850" xml:space="preserve">≠</text>
+<path class="edge" style="stroke:#1f1f1f" d="M240,842 L284,829"/>
+<text class="n g" x="272" y="822" xml:space="preserve">0</text>
+<path class="edge" style="stroke:#1f1f1f" d="M240,842 L284,855"/>
+<text class="n g" x="272" y="870" xml:space="preserve">1</text>
+<rect class="box" style="stroke:#1f1f1f" x="220" y="832" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="230" y="846.5" xml:space="preserve">e</text>
+<rect class="box" style="stroke:#2f5d8a" x="284" y="819" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#2f5d8a" x="294" y="833.5" xml:space="preserve">r</text>
+<rect class="box" style="stroke:#a0522d" x="284" y="845" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="294" y="859.5" xml:space="preserve">q</text>
+<text class="s" x="480" y="826" xml:space="preserve">A slot’s index is part of its path, and its id and seed come</text>
+<text class="s" x="480" y="842" xml:space="preserve">from the path. Swapping two children gives each the</text>
+<text class="s" x="480" y="858" xml:space="preserve">other’s seed, so each is drawn differently.</text>
+<text class="s" x="30" y="900" xml:space="preserve">Every tree on this page was computed by the definition of then (substitution at the buds); the equal pairs were checked equal when the figure was made.</text>
+<text class="s" x="30" y="918" xml:space="preserve">That is one example per law, not a proof. Slice 1a is to test each law over generated rules and contexts.</text>
+</svg>

@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-label="The four operations that build rules, each drawn as the shoot it grows: bud, closed, grow, and then as substitution at the open buds">
+<rect width="960" height="560" fill="#fbfaf6"/>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker>
+  <marker id="arrs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a0522d"/></marker>
+</defs>
+<style>
+  .ink{fill:none;stroke:#1f1f1f;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+  .lead{stroke:#777;stroke-width:0.8;fill:none}
+  .dash{stroke-dasharray:4 4}
+  .edge{fill:none;stroke:#1f1f1f;stroke-width:1.2}
+  .box{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1.4}
+  .rule{fill:#fbfaf6;stroke:#a0522d;stroke-width:1.4}
+  .shade{fill:#f1ede2;stroke:none}
+  .grp{fill:none;stroke:#a0522d;stroke-width:1.2;stroke-dasharray:5 4}
+  .num{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1}
+  text{font-family:Georgia,'Times New Roman',serif;font-size:14px;fill:#1f1f1f}
+  .t{font-size:17px;font-style:italic}
+  .s{font-size:12.5px;fill:#555}
+  .m{font-family:Menlo,Consolas,monospace;font-size:12.5px}
+  .n{font-family:Menlo,Consolas,monospace;font-size:11px;text-anchor:middle}
+  .big{font-size:22px;text-anchor:middle}
+  .c{text-anchor:middle}
+  .e{text-anchor:end}
+  .g{fill:#777}
+  .sn{fill:#a0522d}
+  .bl{fill:#2f5d8a}
+</style>
+<text class="t" x="30" y="36" xml:space="preserve">The four operations, each drawn as the shoot it grows</text>
+<text class="s e" x="930" y="36" xml:space="preserve">□ element   ○ open bud   ● closed</text>
+<text class="m" x="30" y="76" xml:space="preserve">bud</text>
+<circle class="box" style="stroke:#1f1f1f" cx="47" cy="111" r="6"/>
+<text class="s" x="30" y="152" xml:space="preserve">one open bud</text>
+<text class="s" x="30" y="168" xml:space="preserve">“growth can continue</text>
+<text class="s" x="30" y="184" xml:space="preserve">from here”</text>
+<text class="m" x="220" y="76" xml:space="preserve">closed</text>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="237" cy="111" r="4.5"/>
+<text class="s" x="220" y="152" xml:space="preserve">one closed slot</text>
+<text class="s" x="220" y="168" xml:space="preserve">“nothing grows here”</text>
+<text class="m" x="430" y="76" xml:space="preserve">grow(e, f₁, f₂, f₃)</text>
+<path class="edge" style="stroke:#1f1f1f" d="M460,127 L510,101"/>
+<path class="edge" style="stroke:#1f1f1f" d="M460,127 L510,127"/>
+<path class="edge" style="stroke:#1f1f1f" d="M460,127 L510,153"/>
+<rect class="box" style="stroke:#1f1f1f" x="440" y="117" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="450" y="131.5" xml:space="preserve">e</text>
+<rect class="rule" style="stroke:#a0522d" x="510" y="91" width="32" height="20" rx="10"/>
+<text class="m c" style="fill:#a0522d" x="526" y="105.5" xml:space="preserve">f₁</text>
+<rect class="rule" style="stroke:#a0522d" x="510" y="117" width="32" height="20" rx="10"/>
+<text class="m c" style="fill:#a0522d" x="526" y="131.5" xml:space="preserve">f₂</text>
+<rect class="rule" style="stroke:#a0522d" x="510" y="143" width="32" height="20" rx="10"/>
+<text class="m c" style="fill:#a0522d" x="526" y="157.5" xml:space="preserve">f₃</text>
+<text class="s" x="580" y="106" xml:space="preserve">the element e with three slots;</text>
+<text class="s" x="580" y="122" xml:space="preserve">slot i holds whatever the rule fᵢ grows.</text>
+<text class="s" x="580" y="138" xml:space="preserve">This is the only operation that makes an element,</text>
+<text class="s" x="580" y="154" xml:space="preserve">and the only place branching comes from.</text>
+<path class="lead" d="M30,196 L930,196"/>
+<text class="m" x="30" y="232" xml:space="preserve">then(f, g)</text>
+<text class="s" x="130" y="232" xml:space="preserve">grow f, then grow g at every bud f left open</text>
+<text class="m" x="40" y="278" xml:space="preserve">f</text>
+<path class="edge" style="stroke:#1f1f1f" d="M60,331 L86,305"/>
+<path class="edge" style="stroke:#1f1f1f" d="M60,331 L86,331"/>
+<path class="edge" style="stroke:#1f1f1f" d="M60,331 L86,357"/>
+<rect class="box" style="stroke:#1f1f1f" x="40" y="321" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="50" y="335.5" xml:space="preserve">a</text>
+<rect class="box" style="stroke:#1f1f1f" x="86" y="295" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="96" y="309.5" xml:space="preserve">b</text>
+<circle class="box" style="stroke:#1f1f1f" cx="93" cy="331" r="6"/>
+<circle class="box" style="stroke:#1f1f1f" cx="93" cy="357" r="6"/>
+<text class="c" x="150" y="338" xml:space="preserve">then</text>
+<text class="m sn" x="200" y="278" xml:space="preserve">g</text>
+<path class="edge" style="stroke:#a0522d" d="M220,331 L246,305"/>
+<path class="edge" style="stroke:#a0522d" d="M220,331 L246,331"/>
+<path class="edge" style="stroke:#a0522d" d="M220,331 L246,357"/>
+<rect class="box" style="stroke:#a0522d" x="200" y="321" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="210" y="335.5" xml:space="preserve">a</text>
+<rect class="box" style="stroke:#a0522d" x="246" y="295" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="256" y="309.5" xml:space="preserve">b</text>
+<circle class="box" style="stroke:#a0522d" cx="253" cy="331" r="6"/>
+<circle class="box" style="stroke:#a0522d" cx="253" cy="357" r="6"/>
+<text class="big" x="320" y="338" xml:space="preserve">=</text>
+<text class="m" x="380" y="278" xml:space="preserve">then(f, g)</text>
+<path class="edge" style="stroke:#1f1f1f" d="M400,370 L426,305"/>
+<path class="edge" style="stroke:#1f1f1f" d="M400,370 L426,357"/>
+<path class="edge" style="stroke:#1f1f1f" d="M400,370 L426,435"/>
+<path class="edge" style="stroke:#a0522d" d="M446,357 L472,331"/>
+<path class="edge" style="stroke:#a0522d" d="M446,357 L472,357"/>
+<path class="edge" style="stroke:#a0522d" d="M446,357 L472,383"/>
+<path class="edge" style="stroke:#a0522d" d="M446,435 L472,409"/>
+<path class="edge" style="stroke:#a0522d" d="M446,435 L472,435"/>
+<path class="edge" style="stroke:#a0522d" d="M446,435 L472,461"/>
+<rect class="box" style="stroke:#1f1f1f" x="380" y="360" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="390" y="374.5" xml:space="preserve">a</text>
+<rect class="box" style="stroke:#1f1f1f" x="426" y="295" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#1f1f1f" x="436" y="309.5" xml:space="preserve">b</text>
+<rect class="box" style="stroke:#a0522d" x="426" y="347" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="436" y="361.5" xml:space="preserve">a</text>
+<rect class="box" style="stroke:#a0522d" x="472" y="321" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="482" y="335.5" xml:space="preserve">b</text>
+<circle class="box" style="stroke:#a0522d" cx="479" cy="357" r="6"/>
+<circle class="box" style="stroke:#a0522d" cx="479" cy="383" r="6"/>
+<rect class="box" style="stroke:#a0522d" x="426" y="425" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="436" y="439.5" xml:space="preserve">a</text>
+<rect class="box" style="stroke:#a0522d" x="472" y="399" width="20" height="20" rx="0"/>
+<text class="m c" style="fill:#a0522d" x="482" y="413.5" xml:space="preserve">b</text>
+<circle class="box" style="stroke:#a0522d" cx="479" cy="435" r="6"/>
+<circle class="box" style="stroke:#a0522d" cx="479" cy="461" r="6"/>
+<text class="s" x="560" y="296" xml:space="preserve">Here f and g are both the phytomer:</text>
+<text class="s" x="560" y="312" xml:space="preserve">a an internode, b its leaf, and two open buds</text>
+<text class="s" x="560" y="328" xml:space="preserve">(one axillary, one apical).</text>
+<text class="s" x="560" y="344" xml:space="preserve"></text>
+<text class="s" x="560" y="360" xml:space="preserve">then replaces each of f’s open buds with a copy</text>
+<text class="s" x="560" y="376" xml:space="preserve">of what g grows there. It does not choose between</text>
+<text class="s" x="560" y="392" xml:space="preserve">buds: g grows at both. That is why the rule</text>
+<text class="s" x="560" y="408" xml:space="preserve">continued on a phytomer (onward, in RFC 002) reads</text>
+<text class="s" x="560" y="424" xml:space="preserve">the bud’s context to decide whether to continue</text>
+<text class="s" x="560" y="440" xml:space="preserve">the axis, branch, or close.</text>
+<text class="s" x="560" y="456" xml:space="preserve"></text>
+<text class="s" x="560" y="472" xml:space="preserve">The buds g leaves are still open, so the result</text>
+<text class="s" x="560" y="488" xml:space="preserve">can be continued again.</text>
+<text class="s" x="30" y="536" xml:space="preserve">Each picture is one context’s worth: a rule is a function from a context to a shoot, and may grow a different shoot from a different context.</text>
+</svg>

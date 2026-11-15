@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" role="img" aria-label="What a slot holds: an element, an open bud, or closed; and the shoot of plant diagram shoot a as the model holds it, a tree of elements with numbered slots, paths, bud contexts, one branch shaded as a shoot and one phytomer outlined">
+<rect width="1200" height="640" fill="#fbfaf6"/>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker>
+  <marker id="arrs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a0522d"/></marker>
+</defs>
+<style>
+  .ink{fill:none;stroke:#1f1f1f;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+  .lead{stroke:#777;stroke-width:0.8;fill:none}
+  .dash{stroke-dasharray:4 4}
+  .edge{fill:none;stroke:#1f1f1f;stroke-width:1.2}
+  .box{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1.4}
+  .rule{fill:#fbfaf6;stroke:#a0522d;stroke-width:1.4}
+  .shade{fill:#f1ede2;stroke:none}
+  .grp{fill:none;stroke:#a0522d;stroke-width:1.2;stroke-dasharray:5 4}
+  .num{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1}
+  text{font-family:Georgia,'Times New Roman',serif;font-size:14px;fill:#1f1f1f}
+  .t{font-size:17px;font-style:italic}
+  .s{font-size:12.5px;fill:#555}
+  .m{font-family:Menlo,Consolas,monospace;font-size:12.5px}
+  .n{font-family:Menlo,Consolas,monospace;font-size:11px;text-anchor:middle}
+  .big{font-size:22px;text-anchor:middle}
+  .c{text-anchor:middle}
+  .e{text-anchor:end}
+  .g{fill:#777}
+  .sn{fill:#a0522d}
+  .bl{fill:#2f5d8a}
+</style>
+<text class="t" x="30" y="40" xml:space="preserve">a. What a slot holds</text>
+<circle class="num" cx="46" cy="92" r="9"/>
+<text class="n" x="46" y="96" xml:space="preserve">0</text>
+<path class="edge" d="M55,92 L74,92"/>
+<rect class="box" x="74" y="79" width="96" height="26" rx="0"/>
+<text class="c" x="122" y="96.5" xml:space="preserve">element</text>
+<text class="s" x="186" y="86" xml:space="preserve">one drawn part, with a life</text>
+<text class="s" x="186" y="102" xml:space="preserve">and ordered slots of its own</text>
+<circle class="num" cx="46" cy="152" r="9"/>
+<text class="n" x="46" y="156" xml:space="preserve">1</text>
+<path class="edge" d="M55,152 L74,152"/>
+<circle class="box" style="stroke:#1f1f1f" cx="81" cy="152" r="7"/>
+<text x="100" y="156.5" xml:space="preserve">bud</text>
+<text class="s" x="186" y="146" xml:space="preserve">open: no element yet;</text>
+<text class="s" x="186" y="162" xml:space="preserve">carries a context</text>
+<circle class="num" cx="46" cy="212" r="9"/>
+<text class="n" x="46" y="216" xml:space="preserve">2</text>
+<path class="edge" d="M55,212 L74,212"/>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="79" cy="212" r="5"/>
+<text x="100" y="216.5" xml:space="preserve">closed</text>
+<text class="s" x="186" y="206" xml:space="preserve">grows nothing; keeps its</text>
+<text class="s" x="186" y="222" xml:space="preserve">slot and its path</text>
+<text class="m" x="30" y="274" xml:space="preserve">Shoot = bud(context)</text>
+<text class="m" x="30" y="292" xml:space="preserve">      | closed</text>
+<text class="m" x="30" y="310" xml:space="preserve">      | element(e, slots)</text>
+<text class="s" x="30" y="352" xml:space="preserve">A numbered circle is a slot. Each slot holds</text>
+<text class="s" x="30" y="368" xml:space="preserve">exactly one shoot, so what a slot holds is</text>
+<text class="s" x="30" y="384" xml:space="preserve">again one of these three.</text>
+<text class="s" x="30" y="400" xml:space="preserve"></text>
+<text class="s" x="30" y="416" xml:space="preserve">A path is the slot indices from the root,</text>
+<text class="s" x="30" y="432" xml:space="preserve">written 2.2.1. A slot’s id and its seed are</text>
+<text class="s" x="30" y="448" xml:space="preserve">functions of its path.</text>
+<text class="s" x="30" y="464" xml:space="preserve"></text>
+<text class="s" x="30" y="480" xml:space="preserve">A context is handed down from an element</text>
+<text class="s" x="30" y="496" xml:space="preserve">to each of its slots, changed for that slot.</text>
+<text class="s" x="30" y="512" xml:space="preserve">Nothing flows up or between siblings.</text>
+<text class="s" x="30" y="528" xml:space="preserve"></text>
+<text class="s" x="30" y="544" xml:space="preserve">Root context here: branch order 0, index 0.</text>
+<text class="s" x="30" y="560" xml:space="preserve">An axillary slot adds 1 to the order and</text>
+<text class="s" x="30" y="576" xml:space="preserve">resets the index; an apical slot adds 1</text>
+<text class="s" x="30" y="592" xml:space="preserve">to the index.</text>
+<path class="lead" d="M372,20 L372,620"/>
+<text class="t" x="400" y="40" xml:space="preserve">b. One shoot, as the model holds it</text>
+<text class="s e" x="1170" y="40" xml:space="preserve">the shoot of plant / shoot, panel a</text>
+<rect class="shade" x="574" y="120" width="608" height="222" rx="8"/>
+<text class="s sn" x="584" y="136" xml:space="preserve">a shoot: the branch</text>
+<rect class="grp" x="782" y="428" width="400" height="134" rx="8"/>
+<text class="s sn" x="792" y="578" xml:space="preserve">built by one application of the phytomer rule</text>
+<path class="edge" d="M518,261 L562,261"/>
+<path class="edge" d="M562,96 L562,426"/>
+<path class="edge" d="M562,96 L608,96"/>
+<circle class="num" cx="586" cy="96" r="9"/>
+<text class="n" x="586" y="100" xml:space="preserve">0</text>
+<path class="edge" d="M562,206 L608,206"/>
+<circle class="num" cx="586" cy="206" r="9"/>
+<text class="n" x="586" y="210" xml:space="preserve">1</text>
+<path class="edge" d="M562,426 L608,426"/>
+<circle class="num" cx="586" cy="426" r="9"/>
+<text class="n" x="586" y="430" xml:space="preserve">2</text>
+<path class="edge" d="M726,206 L770,206"/>
+<path class="edge" d="M770,140 L770,272"/>
+<path class="edge" d="M770,140 L816,140"/>
+<circle class="num" cx="794" cy="140" r="9"/>
+<text class="n" x="794" y="144" xml:space="preserve">0</text>
+<path class="edge" d="M770,184 L816,184"/>
+<circle class="num" cx="794" cy="184" r="9"/>
+<text class="n" x="794" y="188" xml:space="preserve">1</text>
+<path class="edge" d="M770,272 L816,272"/>
+<circle class="num" cx="794" cy="272" r="9"/>
+<text class="n" x="794" y="276" xml:space="preserve">2</text>
+<path class="edge" d="M934,272 L978,272"/>
+<path class="edge" d="M978,228 L978,316"/>
+<path class="edge" d="M978,228 L1024,228"/>
+<circle class="num" cx="1002" cy="228" r="9"/>
+<text class="n" x="1002" y="232" xml:space="preserve">0</text>
+<path class="edge" d="M978,272 L1024,272"/>
+<circle class="num" cx="1002" cy="272" r="9"/>
+<text class="n" x="1002" y="276" xml:space="preserve">1</text>
+<path class="edge" d="M978,316 L1024,316"/>
+<circle class="num" cx="1002" cy="316" r="9"/>
+<text class="n" x="1002" y="320" xml:space="preserve">2</text>
+<path class="edge" d="M726,426 L770,426"/>
+<path class="edge" d="M770,360 L770,492"/>
+<path class="edge" d="M770,360 L816,360"/>
+<circle class="num" cx="794" cy="360" r="9"/>
+<text class="n" x="794" y="364" xml:space="preserve">0</text>
+<path class="edge" d="M770,404 L816,404"/>
+<circle class="num" cx="794" cy="404" r="9"/>
+<text class="n" x="794" y="408" xml:space="preserve">1</text>
+<path class="edge" d="M770,492 L816,492"/>
+<circle class="num" cx="794" cy="492" r="9"/>
+<text class="n" x="794" y="496" xml:space="preserve">2</text>
+<path class="edge" d="M934,492 L978,492"/>
+<path class="edge" d="M978,448 L978,536"/>
+<path class="edge" d="M978,448 L1024,448"/>
+<circle class="num" cx="1002" cy="448" r="9"/>
+<text class="n" x="1002" y="452" xml:space="preserve">0</text>
+<path class="edge" d="M978,492 L1024,492"/>
+<circle class="num" cx="1002" cy="492" r="9"/>
+<text class="n" x="1002" y="496" xml:space="preserve">1</text>
+<path class="edge" d="M978,536 L1024,536"/>
+<circle class="num" cx="1002" cy="536" r="9"/>
+<text class="n" x="1002" y="540" xml:space="preserve">2</text>
+<rect class="box" x="400" y="248" width="118" height="26" rx="0"/>
+<text x="408" y="265.5" xml:space="preserve">internode</text>
+<text class="m e g" x="511" y="265" xml:space="preserve">root</text>
+<rect class="box" x="608" y="83" width="118" height="26" rx="0"/>
+<text x="616" y="100.5" xml:space="preserve">leaf</text>
+<text class="m e g" x="719" y="100" xml:space="preserve">0</text>
+<rect class="box" x="608" y="193" width="118" height="26" rx="0"/>
+<text x="616" y="210.5" xml:space="preserve">internode</text>
+<text class="m e g" x="719" y="210" xml:space="preserve">1</text>
+<rect class="box" x="816" y="127" width="118" height="26" rx="0"/>
+<text x="824" y="144.5" xml:space="preserve">leaf</text>
+<text class="m e g" x="927" y="144" xml:space="preserve">1.0</text>
+<circle class="box" style="stroke:#1f1f1f" cx="823" cy="184" r="7"/>
+<text x="838" y="185" xml:space="preserve">bud</text>
+<text class="m g" x="868" y="185" xml:space="preserve">1.1</text>
+<text class="s" style="font-size:11.5px" x="838" y="199" xml:space="preserve">order 2, index 0, axillary</text>
+<rect class="box" x="816" y="259" width="118" height="26" rx="0"/>
+<text x="824" y="276.5" xml:space="preserve">internode</text>
+<text class="m e g" x="927" y="276" xml:space="preserve">1.2</text>
+<rect class="box" x="1024" y="215" width="118" height="26" rx="0"/>
+<text x="1032" y="232.5" xml:space="preserve">leaf</text>
+<text class="m e g" x="1135" y="232" xml:space="preserve">1.2.0</text>
+<circle class="box" style="stroke:#1f1f1f" cx="1031" cy="272" r="7"/>
+<text x="1046" y="273" xml:space="preserve">bud</text>
+<text class="m g" x="1076" y="273" xml:space="preserve">1.2.1</text>
+<text class="s" style="font-size:11.5px" x="1046" y="287" xml:space="preserve">order 2, index 0, axillary</text>
+<circle class="box" style="stroke:#1f1f1f" cx="1031" cy="316" r="7"/>
+<text x="1046" y="317" xml:space="preserve">bud</text>
+<text class="m g" x="1076" y="317" xml:space="preserve">1.2.2</text>
+<text class="s" style="font-size:11.5px" x="1046" y="331" xml:space="preserve">order 1, index 2, apical</text>
+<rect class="box" x="608" y="413" width="118" height="26" rx="0"/>
+<text x="616" y="430.5" xml:space="preserve">internode</text>
+<text class="m e g" x="719" y="430" xml:space="preserve">2</text>
+<rect class="box" x="816" y="347" width="118" height="26" rx="0"/>
+<text x="824" y="364.5" xml:space="preserve">leaf</text>
+<text class="m e g" x="927" y="364" xml:space="preserve">2.0</text>
+<circle class="box" style="fill:#1f1f1f;stroke:#1f1f1f" cx="821" cy="404" r="5"/>
+<text x="838" y="408.5" xml:space="preserve">closed</text>
+<text class="m g" x="890" y="408" xml:space="preserve">2.1</text>
+<rect class="box" x="816" y="479" width="118" height="26" rx="0"/>
+<text x="824" y="496.5" xml:space="preserve">internode</text>
+<text class="m e g" x="927" y="496" xml:space="preserve">2.2</text>
+<rect class="box" x="1024" y="435" width="118" height="26" rx="0"/>
+<text x="1032" y="452.5" xml:space="preserve">leaf</text>
+<text class="m e g" x="1135" y="452" xml:space="preserve">2.2.0</text>
+<circle class="box" style="stroke:#1f1f1f" cx="1031" cy="492" r="7"/>
+<text x="1046" y="493" xml:space="preserve">bud</text>
+<text class="m g" x="1076" y="493" xml:space="preserve">2.2.1</text>
+<text class="s" style="font-size:11.5px" x="1046" y="507" xml:space="preserve">order 1, index 0, axillary</text>
+<circle class="box" style="stroke:#1f1f1f" cx="1031" cy="536" r="7"/>
+<text x="1046" y="537" xml:space="preserve">bud</text>
+<text class="m g" x="1076" y="537" xml:space="preserve">2.2.2</text>
+<text class="s" style="font-size:11.5px" x="1046" y="551" xml:space="preserve">order 0, index 3, apical</text>
+<path class="edge" marker-end="url(#arr)" d="M400,64 L1010,64"/>
+<text class="s" x="1020" y="68" xml:space="preserve">contexts flow this way only</text>
+<text class="s" x="400" y="596" xml:space="preserve">Cut at any slot and what it holds is a shoot: a leaf, a bud, a branch, the whole plant.</text>
+<text class="s" x="400" y="612" xml:space="preserve">The phytomer is not a box in this tree. It is the rule that built each internode and filled its slots (model / rules, panel c).</text>
+</svg>

@@ -10,73 +10,102 @@ Terms as we use them in this project — not necessarily their full biological o
 
 A term new in an RFC that the user has not yet reviewed is marked *(proposed, RFC NNN)* and may change or be dropped; none is at present. *(RFC NNN)* names the RFC that explains an approved term.
 
-Botanical words keep their botanical sense. A term that names a physical structure, or a part of one, appears in a diagram below, and its entry says which (principle 8). The diagrams are SVG files in [docs/diagrams/](docs/diagrams/), edited by hand; when a definition changes, its diagram changes in the same commit.
+Botanical words keep their botanical sense.
+
+**Which terms are drawn** (principle 8). There are two sets of diagrams, and a term appears in each set it belongs to:
+
+- **Plant**: the plant as it is seen. A term that names a physical structure, or a part of one, is drawn here.
+- **Model**: the plant as the model composes it. A term that names something the model builds (a shoot, an element, a slot, a life), or a rule that builds it, is drawn here.
+
+Many terms are in both: a phytomer is a stretch of stem with what its node bears, and it is a rule. Each entry says where its term is drawn, as *plant: shoot a* or *model: rules c* (set, diagram, panel). Operations and laws are drawn with the algebra in [docs/growth-algebra.md](docs/growth-algebra.md), cited as *algebra: operations*. A term that names neither a structure nor an operation (jig, spec, RFC) is not drawn.
+
+The diagrams are SVG files in [docs/diagrams/](docs/diagrams/), one folder per set, edited by hand; when a definition changes, its diagrams change in the same commit. Plant diagrams are botanical line drawings. Model diagrams are schematics in the same ink, paper and type, with one convention throughout: a rounded sienna box is a rule (what builds), a square ink box is an element (what is built), an open circle is a bud, a filled one is closed.
+
+Not drawn yet: where values come from (trait, pin, weight table, mutation; RFC 004). generative-morphology-ehu.
 
 **Words to keep apart.** Three ideas sit close together: a **phase** is a stretch of time in one element's life; a **stage** is a place in Goethe's sequence along an axis; **expansion** and **contraction** are what a stage does. They do not collide yet. If a real case turns up where one of these words is needed in two senses, rework the three together then, not one at a time.
 
 ## Diagrams
 
+### Plant: the plant as it is seen
+
 **Phytomer.** One phytomer and its slots (a); two leaves at one node (b); several buds at one node (c).
 
-![A phytomer: internode, node, leaf, axil, axillary bud and apical bud, with slots numbered; an opposite node; a node bearing several buds](docs/diagrams/phytomer.svg)
+![A phytomer: internode, node, leaf, axil, axillary bud and apical bud, with slots numbered; an opposite node; a node bearing several buds](docs/diagrams/plant/phytomer.svg)
 
-**Shoot.** Phytomers repeated along an axis and nested in a branch, with slot paths (a); the same shoot as a tree of elements (b); the same pattern inside a compound leaf (c).
+**Shoot.** Phytomers repeated along an axis and nested in a branch, with slot paths (a); the same pattern inside a compound leaf (b).
 
-![A shoot of three phytomers with one branch, slot paths labelled, beside the same shoot as an indented tree, and a compound leaf](docs/diagrams/shoot.svg)
+![A shoot of three phytomers with one branch, slot paths labelled, and a compound leaf](docs/diagrams/plant/shoot.svg)
 
 **Stages.** The stages along one axis, each an expansion or a contraction, with the one archetype transformed (a); fusion as an annotation beside five separate sepals (b).
 
-![One axis from vegetative leaves through calyx, corolla, stamens and pistil, labelled as expansions and contractions; and five sepals drawn separately and as the union of their fusion group](docs/diagrams/stages.svg)
+![One axis from vegetative leaves through calyx, corolla, stamens and pistil, labelled as expansions and contractions; and five sepals drawn separately and as the union of their fusion group](docs/diagrams/plant/stages.svg)
+
+### Model: the plant as the model composes it
+
+Three kinds of "is made of", one diagram each. They are different relations and are kept apart: a shoot *contains* elements; a rule *is composed of* rules; a life *is a sequence of* phases.
+
+**Tree.** What a slot holds (a); the shoot of *plant: shoot a* as the model holds it, with paths, bud contexts, one branch marked as a shoot and what one application of the phytomer rule built (b).
+
+![What a slot holds: an element, an open bud, or closed; and one shoot as a tree of elements with numbered slots, paths and bud contexts](docs/diagrams/model/tree.svg)
+
+**Rules.** An axis is its stage rules continued in order (a); a stage is a run of phytomers (b); the phytomer rule builds one internode and fills its slots (c); the organ rule transforms the archetype (d).
+
+![An axis as a chain of stage rules; one stage as a run of phytomers with axillary buds closed or branching; the phytomer rule as an internode with three slots; the organ rule from archetype to a blade or a compound leaf](docs/diagrams/model/rules.svg)
+
+**Life.** One element's life as phases (a); growth, each element starting when its parent's primary phase ends, with the settle time, a sample and the warps (b).
+
+![One element's life as primary and secondary phases on a time axis; five elements' lives on the plant's time axis with a sample, the settle time and two warps](docs/diagrams/model/life.svg)
 
 ## Terms
 
-**anastomosis** — Goethe's term for parts growing together, e.g. sepals fusing into a calyx tube. Here it is drawn, not simulated, and never changes the tree: generation states which organs of a node fuse (a fusion group, an annotation), and the renderer draws the union of their outlines. *(RFC 003; diagram: stages b)*
+**anastomosis** — Goethe's term for parts growing together, e.g. sepals fusing into a calyx tube. Here it is drawn, not simulated, and never changes the tree: generation states which organs of a node fuse (a fusion group, an annotation), and the renderer draws the union of their outlines. *(RFC 003; plant: stages b)*
 
-**annotation** — a value computed from a finished shoot by a pure fold in generation and kept beside it, leaving the shoot unchanged. Fusion groups are the first. Render reads annotations and computes none. *(RFC 003; diagram: stages b)*
+**annotation** — a value computed from a finished shoot by a pure fold in generation and kept beside it, leaving the shoot unchanged. Fusion groups are the first. Render reads annotations and computes none. *(RFC 003; plant: stages b)*
 
-**apical** — at the end of an axis. The apical slot of an internode is the one that continues the same axis; an apical bud is that slot while it is still open. (Distinguish from **axillary**.) *(RFC 002; diagram: phytomer a)*
+**apical** — at the end of an axis. The apical slot of an internode is the one that continues the same axis; an apical bud is that slot while it is still open. (Distinguish from **axillary**.) *(RFC 002; plant: phytomer a; model: rules b, c)*
 
-**archetype** — the leaf archetype: the plant's leaf, as a set of trait values (size, compoundness, vein structure, margin…), carried in the context through the stages. Every lateral organ is a transformation of it. *(RFC 003; diagram: stages a)*
+**archetype** — the leaf archetype: the plant's leaf, as a set of trait values (size, compoundness, vein structure, margin…), carried in the context through the stages. Every lateral organ is a transformation of it. *(RFC 003; plant: stages a; model: rules d)*
 
-**axil** — the angle between a leaf and the stem above it, at a node. Where axillary buds sit. *(RFC 002; diagram: phytomer a)*
+**axil** — the angle between a leaf and the stem above it, at a node. Where axillary buds sit. *(RFC 002; plant: phytomer a)*
 
-**axillary** — in an axil. An axillary slot starts a new axis (a branch), one branch order higher than the axis it sits on; an axillary bud is that slot while it is still open. A node can have several. (Distinguish from **apical**.) *(RFC 002; diagram: phytomer a–c)*
+**axillary** — in an axil. An axillary slot starts a new axis (a branch), one branch order higher than the axis it sits on; an axillary bud is that slot while it is still open. A node can have several. (Distinguish from **apical**.) *(RFC 002; plant: phytomer a–c; model: rules b, c)*
 
-**axis** — one line of phytomers, each grown from the apical slot of the one before: a stem, or a single branch. A new axis starts at an axillary slot. *(RFC 002; diagram: shoot a)*
+**axis** — one line of phytomers, each grown from the apical slot of the one before: a stem, or a single branch. A new axis starts at an axillary slot. *(RFC 002; plant: shoot a; model: rules a)*
 
-**branch order** — how many axillary slots lie between an axis and the root: 0 for the main axis, 1 for its branches. Carried in the context. *(RFC 002; diagram: shoot a)*
+**branch order** — how many axillary slots lie between an axis and the root: 0 for the main axis, 1 for its branches. Carried in the context. *(RFC 002; plant: shoot a; model: tree b)*
 
-**bud** — a slot that is still open: it holds no element yet and carries the context for whatever grows there. `then` replaces each bud with exactly one shoot. Apical or axillary by which slot it is. (Distinguish from **closed**.) *(RFC 002; diagram: phytomer a)*
+**bud** — a slot that is still open: it holds no element yet and carries the context for whatever grows there. `then` replaces each bud with exactly one shoot. Apical or axillary by which slot it is. (Distinguish from **closed**.) *(RFC 002; plant: phytomer a; model: tree a, b)*
 
-**closed** — a slot that will grow nothing: a bud that never opens, or an axis that has ended. Closed is not drawn; a dormant bud that should be seen is an element with no open slots. It keeps its slot, so the slots beside it keep their paths. (Distinguish from **bud**, which can still grow.) *(RFC 002; diagram: shoot a)*
+**closed** — a slot that will grow nothing: a bud that never opens, or an axis that has ended. Closed is not drawn; a dormant bud that should be seen is an element with no open slots. It keeps its slot, so the slots beside it keep their paths. (Distinguish from **bud**, which can still grow.) *(RFC 002; plant: shoot a; model: tree a, b)*
 
-**compoundness** — how far an organ is divided into leaflets, as a depth: 0 simple, 1 once-pinnate, 2 twice. A trait of the archetype, separate from size: it divides the organ and does not enlarge it. *(RFC 003; diagram: shoot c)*
+**compoundness** — how far an organ is divided into leaflets, as a depth: 0 simple, 1 once-pinnate, 2 twice. A trait of the archetype, separate from size: it divides the organ and does not enlarge it. *(RFC 003; plant: shoot b; model: rules d)*
 
-**concurrent** — element-level parallel composition: two changes to one element at the same time. Idempotent: a change concurrent with itself is one change. (Distinguish from **fork**.) *(RFC 002)*
+**concurrent** — element-level parallel composition: two changes to one element at the same time. Idempotent: a change concurrent with itself is one change. (Distinguish from **fork**.) *(RFC 002; model: life a; algebra: life laws)*
 
-**context** — what a rule is given to grow from, and what a bud carries: the path, position (branch order, index along the axis), stage and archetype (RFC 003), traits and mutations in force (RFC 004). It flows downwards only: an element's context goes to each of its slots, changed for that slot by the rule; nothing flows up or between siblings. *(RFC 002)*
+**context** — what a rule is given to grow from, and what a bud carries: the path, position (branch order, index along the axis), stage and archetype (RFC 003), traits and mutations in force (RFC 004). It flows downwards only: an element's context goes to each of its slots, changed for that slot by the rule; nothing flows up or between siblings. *(RFC 002; model: tree b, rules c)*
 
-**continue** — structure-level sequential composition, written `then(f, g)`: grow `f`, then replace each of its open buds with the shoot `g` grows from that bud's context. (Distinguish from **sequential**.) *(RFC 002)*
+**continue** — structure-level sequential composition, written `then(f, g)`: grow `f`, then replace each of its open buds with the shoot `g` grows from that bud's context. (Distinguish from **sequential**.) *(RFC 002; model: rules a; algebra: operations)*
 
-**contraction / expansion** — Goethe's alternation along the axis. Expansion: longer internodes, broader organs. Contraction: shorter internodes, narrower organs, organs drawn towards one node. Each is a property of a stage, and each word is used as a noun on its own ("the calyx is a contraction"), never as "expansion phase" or "contraction stage". *(RFC 003; diagram: stages a)*
+**contraction / expansion** — Goethe's alternation along the axis. Expansion: longer internodes, broader organs. Contraction: shorter internodes, narrower organs, organs drawn towards one node. Each is a property of a stage, and each word is used as a noun on its own ("the calyx is a contraction"), never as "expansion phase" or "contraction stage". *(RFC 003; plant: stages a; model: rules a)*
 
-**duration** — how long one plant takes to grow, in wall-clock seconds. An input to the plant (a per-plant trait, pinned by the jig to begin with), read only by the warp. (Distinguish from an element's primary duration, which is in growth units.) *(RFC 002)*
+**duration** — how long one plant takes to grow, in wall-clock seconds. An input to the plant (a per-plant trait, pinned by the jig to begin with), read only by the warp. (Distinguish from an element's primary duration, which is in growth units.) *(RFC 002; model: life b)*
 
-**element** — one drawn part with its own life: an internode, a leaf, a petal. It has ordered slots. *(RFC 002; diagram: phytomer a)*
+**element** — one drawn part with its own life: an internode, a leaf, a petal. It has ordered slots. *(RFC 002; plant: phytomer a; model: tree a, b)*
 
-**fork** — structure-level branching: an element having several slots, each growing its own shoot at the same time. Two leaves in two slots are two leaves. Not an operation on rules: a bud grows exactly one shoot. (Distinguish from **concurrent**.) *(RFC 002)*
+**fork** — structure-level branching: an element having several slots, each growing its own shoot at the same time. Two leaves in two slots are two leaves. Not an operation on rules: a bud grows exactly one shoot. (Distinguish from **concurrent**.) *(RFC 002; model: tree a; algebra: operations)*
 
-**fusion group** — a set of slot paths naming the organs of one node that are drawn fused. An annotation; the organs remain separate elements. *(RFC 003; diagram: stages b)*
+**fusion group** — a set of slot paths naming the organs of one node that are drawn fused. An annotation; the organs remain separate elements. *(RFC 003; plant: stages b)*
 
-**internode** — the length of stem between two nodes. Here an element, whose slots all sit at its upper end, its node. *(RFC 002; diagram: phytomer a)*
+**internode** — the length of stem between two nodes. Here an element, whose slots all sit at its upper end, its node. *(RFC 002; plant: phytomer a; model: tree b)*
 
 **jig** — the dev-time control panel and what it drives: Tweakpane sliders for every form-affecting parameter, per-parameter locks, and the new-seed button (`src/ui/controls.ts`). Where exploration happens (principle 5).
 
-**lateral organ** — what a node bears at its side: a leaf, or a leaf transformed (bract, sepal, petal, stamen, carpel; RFC 003). It occupies a lateral slot. *(RFC 002; diagram: phytomer a)*
+**lateral organ** — what a node bears at its side: a leaf, or a leaf transformed (bract, sepal, petal, stamen, carpel; RFC 003). It occupies a lateral slot. *(RFC 002; plant: phytomer a)*
 
-**law** — an equation between meanings that holds for every value, e.g. `then` is associative. Derived from the meaning and checked by a property test; never assumed. *(RFC 001)*
+**law** — an equation between meanings that holds for every value, e.g. `then` is associative. Derived from the meaning and checked by a property test; never assumed. *(RFC 001; algebra: form laws, life laws)*
 
-**life** — everything one element does over time: its properties as functions of the time since it started, built from phases, with a primary duration after which growth continues from its slots. *(RFC 002)*
+**life** — everything one element does over time: its properties as functions of the time since it started, built from phases, with a primary duration after which growth continues from its slots. *(RFC 002; model: life a)*
 
 **lock** — a per-parameter toggle in the jig. A locked parameter keeps its value when a new seed is drawn; unlocked parameters are re-derived from the new seed. RFC 004 generalises this to pinning any trait.
 
@@ -88,15 +117,15 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **near-semiring** — two monoids on one set with only one distributive law. What the structure level would be if a bud could grow several shoots; not used (RFC 002, J2). *(RFC 002)*
 
-**node** — the botanical node: the upper end of an internode, where its lateral organs, axillary buds and apical slot attach. Several slots share one node (two leaves and their buds, for opposite arrangement). Not a separate thing in the tree, and not used for a tree-data-structure node, which is a slot or an element. (The one exception is `StructureNode` in today's code, which slice 1a replaces.) *(RFC 002; diagram: phytomer a–c)*
+**node** — the botanical node: the upper end of an internode, where its lateral organs, axillary buds and apical slot attach. Several slots share one node (two leaves and their buds, for opposite arrangement). Not a separate thing in the tree, and not used for a tree-data-structure node, which is a slot or an element. (The one exception is `StructureNode` in today's code, which slice 1a replaces.) *(RFC 002; plant: phytomer a–c)*
 
-**organ** — here, the rule grown in a lateral slot: it reads the archetype, transformed for the stage and varied for the slot, and grows a simple leaf (one element) or a compound one (a shoot). *(RFC 003; diagram: stages a)*
+**organ** — here, the rule grown in a lateral slot: it reads the archetype, transformed for the stage and varied for the slot, and grows a simple leaf (one element) or a compound one (a shoot). *(RFC 003; plant: stages a; model: rules c, d)*
 
-**path** — a slot's position: the sequence of slot indices from the root. A slot's id, and with the root seed its seed, are functions of its path. *(RFC 002; diagram: shoot a, b)*
+**path** — a slot's position: the sequence of slot indices from the root. A slot's id, and with the root seed its seed, are functions of its path. *(RFC 002; plant: shoot a; model: tree a, b)*
 
-**phase** — time, within one element: one stretch of an element's life during which a set of property changes run together, e.g. an internode elongating while it greens. **Primary** phases must finish before growth continues from the element's slots; **secondary** phases (thickening, ageing, bending) run on alongside what grows next. *(RFC 002)*
+**phase** — time, within one element: one stretch of an element's life during which a set of property changes run together, e.g. an internode elongating while it greens. **Primary** phases must finish before growth continues from the element's slots; **secondary** phases (thickening, ageing, bending) run on alongside what grows next. *(RFC 002; model: life a)*
 
-**phytomer** — the unit of plant structure: one internode and what its node bears (lateral organs, axillary buds, the apical bud). Here it is a rule, not a kind of element; all structure is that rule repeated along an axis and nested in branches and compound organs (principle 9). (Distinguish from **shoot**: the phytomer is the pattern, a shoot is anything built in it.) *(RFC 002; diagram: phytomer a, shoot a)*
+**phytomer** — the unit of plant structure: one internode and what its node bears (lateral organs, axillary buds, the apical bud). Here it is a rule, not a kind of element; all structure is that rule repeated along an axis and nested in branches and compound organs (principle 9). (Distinguish from **shoot**: the phytomer is the pattern, a shoot is anything built in it.) *(RFC 002; plant: phytomer a, shoot a; model: tree b, rules b, c)*
 
 **pin** — fixing a trait to a value, so it isn't drawn from its weight table. A jig lock pins from the panel; input data (e.g. a species) pins from outside. *(RFC 004)*
 
@@ -104,32 +133,32 @@ Botanical words keep their botanical sense. A term that names a physical structu
 
 **RFC** — a design proposal in `rfcs/`: exploration and rationale, never canonical. Becomes a spec or a principle when accepted. (Distinguish from **spec**.)
 
-**rule** — a function from a context to a shoot whose open buds carry the contexts for what grows next. Rules are composed with `then` and `grow`. *(RFC 002; today's code uses the word for the name recorded in provenance)*
+**rule** — a function from a context to a shoot whose open buds carry the contexts for what grows next. Rules are composed with `then` and `grow`. *(RFC 002; model: rules a–d; today's code uses the word for the name recorded in provenance)*
 
-**sample** — to evaluate a growing plant at one time `t`, giving the drawing for that instant. Pure: the same seed, traits and `t` give the same drawing. *(RFC 002)*
+**sample** — to evaluate a growing plant at one time `t`, giving the drawing for that instant. Pure: the same seed, traits and `t` give the same drawing. *(RFC 002; model: life b)*
 
 **seed lineage** — the chain of seeds from the root seed to a slot, each derived from its parent's by `deriveSeed`. Gives every slot a stable seed of its own without a shared RNG.
 
-**sequential** — element-level sequential composition: one phase after another within one element. (Distinguish from **continue**.) *(RFC 002)*
+**sequential** — element-level sequential composition: one phase after another within one element. (Distinguish from **continue**.) *(RFC 002; model: life a; algebra: life laws)*
 
-**settle time** — the latest moment at which anything in a growing plant is still changing. The image is the plant sampled at its settle time. *(RFC 002)*
+**settle time** — the latest moment at which anything in a growing plant is still changing. The image is the plant sampled at its settle time. *(RFC 002; model: life b)*
 
-**shoot** — the tree a rule grows, at any size: a single bud, a leaf, a branch, the whole plant. Anything cut off at a slot is a shoot, and a plant is one shoot. Wider than the botanical word (a stem with its leaves): here a leaf is a shoot too. (Distinguish from **phytomer**.) *(RFC 002; diagram: shoot a–c)*
+**shoot** — the tree a rule grows, at any size: a single bud, a leaf, a branch, the whole plant. Anything cut off at a slot is a shoot, and a plant is one shoot. Wider than the botanical word (a stem with its leaves): here a leaf is a shoot too. (Distinguish from **phytomer**.) *(RFC 002; plant: shoot a, b; model: tree a, b)*
 
-**size** — of an organ: the length and width of the whole organ, simple or compound. A trait of the archetype. Leaflets are fitted inside it. *(RFC 003)*
+**size** — of an organ: the length and width of the whole organ, simple or compound. A trait of the archetype. Leaflets are fitted inside it. *(RFC 003; model: rules d)*
 
-**slot** — one position among an element's children. Slots are ordered and indexed, each holds exactly one shoot (an element, a bud, or closed), and an internode's slots all sit at its node. Ids and seeds belong to slots. *(RFC 002; diagram: phytomer a–c)*
+**slot** — one position among an element's children. Slots are ordered and indexed, each holds exactly one shoot (an element, a bud, or closed), and an internode's slots all sit at its node. Ids and seeds belong to slots. *(RFC 002; plant: phytomer a–c; model: tree a, b)*
 
 **spec** — an approved decision in `specs/` that the code must match. Canonical. (Distinguish from **RFC**.)
 
-**stage** — place, along one axis: one step of Goethe's fixed sequence: vegetative leaves, calyx, corolla, stamens and pistil, fruit. Each stage is a run of phytomers whose organ is the archetype transformed for that stage. *(RFC 003; diagram: stages a)*
+**stage** — place, along one axis: one step of Goethe's fixed sequence: vegetative leaves, calyx, corolla, stamens and pistil, fruit. Each stage is a run of phytomers whose organ is the archetype transformed for that stage. *(RFC 003; plant: stages a; model: rules a, b)*
 
 **structure node** — today's code only, replaced by slice 1a: one entry of the tree generation produces (`StructureNode`): geometry, provenance, children, and a stable id of the form `rule:path`. What render consumes and what the inspector and feedback attach to.
 
 **trait** — a named, typed morphological variable (arrangement, divergence angle, leaf compoundness, a growth-rate curve…), either pinned or drawn from a weight table, per seed or per slot. *(RFC 004)*
 
-**variation** — how much organs of one stage may differ in size from slot to slot: a trait `v ≥ 0` bounding a per-slot factor. *(RFC 003)*
+**variation** — how much organs of one stage may differ in size from slot to slot: a trait `v ≥ 0` bounding a per-slot factor. *(RFC 003; model: rules d)*
 
-**warp** — a monotone function applied to time before sampling. Normalising growth time to `[0, 1]` and stretching that over the plant's duration are warps; they are presentation, outside the algebra. *(RFC 002)*
+**warp** — a monotone function applied to time before sampling. Normalising growth time to `[0, 1]` and stretching that over the plant's duration are warps; they are presentation, outside the algebra. *(RFC 002; model: life b)*
 
 **weight table** — a distribution over a trait's values; rarity is the shape of the table. Can be authored, or built from data (e.g. species counts near a location). *(RFC 004)*

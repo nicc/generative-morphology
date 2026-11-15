@@ -61,7 +61,7 @@ type Shoot<X> =
 type Rule<A, B> = (ctx: A) => Shoot<B>
 ```
 
-The vocabulary, drawn in [GLOSSARY.md](../GLOSSARY.md#diagrams):
+The vocabulary, drawn in [GLOSSARY.md](../GLOSSARY.md#diagrams); the operations and laws below are drawn in [docs/growth-algebra.md](../docs/growth-algebra.md):
 
 - An **element** is one drawn part: an internode, a leaf, a petal.
 - An element has ordered **slots**, and each slot holds exactly one shoot. An internode's slots all sit at its **node**, its upper end: one slot for each lateral organ, one for each axillary bud, and one apical slot. So several slots share a node. A node is not a separate thing in the tree; it is where an internode's slots attach.
@@ -213,7 +213,7 @@ Each is a choice about the form. All six were decided by the user on 2026-11-13;
 
 **J1. Does a shoot that stops growing stay drawn?** Decided: yes. Continuing with `closed` closes the buds and keeps the shoot. The alternative is a right zero, under which only shoots that still end in an open bud exist. This gives up the right-zero law and with it a full semiring. The alternative would make an axis that ends (in a flower, say) inexpressible without a special atom.
 
-**J2. Can a bud grow more than one shoot?** Decided: no, given that several buds can share a node. A bud grows one shoot; several things at one point are several slots of one element (opposite leaves, a cluster of buds at the end of a twig, several buds in one axil; GLOSSARY.md, phytomer diagram, panels b and c). The alternative lets a bud be replaced by several siblings, which makes `fork` an operation on rules and gives the structure level a second monoid and a distributive law (a near-semiring). It cannot be had together with stable ids: if the buds in slots 0 and 1 are continued and slot 0 grows two siblings where it grew one, slot 1's contents move to slot 2 and get a different id and seed. In the jig that is one bud changing and the rest of the plant reshuffling. The decision gives up `fork` as algebra; it keeps I3 by construction. It also means the number of slots at a node is fixed by the rule that grows the element, when it grows it.
+**J2. Can a bud grow more than one shoot?** Decided: no, given that several buds can share a node. A bud grows one shoot; several things at one point are several slots of one element (opposite leaves, a cluster of buds at the end of a twig, several buds in one axil; GLOSSARY.md, plant set, phytomer diagram, panels b and c). The alternative lets a bud be replaced by several siblings, which makes `fork` an operation on rules and gives the structure level a second monoid and a distributive law (a near-semiring). It cannot be had together with stable ids: if the buds in slots 0 and 1 are continued and slot 0 grows two siblings where it grew one, slot 1's contents move to slot 2 and get a different id and seed. In the jig that is one bud changing and the rest of the plant reshuffling. The decision gives up `fork` as algebra; it keeps I3 by construction. It also means the number of slots at a node is fixed by the rule that grows the element, when it grows it.
 
 **J3. Are siblings ordered?** Decided: yes, by slot, with a slot that grows nothing kept as `closed`. A plant accrues over time and never rearranges itself. Toggling one bud leaves the slots beside it alone. It gives up any law that reorders children.
 

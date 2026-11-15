@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-label="One element’s life as phases on a time axis, primary then secondary; and growth, each element starting when its parent’s primary phase ends, with the settle time, a sample and the warp">
+<rect width="1200" height="600" fill="#fbfaf6"/>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker>
+  <marker id="arrs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a0522d"/></marker>
+</defs>
+<style>
+  .ink{fill:none;stroke:#1f1f1f;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+  .lead{stroke:#777;stroke-width:0.8;fill:none}
+  .dash{stroke-dasharray:4 4}
+  .edge{fill:none;stroke:#1f1f1f;stroke-width:1.2}
+  .box{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1.4}
+  .rule{fill:#fbfaf6;stroke:#a0522d;stroke-width:1.4}
+  .shade{fill:#f1ede2;stroke:none}
+  .grp{fill:none;stroke:#a0522d;stroke-width:1.2;stroke-dasharray:5 4}
+  .num{fill:#fbfaf6;stroke:#1f1f1f;stroke-width:1}
+  text{font-family:Georgia,'Times New Roman',serif;font-size:14px;fill:#1f1f1f}
+  .t{font-size:17px;font-style:italic}
+  .s{font-size:12.5px;fill:#555}
+  .m{font-family:Menlo,Consolas,monospace;font-size:12.5px}
+  .n{font-family:Menlo,Consolas,monospace;font-size:11px;text-anchor:middle}
+  .big{font-size:22px;text-anchor:middle}
+  .c{text-anchor:middle}
+  .e{text-anchor:end}
+  .g{fill:#777}
+  .sn{fill:#a0522d}
+  .bl{fill:#2f5d8a}
+</style>
+<text class="t" x="30" y="40" xml:space="preserve">a. A life: what one element does over time</text>
+<rect class="grp" x="144" y="96" width="144" height="70" rx="6"/>
+<rect class="grp" x="290" y="166" width="192" height="70" rx="6"/>
+<text class="c sn" x="219" y="88" xml:space="preserve">primary phase</text>
+<text class="c sn" x="386" y="252" xml:space="preserve">secondary phase</text>
+<text class="e" x="134" y="122" xml:space="preserve">length</text>
+<rect class="box" style="fill:#1f1f1f" x="150" y="110" width="134" height="16" rx="2"/>
+<path class="lead dash" d="M284,118 L499.6,118"/>
+<text class="e" x="134" y="156" xml:space="preserve">colour</text>
+<rect class="box" style="fill:#1f1f1f" x="150" y="144" width="88" height="16" rx="2"/>
+<path class="lead dash" d="M238,152 L499.6,152"/>
+<text class="e" x="134" y="190" xml:space="preserve">width</text>
+<rect class="box" style="fill:#cfc8b8" x="288" y="178" width="180" height="16" rx="2"/>
+<path class="lead dash" d="M468,186 L499.6,186"/>
+<text class="e" x="134" y="224" xml:space="preserve">curvature</text>
+<rect class="box" style="fill:#cfc8b8" x="288" y="212" width="134" height="16" rx="2"/>
+<path class="lead dash" d="M422,220 L499.6,220"/>
+<path class="edge" marker-end="url(#arr)" d="M150,280 L508.8,280"/>
+<path class="edge" d="M150,280 L150,285"/>
+<text class="n" x="150" y="299" xml:space="preserve">0</text>
+<path class="edge" d="M196,280 L196,285"/>
+<text class="n" x="196" y="299" xml:space="preserve">1</text>
+<path class="edge" d="M242,280 L242,285"/>
+<text class="n" x="242" y="299" xml:space="preserve">2</text>
+<path class="edge" d="M288,280 L288,285"/>
+<text class="n" x="288" y="299" xml:space="preserve">3</text>
+<path class="edge" d="M334,280 L334,285"/>
+<text class="n" x="334" y="299" xml:space="preserve">4</text>
+<path class="edge" d="M380,280 L380,285"/>
+<text class="n" x="380" y="299" xml:space="preserve">5</text>
+<path class="edge" d="M426,280 L426,285"/>
+<text class="n" x="426" y="299" xml:space="preserve">6</text>
+<path class="edge" d="M472,280 L472,285"/>
+<text class="n" x="472" y="299" xml:space="preserve">7</text>
+<text class="s e" x="508.8" y="316" xml:space="preserve">time since this element started, in growth units</text>
+<path class="edge dash" d="M286,70 L286,94"/>
+<text class="s" x="294" y="74" xml:space="preserve">primary duration: 3</text>
+<text class="s" x="30" y="352" xml:space="preserve">Each bar is one property changing. Before a bar starts the property holds the</text>
+<text class="s" x="30" y="368" xml:space="preserve">bar’s first value; after it ends, its last (dotted).</text>
+<text class="s" x="30" y="384" xml:space="preserve">A phase is the changes that run together: concurrent, written  length + colour.</text>
+<text class="s" x="30" y="400" xml:space="preserve">A life is its phases in order: sequential, written  primary · secondary.</text>
+<text class="s" x="30" y="416" xml:space="preserve">Growth continues from the element’s slots when the primary phase ends.</text>
+<text class="s" x="30" y="432" xml:space="preserve">The secondary phase runs on alongside whatever grows next.</text>
+<rect class="box" style="fill:#1f1f1f" x="30" y="460" width="22" height="12" rx="2"/>
+<text class="s" x="60" y="471" xml:space="preserve">primary</text>
+<rect class="box" style="fill:#cfc8b8" x="130" y="460" width="22" height="12" rx="2"/>
+<text class="s" x="160" y="471" xml:space="preserve">secondary</text>
+<path class="lead" d="M560,20 L560,580"/>
+<text class="t" x="586" y="40" xml:space="preserve">b. Growth: an element starts when its parent’s primary phase ends</text>
+<text x="596" y="102" xml:space="preserve">internode</text>
+<text class="m e g" x="742" y="102" xml:space="preserve">root</text>
+<rect class="box" style="fill:#1f1f1f" x="770" y="90" width="114" height="16" rx="2"/>
+<rect class="box" style="fill:#cfc8b8" x="884" y="90" width="152" height="16" rx="2"/>
+<text x="612" y="138" xml:space="preserve">leaf</text>
+<text class="m e g" x="742" y="138" xml:space="preserve">0</text>
+<rect class="box" style="fill:#1f1f1f" x="884" y="126" width="76" height="16" rx="2"/>
+<text x="612" y="174" xml:space="preserve">internode</text>
+<text class="m e g" x="742" y="174" xml:space="preserve">2</text>
+<rect class="box" style="fill:#1f1f1f" x="884" y="162" width="114" height="16" rx="2"/>
+<rect class="box" style="fill:#cfc8b8" x="998" y="162" width="114" height="16" rx="2"/>
+<text x="628" y="210" xml:space="preserve">leaf</text>
+<text class="m e g" x="742" y="210" xml:space="preserve">2.0</text>
+<rect class="box" style="fill:#1f1f1f" x="998" y="198" width="76" height="16" rx="2"/>
+<text x="628" y="246" xml:space="preserve">internode</text>
+<text class="m e g" x="742" y="246" xml:space="preserve">2.2</text>
+<rect class="box" style="fill:#1f1f1f" x="998" y="234" width="76" height="16" rx="2"/>
+<rect class="box" style="fill:#cfc8b8" x="1074" y="234" width="76" height="16" rx="2"/>
+<path class="edge" style="stroke:#a0522d" d="M884,106 L884,162"/>
+<path class="edge" style="stroke:#a0522d" d="M998,178 L998,234"/>
+<path class="edge" marker-end="url(#arr)" d="M770,280 L1180.4,280"/>
+<path class="edge" d="M770,280 L770,285"/>
+<text class="n" x="770" y="299" xml:space="preserve">0</text>
+<path class="edge" d="M808,280 L808,285"/>
+<text class="n" x="808" y="299" xml:space="preserve">1</text>
+<path class="edge" d="M846,280 L846,285"/>
+<text class="n" x="846" y="299" xml:space="preserve">2</text>
+<path class="edge" d="M884,280 L884,285"/>
+<text class="n" x="884" y="299" xml:space="preserve">3</text>
+<path class="edge" d="M922,280 L922,285"/>
+<text class="n" x="922" y="299" xml:space="preserve">4</text>
+<path class="edge" d="M960,280 L960,285"/>
+<text class="n" x="960" y="299" xml:space="preserve">5</text>
+<path class="edge" d="M998,280 L998,285"/>
+<text class="n" x="998" y="299" xml:space="preserve">6</text>
+<path class="edge" d="M1036,280 L1036,285"/>
+<text class="n" x="1036" y="299" xml:space="preserve">7</text>
+<path class="edge" d="M1074,280 L1074,285"/>
+<text class="n" x="1074" y="299" xml:space="preserve">8</text>
+<path class="edge" d="M1112,280 L1112,285"/>
+<text class="n" x="1112" y="299" xml:space="preserve">9</text>
+<path class="edge" d="M1150,280 L1150,285"/>
+<text class="n" x="1150" y="299" xml:space="preserve">10</text>
+<text class="s e" x="754.8" y="299" xml:space="preserve">growth units</text>
+<path class="edge dash" d="M1036,68 L1036,280"/>
+<text class="m c" x="1036" y="62" xml:space="preserve">sample(g, 7)</text>
+<path class="edge dash" d="M1150,68 L1150,280"/>
+<text class="c" x="1150" y="62" xml:space="preserve">settle time</text>
+<path class="edge" d="M770,330 L1150,330"/>
+<path class="edge" d="M770,326 L770,334"/>
+<text class="n" x="770" y="349" xml:space="preserve">0</text>
+<path class="edge" d="M1150,326 L1150,334"/>
+<text class="n" x="1150" y="349" xml:space="preserve">1</text>
+<text class="s e" x="754.8" y="334" xml:space="preserve">normalised</text>
+<path class="edge" d="M770,374 L1150,374"/>
+<path class="edge" d="M770,370 L770,378"/>
+<text class="n" x="770" y="393" xml:space="preserve">0 s</text>
+<path class="edge" d="M1150,370 L1150,378"/>
+<text class="n" x="1150" y="393" xml:space="preserve">duration</text>
+<text class="s e" x="754.8" y="378" xml:space="preserve">seconds</text>
+<text class="c" x="960" y="322" xml:space="preserve">warp</text>
+<text class="c" x="960" y="366" xml:space="preserve">warp</text>
+<text class="s" x="586" y="430" xml:space="preserve">start(child) = start(parent) + primary(parent): the sienna lines.</text>
+<text class="s" x="586" y="446" xml:space="preserve">sample(g, t) is the drawing for one instant: every element that has started by t,</text>
+<text class="s" x="586" y="462" xml:space="preserve">each property at its value for t. At 7 all five are drawn; internode 2.2 is half-way</text>
+<text class="s" x="586" y="478" xml:space="preserve">through its primary phase, so nothing has grown from its slots yet.</text>
+<text class="s" x="586" y="494" xml:space="preserve">The settle time is the latest moment anything still changes. The image is the sample there.</text>
+<text class="s" x="586" y="510" xml:space="preserve">A warp rescales time before sampling (to 0–1, then to the plant’s duration in seconds).</text>
+<text class="s" x="586" y="526" xml:space="preserve">It is presentation: it changes how fast growth plays, never what grows or in what order.</text>
+</svg>
